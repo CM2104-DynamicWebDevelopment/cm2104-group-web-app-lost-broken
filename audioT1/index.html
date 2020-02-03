@@ -1,0 +1,144 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	</head>
+<body>
+
+<!-- 
+TODO - 
+Now:
+Add login frontend, create login link and page/popup?
+Add stop/play control? volume control? next or previous sound control with 
+transition animation (like current div moves left/right offscreen, new one comes from opposite side)
+
+Later:
+Move API code to backend? (this is probably less efficient in this case though)
+Move/modify create functions to use EJS template system
+	
+Requirements:
+You must make use of Front-end JavaScript and jQuery 
+Make use of Node.js based server-side JavaScript and should implement an Express.js web server to server your files 
+
+Content should not be hardcoded in any way and you should make use of 
+a dynamic templating system (such as EJS) to display content from your MongoDB and third party api’s
+You must successfully retrieve, parse and use JSON data from a 3rd party web service within your web app
+You must successfully retrieve, parse and use data from a MongoDB database stored on your server (tis can include user info). 
+-->
+
+<title> When you just want to hear a cat purr </title>
+<div id="titlebar">
+	<h1>Give me a . . .</h1>
+</div>
+
+<div id="searchbar">
+		<input class="searchtext" type="text" name="searchterm" placeholder="Search">
+		<button class="searchicon" onclick="requestAPIResponse()" type="button"></button>
+		<!--<button class="searchicon" onclick="createDetailsDiv('title', 'username', 'description...', '10s', 'resources/testWav.png')" type="button"></button>-->
+</div>
+	
+<div id ="waveBgImg">
+	<img src="resources/waveBG.svg">
+</div>
+	
+<script>
+function requestAPIResponse(){
+	//initial request to get search result length without loads of data
+	var inputString = document.getElementsByClassName("searchtext")[0].value;
+	var fetchForMaxLengthURL = "https://freesound.org/apiv2/search/text/?query=" + inputString + "&page_size=1&fields=name&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ";
+	var searchPage = 1;
+	fetch(fetchForMaxLengthURL)
+	  .then(response => response.json())
+	  .then(data => {
+		//actual request for a random page 
+		searchPage = Math.floor(Math.random() * (data.count/15));
+		var fetchForDataURL = "https://freesound.org/apiv2/search/text/?query=" + inputString + "&page=" + searchPage.toString() + "&page_size=15&fields=name,description,previews,duration,username,images&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ";
+		fetch(fetchForDataURL)
+		  .then(response => response.json())
+		  .then(data => {
+			//console.log(data);
+			var rand = Math.floor(Math.random() * (data.results.length-1));
+			var duration = data.results[rand].duration;
+			var previewURL = data.results[rand].previews["preview-lq-ogg"];
+			var waveformURL = data.results[rand].images.waveform_l;
+			var title = data.results[rand].name;
+			var description = data.results[rand].description;
+			var username = data.results[rand].username;
+			createAudioElement(previewURL);			
+			createDetailsDiv(title, username, description, duration, waveformURL);	
+		  });
+	  });
+}
+
+function createDetailsDiv(title, username, description, duration, waveformURL){
+	$("#detailsDiv").remove();
+	var d = document.createElement("div");
+	d.setAttribute("id","detailsDiv");
+	document.body.appendChild(d); 
+	d.appendChild(createWaveformElement(waveformURL)); 
+	d.appendChild(createTitleElement(title, username, duration)); 
+	d.appendChild(createDescriptionElement(description));
+}
+
+function createTitleElement(title, username, duration){
+	$("#titleElement").remove();
+	var t = document.createElement("b");
+	t.innerText = title + "\r\n \r\n User : " + username +  "\r\n \r\n Duration : "  + duration + "s";
+	t.setAttribute("id","titleElement");
+	return t; 
+}
+
+function createDescriptionElement(description){
+	$("#descriptionElement").remove();
+	var de = document.createElement("b");
+	de.innerText = description;
+	de.setAttribute("id","descriptionElement");
+	return de; 
+}
+
+function createWaveformElement(waveformURL){
+	$("#waveformElement").remove();
+	var w = document.createElement("img");
+	w.setAttribute("src",waveformURL);
+	w.setAttribute("id","waveformElement");
+	return w; 
+}
+
+//dynamically create and insert audio element	
+function createAudioElement(previewURL) {
+	$("#audioElement").remove();
+	var a = document.createElement("AUDIO");
+	if (a.canPlayType("audio/mpeg")) {
+		a.setAttribute("src",previewURL);
+		a.setAttribute("id","audioElement");
+		document.body.appendChild(a);
+		a.play(); 
+	}
+}
+
+function playAudio() { 
+	var a = document.getElementById("audioElement");
+	a.play(); 
+}
+
+</script>
+	
+<!-- JQuery AJAX controlling hover functions with DOM-->
+<script>
+/*$("#searchbar").hover(function(){ 
+	$(".searchtext").css({"width": "300px"});
+	});*/
+$(".searchicon").hover(function(){ 
+	$(".searchicon").css({"background": "url('resources/speakerIcon.svg')", "background-size" : "32px 32px"});
+	});
+	
+$(".searchicon").mouseleave(function(){ 
+	$(".searchicon").css({"background": "url('resources/speakerIconNoAudio.svg')", "background-size" : "32px 32px"});
+	});
+</script>
+	
+</body>
+</html>
+
+
