@@ -2,22 +2,23 @@
 
 <head>
 	<link rel="stylesheet" href="style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- needed to use Ajax/jquery -->
 	</head>
 <body>
 
 <!-- 
 TODO - 
 Now:
-Add login frontend, create login link and page/popup?
-Add stop/play control? volume control? next or previous sound control with 
-transition animation (like current div moves left/right offscreen, new one comes from opposite side)
+Add login frontend, create login button and page/popup?
+Create Account page (shows lists of favourited sounds?)
 
 Later:
-Move API code to backend? (this is probably less efficient in this case though)
-Move/modify create functions to use EJS template system
+Add controls to main page? Favourite button. A next button? Mute/Stop. Link to FreeSound page (required to use API)
+transition animation (like current div moves left/right offscreen, new one comes from opposite side?)
+Move API code to backend? (this is probably less efficient in this case though, might not need to move it, maybe user data stored backend is enough)
+Move/modify create functions to use EJS template system (this is apparently required?)
 	
-Requirements:
+Requirements taken from submission docs:
 You must make use of Front-end JavaScript and jQuery 
 Make use of Node.js based server-side JavaScript and should implement an Express.js web server to server your files 
 
@@ -27,118 +28,114 @@ You must successfully retrieve, parse and use JSON data from a 3rd party web ser
 You must successfully retrieve, parse and use data from a MongoDB database stored on your server (tis can include user info). 
 -->
 
-<title> When you just want to hear a cat purr </title>
+<title> When you just want to hear a cat purr?? I dunno </title>
 <div id="titlebar">
 	<h1>Give me a . . .</h1>
 </div>
 
 <div id="searchbar">
-		<input class="searchtext" type="text" name="searchterm" placeholder="Search">
-		<button class="searchicon" onclick="requestAPIResponse()" type="button"></button>
+		<input class="searchtext" type="text" name="searchterm" placeholder="Search"> <!-- Search input box -->
+		<button class="searchicon" onclick="requestAPIResponse()" type="button"></button> <!-- Search Icon (img of a Speaker), points to the API function-->
+		<!--Offline test code, replace above line with this one to not call the API all the time while testing repeatedly, might be useful especially if freesound is down -->
 		<!--<button class="searchicon" onclick="createDetailsDiv('title', 'username', 'description...', '10s', 'resources/testWav.png')" type="button"></button>-->
 </div>
-	
+
+<!-- This is the background vector wave file decoration -->
 <div id ="waveBgImg">
 	<img src="resources/waveBG.svg">
 </div>
 	
 <script>
 function requestAPIResponse(){
-	//initial request to get search result length without loads of data
-	var inputString = document.getElementsByClassName("searchtext")[0].value;
-	var fetchForMaxLengthURL = "https://freesound.org/apiv2/search/text/?query=" + inputString + "&page_size=1&fields=name&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ";
-	var searchPage = 1;
-	fetch(fetchForMaxLengthURL)
+	var inputString = document.getElementsByClassName("searchtext")[0].value; //this finds searchtext class declared above and gets the user input
+	//next line constructs initial API request, the response of first request is just used to work out how many pages there are, so the next call can pick a random page and not go OOB
+	var fetchForMaxLengthURL = "https://freesound.org/apiv2/search/text/?query=" + inputString + "&page_size=1&fields=name&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ"; 
+	fetch(fetchForMaxLengthURL) //initial request to get search result length without loads of data
 	  .then(response => response.json())
 	  .then(data => {
-		//actual request for a random page 
-		searchPage = Math.floor(Math.random() * (data.count/15));
+		var searchPage = Math.floor(Math.random() * (data.count/15)); //pick a random page using the response (data.count is total items, 15 is the page length)
+		//next line constructs the main API request, it asks for name,description,title,.ogg waveform etc using same input string as above and random page calculated above
 		var fetchForDataURL = "https://freesound.org/apiv2/search/text/?query=" + inputString + "&page=" + searchPage.toString() + "&page_size=15&fields=name,description,previews,duration,username,images&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ";
-		fetch(fetchForDataURL)
+		fetch(fetchForDataURL) //actual request for a random page 
 		  .then(response => response.json())
 		  .then(data => {
 			//console.log(data);
-			var rand = Math.floor(Math.random() * (data.results.length-1));
-			var duration = data.results[rand].duration;
-			var previewURL = data.results[rand].previews["preview-lq-ogg"];
-			var waveformURL = data.results[rand].images.waveform_l;
-			var title = data.results[rand].name;
-			var description = data.results[rand].description;
-			var username = data.results[rand].username;
-			createAudioElement(previewURL);			
-			createDetailsDiv(title, username, description, duration, waveformURL);	
+			var rand = Math.floor(Math.random() * (data.results.length-1)); //pick a random entry to load from the response
+			var duration = data.results[rand].duration; //sound duration
+			var previewURL = data.results[rand].previews["preview-lq-ogg"];  //url to the sound file (.ogg low quality, loads fastest)
+			var waveformURL = data.results[rand].images.waveform_l; //url to waveform image
+			var title = data.results[rand].name; //title of wav file
+			var description = data.results[rand].description; //description of wavefile
+			var username = data.results[rand].username; //username
+			createAudioElement(previewURL); //passes sound file URL to createAudio function
+			createDetailsDiv(title, username, description, duration, waveformURL);	//passes sound file details to createDetails function
 		  });
 	  });
 }
 
 function createDetailsDiv(title, username, description, duration, waveformURL){
-	$("#detailsDiv").remove();
-	var d = document.createElement("div");
-	d.setAttribute("id","detailsDiv");
-	document.body.appendChild(d); 
-	d.appendChild(createWaveformElement(waveformURL)); 
-	d.appendChild(createTitleElement(title, username, duration)); 
-	d.appendChild(createDescriptionElement(description));
+	$("#detailsDiv").remove();//remove old detailsDiv if it exists
+	var d = document.createElement("div"); //create a div Element
+	d.setAttribute("id","detailsDiv"); //set id to detailsDiv
+	document.body.appendChild(d); //add new Div to Body of page
+	d.appendChild(createWaveformElement(waveformURL)); //createWaveform image and add to div
+	d.appendChild(createTitleElement(title, username, duration)); //create Title and add to div
+	d.appendChild(createDescriptionElement(description)); //createDescription and add to div
 }
 
 function createTitleElement(title, username, duration){
-	$("#titleElement").remove();
-	var t = document.createElement("b");
-	t.innerText = title + "\r\n \r\n User : " + username +  "\r\n \r\n Duration : "  + duration + "s";
+	//$("#titleElement").remove(); //if already exists then remove, might not need this if the div is always removed anyway
+	var t = document.createElement("b"); //create some [b]old tags
+	t.innerText = title + "\r\n \r\n User : " + username +  "\r\n \r\n Duration : "  + duration + "s"; //add title username and duration text, "\r\n" are line breaks
 	t.setAttribute("id","titleElement");
-	return t; 
+	return t;
 }
 
 function createDescriptionElement(description){
-	$("#descriptionElement").remove();
-	var de = document.createElement("b");
-	de.innerText = description;
-	de.setAttribute("id","descriptionElement");
+	//$("#descriptionElement").remove(); //if already exists then remove, might not need this if the div is always removed anyway
+	var de = document.createElement("b"); //create some [b]old tags
+	de.innerText = description; //set text content to description (maybe the length should be set to a max size? to stop formatting errors. Trail off like this...)
+	de.setAttribute("id","descriptionElement"); 
 	return de; 
 }
 
 function createWaveformElement(waveformURL){
-	$("#waveformElement").remove();
-	var w = document.createElement("img");
-	w.setAttribute("src",waveformURL);
+	//$("#waveformElement").remove(); //if already exists then remove, might not need this if the div is always removed anyway
+	var w = document.createElement("img"); //create img tags
+	w.setAttribute("src",waveformURL); //set source to our waveform image
 	w.setAttribute("id","waveformElement");
 	return w; 
 }
 
 //dynamically create and insert audio element	
 function createAudioElement(previewURL) {
-	$("#audioElement").remove();
-	var a = document.createElement("AUDIO");
-	if (a.canPlayType("audio/mpeg")) {
-		a.setAttribute("src",previewURL);
+	//$("#audioElement").remove(); //if already exists then remove, might not need this if the div is always removed anyway
+	var a = document.createElement("AUDIO"); //create AUDIO element (this is what the browser uses to play the audio)
+	if (a.canPlayType("audio/mpeg")) { //if it can play, if it cant we should probably say something, but i think they all work afaik
+		a.setAttribute("src",previewURL); //url to the sound file
 		a.setAttribute("id","audioElement");
-		document.body.appendChild(a);
-		a.play(); 
+		document.body.appendChild(a); //add audio to the body
+		a.play(); //play audio
 	}
 }
 
+//not used yet, could be used once we have a play button
 function playAudio() { 
 	var a = document.getElementById("audioElement");
 	a.play(); 
 }
-
 </script>
 	
 <!-- JQuery AJAX controlling hover functions with DOM-->
 <script>
-/*$("#searchbar").hover(function(){ 
-	$(".searchtext").css({"width": "300px"});
-	});*/
-$(".searchicon").hover(function(){ 
+$(".searchicon").hover(function(){ //get the searchicon element on mouseover, and change the icon
 	$(".searchicon").css({"background": "url('resources/speakerIcon.svg')", "background-size" : "32px 32px"});
 	});
 	
-$(".searchicon").mouseleave(function(){ 
+$(".searchicon").mouseleave(function(){  //get the searchicon element on mouse leave, and change the icon
 	$(".searchicon").css({"background": "url('resources/speakerIconNoAudio.svg')", "background-size" : "32px 32px"});
 	});
 </script>
 	
 </body>
 </html>
-
-
