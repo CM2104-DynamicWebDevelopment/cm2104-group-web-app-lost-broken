@@ -3,4 +3,6 @@ This is the code for your interface prototype should sit. I have created a sugge
 Be warned though do non submit a non-customised css template or framework as you will not get many marks for it.
 
 Moved the provided example into DefaultTemplate folder - Ash
-Renamed and moved current prototype to Protoype folder AudstrumP-0.1 - Ash
+Renamed and moved current prototype to Protoype alpha folder Audstrum-Alpha0.1 - Ash
+Current plan is to copy the previous version folder and increment version number for anything bigger than small changes - Ash
+
