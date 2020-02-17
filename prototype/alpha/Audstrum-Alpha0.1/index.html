@@ -41,6 +41,10 @@ You must successfully retrieve, parse and use data from a MongoDB database store
 		<!--<button class="searchicon" onclick="createDetailsDiv('title', 'username', 'description...', '10s', 'resources/testWav.png')" type="button"></button>-->
 </div>
 
+<div id="controlbar">
+	<button class="controlbar" onclick="" type="button"></button>
+</div>
+
 <!-- This is the background vector wave file decoration -->
 <div id ="waveBgImg">
 	<img src="resources/waveBG.svg">
@@ -70,8 +74,13 @@ function requestAPIResponse(){
 			var username = data.results[rand].username; //username
 			createAudioElement(previewURL); //passes sound file URL to createAudio function
 			createDetailsDiv(title, username, description, duration, waveformURL);	//passes sound file details to createDetails function
+			showControls();
 		  });
 	  });
+}
+
+function showControls(){
+	$("#controlbar").css({visibility: "visible"});
 }
 
 function createDetailsDiv(title, username, description, duration, waveformURL){

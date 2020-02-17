@@ -16,11 +16,7 @@ h1{
 	border:0;
 }
 
-img{
-	max-width: 100%;
-	max-height: 100%;
-	display: block;
-}
+
 
 #titlebar{
 	position: relative;
@@ -36,6 +32,18 @@ img{
 	z-index:5;
 	box-shadow: 0 0 8px 2px rgba(0,0,0,.7);
 	word-spacing: 10px;
+}
+
+/* Everything above here can be reused? */
+
+
+/* Main Page */
+
+/* this is background image on main */
+img{
+	max-width: 100%;
+	max-height: 100%;
+	display: block;
 }
 
 #searchbar {
@@ -59,6 +67,19 @@ img{
 	font-size:16px;
 	line-height:40px;
 	width:300px;
+}
+
+#controlbar {
+	visibility: hidden;
+	position : absolute;
+	top: 35%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	/*background: #ff8c00;*/
+	height: 40px;
+	width: 300px;
+	/*border-radius: 40px;*/
+	padding: 10px;
 }
 
 #waveBGImg{
@@ -147,3 +168,4 @@ img{
     width: 32px;
 	transition:0.5s;
 }
+/* End Main Page */
