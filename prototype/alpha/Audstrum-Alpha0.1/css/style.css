@@ -16,6 +16,12 @@ h1{
 	border:0;
 }
 
+img{
+	max-width: 100%;
+	max-height: 100%;
+	display: block;
+}
+
 #titlebar{
 	position: relative;
 	left: 0;
@@ -31,19 +37,12 @@ h1{
 	box-shadow: 0 0 8px 2px rgba(0,0,0,.7);
 	word-spacing: 10px;
 }
-
 /* Everything above here can be reused? */
-
+/* Everything probably needs rewritten so its cleaner, theres a lot of repeating data right now*/
 
 /* Main Page */
 
-/* this is background image on main */
-img{
-	max-width: 100%;
-	max-height: 100%;
-	display: block;
-}
-
+/* white rounded search bar */
 #searchbar {
 	position : absolute;
 	top: 25%;
@@ -55,7 +54,8 @@ img{
 	padding: 10px;
 }
 
-.searchtext{
+/* text input box of searchbar */
+#searchbar > .searchtext{
 	border:none;
 	background:none;
 	outline:none;
@@ -67,19 +67,7 @@ img{
 	width:300px;
 }
 
-#controlDiv {
-	color: white;
-	position : absolute;
-	height: 50%;
-	width: 50%;
-	margin : 10px;
-	padding: 10px;
-	object-fit:contain;
-	z-index: 1;
-	top: 0;
-	left: 50%;
-}
-
+/* this is background image on main */
 #waveBGImg{
 	position : absolute;
 	bottom: 10.5%;
@@ -92,6 +80,7 @@ img{
 	z-index: -1;
 }
 
+/* main Div that holds all the Wav details and control elements below */
 #detailsDiv{
 	position : absolute;
 	height: 30%;
@@ -99,7 +88,11 @@ img{
 	margin-top: -15%;
 	margin-left: -20%;
 	background: black;
+	color: white;
 	object-fit:contain;
+	text-overflow:ellipsis; /*stops overflow text, ellipsis '...' doesnt work tho  */
+	overflow: hidden; /*stops overflow text, ellipsis '...' doesnt work tho  */
+	display: block; /*stops overflow text, ellipsis '...' doesnt work tho  */
 	z-index: 0;
 	top: 99%;
 	left: 50%;
@@ -107,7 +100,34 @@ img{
 	animation: animate 1s ease-out 1 normal forwards;
 }
 
-#titleElement{
+#detailsDiv > #titleElement{
+	position : absolute;
+	height: 50%;
+	width: 50%;
+	margin : 10px;
+	padding: 10px;
+	top: 0;
+	top: 50%;
+	left: 50%;
+}
+
+#detailsDiv > #descriptionElement{
+	position : absolute;
+	height: 50%;
+	width: 50%;
+	margin : 10px;
+	top: 50%;
+}
+
+#detailsDiv > #waveformElement{
+	position : absolute;
+	height: 50%;
+	width: 50%;
+	margin : 10px;
+	top: 0;
+}
+
+#detailsDiv > #controlDiv {
 	color: white;
 	position : absolute;
 	height: 50%;
@@ -117,31 +137,10 @@ img{
 	object-fit:contain;
 	z-index: 1;
 	top: 0;
-	top: 50%;
 	left: 50%;
 }
 
-#descriptionElement{
-	color: white;
-	position : absolute;
-	height: 50%;
-	width: 50%;
-	margin : 10px;
-	object-fit:contain;
-	z-index: 1;
-	top: 50%;
-}
-
-#waveformElement{
-	position : absolute;
-	height: 50%;
-	width: 50%;
-	margin : 10px;
-	object-fit:contain;
-	z-index: 1;
-	top: 0;
-}
-
+/* animates the details div, start at bottom of page (100% in Y) and move to just below center*/
 @keyframes animate{
 	0%{
 		transform: translateY(99%);
@@ -172,11 +171,10 @@ img{
 	background-size: 32px 32px;
 	border: none;
 	outline: none;
-	margin:5px;
-	display:box;
+	margin-top:10%;
+	margin-left:15%;
 	justify-content:center;
 	align-items:center;
-	margin-right:5px;
     height: 32px;
     width: 32px;
 	/*transition:0.5s;*/
