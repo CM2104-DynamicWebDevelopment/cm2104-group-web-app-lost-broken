@@ -41,10 +41,6 @@ You must successfully retrieve, parse and use data from a MongoDB database store
 		<!--<button class="searchicon" onclick="createDetailsDiv('title', 'username', 'description...', '10s', 'resources/testWav.png')" type="button"></button>-->
 </div>
 
-<div id="controlbar">
-	<button class="controlbar" onclick="" type="button"></button>
-</div>
-
 <!-- This is the background vector wave file decoration -->
 <div id ="waveBgImg">
 	<img src="resources/waveBG.svg">
@@ -74,13 +70,9 @@ function requestAPIResponse(){
 			var username = data.results[rand].username; //username
 			createAudioElement(previewURL); //passes sound file URL to createAudio function
 			createDetailsDiv(title, username, description, duration, waveformURL);	//passes sound file details to createDetails function
-			showControls();
+			//showControls();
 		  });
 	  });
-}
-
-function showControls(){
-	$("#controlbar").css({visibility: "visible"});
 }
 
 function createDetailsDiv(title, username, description, duration, waveformURL){
@@ -91,6 +83,32 @@ function createDetailsDiv(title, username, description, duration, waveformURL){
 	d.appendChild(createWaveformElement(waveformURL)); //createWaveform image and add to div
 	d.appendChild(createTitleElement(title, username, duration)); //create Title and add to div
 	d.appendChild(createDescriptionElement(description)); //createDescription and add to div
+	d.appendChild(createControlElement()); //createControl and add to div
+}
+
+function createControlElement(){
+	var cd = document.createElement("div"); //create a div Element
+	cd.setAttribute("id","controlDiv"); //set id to controlDiv
+	//create play control element
+	var play = document.createElement("button");
+	play.setAttribute("id","controlicons");
+	play.setAttribute("onclick","playAudio()");
+	play.setAttribute("style", "background: url('resources/playIcon.svg') 0% 0% / 32px 32px");
+	//create stop control element
+	var stop = document.createElement("button");
+	stop.setAttribute("id","controlicons");
+	stop.setAttribute("onclick","stopAudio()");
+	stop.setAttribute("style", "background: url('resources/stopIcon.svg') 0% 0% / 32px 32px");
+	//create favourite control element
+	var fav = document.createElement("button");
+	fav.setAttribute("id","controlicons");
+	fav.setAttribute("onclick","favAudio()");
+	fav.setAttribute("style", "background: url('resources/favIcon.svg') 0% 0% / 32px 32px");
+	//append all to div
+	cd.appendChild(play);
+	cd.appendChild(stop);
+	cd.appendChild(fav);
+	return cd;
 }
 
 function createTitleElement(title, username, duration){
@@ -119,7 +137,7 @@ function createWaveformElement(waveformURL){
 
 //dynamically create and insert audio element	
 function createAudioElement(previewURL) {
-	//$("#audioElement").remove(); //if already exists then remove, might not need this if the div is always removed anyway
+	$("#audioElement").remove(); //if already exists then remove, might not need this if the div is always removed anyway
 	var a = document.createElement("AUDIO"); //create AUDIO element (this is what the browser uses to play the audio)
 	if (a.canPlayType("audio/mpeg")) { //if it can play, if it cant we should probably say something, but i think they all work afaik
 		a.setAttribute("src",previewURL); //url to the sound file
@@ -129,10 +147,24 @@ function createAudioElement(previewURL) {
 	}
 }
 
-//not used yet, could be used once we have a play button
 function playAudio() { 
 	var a = document.getElementById("audioElement");
 	a.play(); 
+}
+
+function stopAudio() { 
+	var a = document.getElementById("audioElement");
+	//there is no stop function in html5? so pause it and reset time to start
+	a.pause(); 
+	a.currentTime = 0.0;
+}
+
+function favAudio() { 
+	var a = document.getElementById("audioElement");
+	//wrap up the audio in a JSON? 
+	//send it to server so it can save it under this user
+	//if user is not logged in redirect to login/create account 
+	//(this would mean the user could probably lose this sound, could work in a solution if needed)
 }
 </script>
 	
