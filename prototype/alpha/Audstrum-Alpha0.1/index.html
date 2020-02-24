@@ -76,79 +76,105 @@ function requestAPIResponse(){
 
 function createDetailsDiv(title, username, description, duration, waveformURL){
 	$("#detailsDiv").remove();//remove old detailsDiv if it exists
-	var d = document.createElement("div"); //create a div Element
-	d.setAttribute("id","detailsDiv"); //set id to detailsDiv
-	document.body.appendChild(d); //add new Div to Body of page
-	d.appendChild(createWaveformElement(waveformURL)); //createWaveform image and add to div
-	d.appendChild(createTitleElement(title, username, duration)); //create Title and add to div
-	d.appendChild(createDescriptionElement(description)); //createDescription and add to div
-	d.appendChild(createControlElement()); //createControl and add to div
+	
+	//var d = $('<div id="detailsDiv"></div>')
+	$('body').append('<div id="detailsDiv"></div>');
+	//d.appendChild(createWaveformElement(waveformURL)); //createWaveform image and add to div
+	//d.appendChild(createTitleElement(title, username, duration)); //create Title and add to div
+	//d.appendChild(createDescriptionElement(description)); //createDescription and add to div
+	//d.appendChild(createControlElement()); //createControl and add to div
+	$("#detailsDiv").append(createWaveformElement(waveformURL))
+	$("#detailsDiv").append(createTitleElement(title, username, duration))
+	$("#detailsDiv").append(createDescriptionElement(description))
+	//$("#detailsDiv").append()
+	createControlElement()
+	//$('body').append(d);
+	//or JS
+
+	//var d = document.createElement("div"); //create a div Element
+	//d.setAttribute("id","detailsDiv"); //set id to detailsDiv
+	//document.body.appendChild(d); //add new Div to Body of page
+	//d.appendChild(createWaveformElement(waveformURL)); //createWaveform image and add to div
+	//d.appendChild(createTitleElement(title, username, duration)); //create Title and add to div
+	//d.appendChild(createDescriptionElement(description)); //createDescription and add to div
+	//d.appendChild(createControlElement()); //createControl and add to div
 }
 
 function createControlElement(){
-	var cd = document.createElement("div"); //create a div Element
-	cd.setAttribute("id","controlDiv"); //set id to controlDiv
+	$('#detailsDiv').append('<div id="controlDiv"></div>')
+	//var cd = document.createElement("div"); //create a div Element
+	//cd.setAttribute("id","controlDiv"); //set id to controlDiv
+
 	//create play control element
-	var play = document.createElement("button");
-	play.setAttribute("id","controlicons");
-	play.setAttribute("onclick","playAudio()");
-	play.setAttribute("style", "background: url('resources/playIcon.svg') 0% 0% / 32px 32px");
+	//$('controlDiv').append('<button id="controlicons" onclick="playAudio()"></button>').css("background:url('resources/playIcon.svg') 0% 0% / 32px 32px")
+	//$('#controlDiv').append('<button id="controlicons" onclick="playAudio()"></button>').attr("style", "background : url('resources/playIcon.svg') 0% 0% / 32px 32px")
+	$('<button id="controlicons" onclick="playAudio()"></button>').appendTo('#controlDiv').css({'background-colour' : 'black', 'background-image' :  'url(resources/playIcon.svg)','background-size' :  '32px'})
+	//$('#controlDiv').append('<button id="controlicons" onclick="playAudio()"></button>').css({'background-image' :  'url(resources/playIcon.svg)',
+																							//'background-size' :  '32px'})
+	//$('controlicons').css("background:url('resources/playIcon.svg') 0% 0% / 32px 32px")
+	//var play = document.createElement("button");
+	//play.setAttribute("id","controlicons");
+	//play.setAttribute("onclick","playAudio()");
+	//play.setAttribute("style", "background: url('resources/playIcon.svg') 0% 0% / 32px 32px");
+
 	//create stop control element
-	var stop = document.createElement("button");
-	stop.setAttribute("id","controlicons");
-	stop.setAttribute("onclick","stopAudio()");
-	stop.setAttribute("style", "background: url('resources/stopIcon.svg') 0% 0% / 32px 32px");
+	//var stop = document.createElement("button");
+	//stop.setAttribute("id","controlicons");
+	//stop.setAttribute("onclick","stopAudio()");
+	//stop.setAttribute("style", "background: url('resources/stopIcon.svg') 0% 0% / 32px 32px");
+
+	$('<button id="controlicons" onclick="stopAudio()"></button>').appendTo('#controlDiv').css({'background-colour' : 'black', 'background-image' :  'url(resources/stopIcon.svg)','background-size' :  '32px'})
 	//create favourite control element
-	var fav = document.createElement("button");
-	fav.setAttribute("id","controlicons");
-	fav.setAttribute("onclick","favAudio()");
-	fav.setAttribute("style", "background: url('resources/favIcon.svg') 0% 0% / 32px 32px");
+	//var fav = document.createElement("button");
+	//fav.setAttribute("id","controlicons");
+	//fav.setAttribute("onclick","favAudio()");
+	//fav.setAttribute("style", "background: url('resources/favIcon.svg') 0% 0% / 32px 32px");
+
+	$('<button id="controlicons" onclick="favAudio()"></button>').appendTo('#controlDiv').css({'background-colour' : 'black', 'background-image' :  'url(resources/favIcon.svg)','background-size' :  '32px'})
 	//append all to div
-	cd.appendChild(play);
-	cd.appendChild(stop);
-	cd.appendChild(fav);
-	return cd;
+	//cd.appendChild(play);
+	//cd.appendChild(stop);
+	//cd.appendChild(fav);
+	//return cd;
 }
 
 function createTitleElement(title, username, duration){
 	//$("#titleElement").remove(); //if already exists then remove, might not need this if the div is always removed anyway
-	var t = document.createElement("b"); //create some [b]old tags
-	t.innerText = title + "\r\n \r\n User : " + username +  "\r\n \r\n Duration : "  + duration + "s"; //add title username and duration text, "\r\n" are line breaks
-	t.setAttribute("id","titleElement");
-	return t;
+	return  $('<b id="titleElement"></b>').text(title + "\r\n \r\n User : " + username +  "\r\n \r\n Duration : "  + duration + "s");
 }
 
 function createDescriptionElement(description){
 	//$("#descriptionElement").remove(); //if already exists then remove, might not need this if the div is always removed anyway
-	var de = document.createElement("b"); //create some [b]old tags
-	de.innerText = description; //set text content to description (maybe the length should be set to a max size? to stop formatting errors. Trail off like this...)
-	de.setAttribute("id","descriptionElement"); 
-	return de; 
+	return  $('<b id="descriptionElement"></b>').text(description); 
 }
 
 function createWaveformElement(waveformURL){
 	//$("#waveformElement").remove(); //if already exists then remove, might not need this if the div is always removed anyway
-	var w = document.createElement("img"); //create img tags
-	w.setAttribute("src",waveformURL); //set source to our waveform image
-	w.setAttribute("id","waveformElement");
-	return w; 
+	//var w = document.createElement("img"); //create img tags
+	//w.setAttribute("src",waveformURL); //set source to our waveform image
+	//w.setAttribute("id","waveformElement");
+	return  $('<img id="waveformElement"></img>').attr("src",waveformURL); 
+	//return w; 
 }
 
 //dynamically create and insert audio element	
 function createAudioElement(previewURL) {
 	$("#audioElement").remove(); //if already exists then remove, might not need this if the div is always removed anyway
-	var a = document.createElement("AUDIO"); //create AUDIO element (this is what the browser uses to play the audio)
-	if (a.canPlayType("audio/mpeg")) { //if it can play, if it cant we should probably say something, but i think they all work afaik
-		a.setAttribute("src",previewURL); //url to the sound file
-		a.setAttribute("id","audioElement");
-		document.body.appendChild(a); //add audio to the body
-		a.play(); //play audio
-	}
+	$('body').append('<audio id="audioElement"></audio>').attr("src", previewURL); 
+	$("#audioElement")[0].play();
+	//var a = document.createElement("AUDIO"); //create AUDIO element (this is what the browser uses to play the audio)
+	//if (a.canPlayType("audio/mpeg")) { //if it can play, if it cant we should probably say something, but i think they all work afaik
+//		a.setAttribute("src",previewURL); //url to the sound file
+//		a.setAttribute("id","audioElement");
+//		document.body.appendChild(a); //add audio to the body
+//		a.play(); //play audio
+//	}
 }
 
 function playAudio() { 
-	var a = document.getElementById("audioElement");
-	a.play(); 
+	$("#audioElement")[0].play();
+	//var a = document.getElementById("audioElement");
+	//a.play(); 
 }
 
 function stopAudio() { 
@@ -160,6 +186,7 @@ function stopAudio() {
 
 function favAudio() { 
 	var a = document.getElementById("audioElement");
+	//$("#audioElement")[0];
 	//wrap up the audio in a JSON? 
 	//send it to server so it can save it under this user
 	//if user is not logged in redirect to login/create account 
@@ -167,7 +194,7 @@ function favAudio() {
 }
 </script>
 	
-<!-- JQuery AJAX controlling hover functions with DOM-->
+<!-- JQuery controlling hover functions with DOM-->
 <script>
 $(".searchicon").hover(function(){ //get the searchicon element on mouseover, and change the icon
 	$(".searchicon").css({"background": "url('resources/speakerIcon.svg')", "background-size" : "32px 32px"});
