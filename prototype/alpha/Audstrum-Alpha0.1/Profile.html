@@ -1,7 +1,7 @@
 <html>
 
     <head>
-	    <link rel="stylesheet" href="style.css">
+	    <link rel="stylesheet" href="css/style.css">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- needed to use Ajax/jquery -->
     </head>
     
@@ -15,13 +15,22 @@
 
         <h2>Favourites</h2>
 
-        <script>
-            function createBox(title, username, description, duration, waveformURL){
-                var d = document.createElement("div");
-                d.setAttribute("id","box");
-                document.body.appendChild(d);
-                d.beginPath();
-        </script>
+        <style>
+            .rectangle {
+                position: absolute;
+                height: 30%;
+                width: 40%;
+                margin-top: -15%;
+	            margin-left: -20%;
+                background-color:black;
+                z-index: 0;
+                top: 500px;
+                left: 250px;
+                border: 30px
+            }
+        </style>
+
+        <div class="rectangle"></div>
         
     </body>
 
