@@ -7,18 +7,6 @@
 <body>
 
 <!-- 
-TODO - 
-Now:
-Add login frontend, create login button and page/popup?
-Create Account page (shows lists of favourited sounds?)
-I think he might want us to seperate the scripts to a javascript folder like the DefaultTemplate folder?
-
-Later:
-Add controls to main page? Favourite button. A next button? Mute/Stop. Link to FreeSound page (required to use API)
-transition animation (like current div moves left/right offscreen, new one comes from opposite side?)
-Move API code to backend? (this is probably less efficient in this case though, might not need to move it, maybe user data stored backend is enough)
-Move/modify create functions to use EJS template system (this is apparently required?)
-	
 Requirements taken from submission docs:
 You must make use of Front-end JavaScript and jQuery (done)
 Make use of Node.js based server-side JavaScript and should implement an Express.js web server to server your files (not done)
@@ -32,10 +20,10 @@ You must successfully retrieve, parse and use data from a MongoDB database store
 <title> When you just want to hear a cat purr?? I dunno </title>
 <div id="titlebar">
 	<div id="audstrumTitle">
-		<h1>Audstrum</h1>
+		<h1 onclick="location.href='index.html'">Audstrum</h1>
 	</div>
 	<div id="navLinks">
-		<h2>Login</h2>
+		<h2 onclick="location.href='Profile.html'">Login</h2>
 	</div>
 </div>
 
@@ -58,35 +46,40 @@ function requestAPIResponse(){
 	var fetchForMaxLengthURL = "https://freesound.org/apiv2/search/text/?query=" + inputString + "&page_size=1&fields=name&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ"; 
 	fetch(fetchForMaxLengthURL) //initial request to get search result length without loads of data
 	  .then(response => response.json())
-	  .then(data => { //!!!!!!!!!!!!need to check if there is nothing found and tell user!!!!!!!!!!!!!!!!!!!!!
-		var searchPage = Math.floor(Math.random() * (data.count/15)); //pick a random page using the response (data.count is total items, 15 is the page length)
-		//next line constructs the main API request, it asks for name,description,title,.ogg waveform etc using same input string as above and random page calculated above
-		var fetchForDataURL = "https://freesound.org/apiv2/search/text/?query=" + inputString + "&page=" + searchPage.toString() + "&page_size=15&fields=name,description,previews,duration,username,images&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ";
-		fetch(fetchForDataURL)
-		  .then(response => response.json())
-		  .then(data => {
-			//console.log(data);
-			var rand = Math.floor(Math.random() * (data.results.length-1));
-			var duration = data.results[rand].duration;
-			var previewURL = data.results[rand].previews["preview-lq-ogg"];
-			var waveformURL = data.results[rand].images.waveform_l;
-			var title = data.results[rand].name;
-			var description = data.results[rand].description;
-			var username = data.results[rand].username;
-			createAudioElement(previewURL);
-			createDetailsDiv(title, username, description, duration, waveformURL);
-		  });
-	  });
+	  .then(data => {
+		if(data.count > 1){ //if there is at least 1 item
+			var searchPage = Math.floor(Math.random() * (data.count/15)); //pick a random page using the response (data.count is total items, 15 is the page length)
+			//next line constructs the main API request, it asks for name,description,title,.ogg waveform etc using same input string as above and random page calculated above
+			var fetchForDataURL = "https://freesound.org/apiv2/search/text/?query=" + inputString + "&page=" + searchPage.toString() + "&page_size=15&fields=name,description,previews,duration,username,images&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ";
+			fetch(fetchForDataURL)
+		  	.then(response => response.json())
+		  	.then(data => {
+				//console.log(data);
+				var rand = Math.floor(Math.random() * (data.results.length-1));
+				var duration = data.results[rand].duration;
+				var previewURL = data.results[rand].previews["preview-lq-ogg"];
+				var waveformURL = data.results[rand].images.waveform_l;
+				var title = data.results[rand].name;
+				var description = data.results[rand].description;
+				var username = data.results[rand].username;
+				createAudioElement(previewURL); //could change this to append to the details div, but start downloading it first?
+				createDetailsDiv(title, username, description, duration, waveformURL);
+		  	});
+		}
+		else{
+			console.log("No hits, we should tell user that search failed");
+		}
+	});
 }
 
 function createDetailsDiv(title, username, description, duration, waveformURL){
 	$("#detailsDiv").remove();//remove old detailsDiv if it exists
 	$('body').append('<div id="detailsDiv"></div>');
-	var dV = $("#detailsDiv")
-	dV.append(createWaveformElement(waveformURL))
-	dV.append(createTitleElement(title, username, duration))
-	dV.append(createDescriptionElement(description))
-	createControlElement()
+	var dV = $("#detailsDiv");
+	dV.append(createWaveformElement(waveformURL));
+	dV.append(createTitleElement(title, username, duration));
+	dV.append(createDescriptionElement(description));
+	createControlElement();
 }
 
 function createControlElement(){
@@ -111,7 +104,7 @@ function createWaveformElement(waveformURL){
 //dynamically create and insert audio element	
 function createAudioElement(previewURL) {
 	$("#audioElement").remove(); //if already exists then remove, might not need this if the div is always removed anyway
-	$('body').append('<audio id="audioElement"></audio>').attr("src", previewURL); 
+	$('<audio id="audioElement"></audio>').appendTo('body').attr("src", previewURL);
 	$("#audioElement")[0].play();
 }
 
