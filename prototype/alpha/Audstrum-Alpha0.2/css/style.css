@@ -114,7 +114,6 @@ input:focus{outline:none;}
 	z-index: 0;
 	top: 99%;
     left: 25%;
-	transform: translateX(-50%);
     animation: animate 1s ease-out 1 normal forwards;
 }
 
@@ -171,9 +170,6 @@ input:focus{outline:none;}
 
 /* animates the details div, start at bottom of page (100% in Y) and move to just below center*/
 @keyframes animate{
-	0%{
-		transform: translateY(0%);
-	}
 	100%{
 		top:0;
 		transform: translateY(100%);
@@ -194,6 +190,7 @@ input:focus{outline:none;}
 	transition:0.5s;
 }
 
+/*smartphone*/
 @media screen and (max-width: 600px) {
     ul li.logo, 
     ul li{
@@ -207,7 +204,7 @@ input:focus{outline:none;}
         left:0;
     }
     #searchbar{
-        top: 10%;
+        top: 30px;
         width:100%;
         border-radius:0;
     }
@@ -218,19 +215,35 @@ input:focus{outline:none;}
         margin-right:30px;
     }
     @keyframes animate{
-        0%{
-            transform: translateY(0%);
-        }
         100%{
             top:0;
-            transform: translateY(10%);
         }
     }
 }
 
+/*mid size screen*/
 @media screen and (min-width: 600px) and (max-width: 1024px){
     #detailsDiv{
         width: 100%;
         left:0;
+    }
+}
+
+/*landscape*/
+@media screen and (max-height: 600px){
+    #detailsDiv{
+        width: 100%;
+        height:75%;
+        left:0;
+    }
+    #searchbar{
+        top: 30px;
+        width:100%;
+        border-radius:0;
+    }
+    @keyframes animate{
+        100%{
+            top:0;
+        }
     }
 }
