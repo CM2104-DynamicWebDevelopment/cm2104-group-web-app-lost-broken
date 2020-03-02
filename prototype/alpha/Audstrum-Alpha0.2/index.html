@@ -1,21 +1,15 @@
 <html>
-
+<!-- 
+--TODO--
+	Add quick Loading... animation/text
+	Add fail message on no hits
+	Set a max length of sound clip? Pick another if its over 15-30s long?
+-->
 <head>
 	<link rel="stylesheet" href="css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- needed to use Ajax/jquery -->
 	</head>
 <body background="resources/backwave.svg">
-
-<!-- 
-Requirements taken from submission docs:
-You must make use of Front-end JavaScript and jQuery (done)
-Make use of Node.js based server-side JavaScript and should implement an Express.js web server to server your files (not done)
-
-Content should not be hardcoded in any way and you should make use of 
-a dynamic templating system (such as EJS) to display content from your MongoDB and third party api’s (not done)
-You must successfully retrieve, parse and use JSON data from a 3rd party web service within your web app (done)
-You must successfully retrieve, parse and use data from a MongoDB database stored on your server (this can include user info). (not done)
--->
 
 <title> When you just want to hear a cat purr?? I dunno </title>
 <header id="PageHeader">
@@ -29,11 +23,12 @@ You must successfully retrieve, parse and use data from a MongoDB database store
 </header>
 
 <div id="searchbar">
-		<input class="searchtext" type="text" name="searchterm" placeholder="Search"> <!-- Search input box -->
-		<button class="searchicon" onclick="requestAPIResponse()" type="button" style= "background: url('resources/speakerIconNoAudio.svg') 0% 0% / 32px 32px"></button> <!-- Search Icon (img of a Speaker), points to the API function-->
-		<!--Offline test code, replace above line with this one to not call the API all the time while testing repeatedly, might be useful especially if freesound is down -->
-		<!--<button class="searchicon" onclick="createDetailsDiv('title', 'username', 'description...', '10s', 'resources/testWav.png')" type="button"></button>-->
+	<input class="searchtext" type="text" name="searchterm" placeholder="Search"> <!-- Search input box -->
+	<button class="searchicon" onclick="requestAPIResponse()" type="button" style= "background: url('resources/speakerIconNoAudio.svg') 0% 0% / 32px 32px"></button> <!-- Search Icon (img of a Speaker), points to the API function-->
+	<!--Offline test code, replace above line with this one to not call the API all the time while testing repeatedly, might be useful especially if freesound is down -->
+	<!--<button class="searchicon" onclick="createDetailsDiv('title', 'username', 'description...', '10s', 'resources/testWav.png')" type="button"></button>-->
 </div>
+
 
 <script>
 function requestAPIResponse(){

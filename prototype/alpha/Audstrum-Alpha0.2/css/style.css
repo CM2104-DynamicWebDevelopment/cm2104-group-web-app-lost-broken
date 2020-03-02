@@ -27,22 +27,12 @@ li a:hover{
     transition: 0.8s; 
 }
 
-@media screen and (max-width: 600px) {
-    ul li.logo, 
-    ul li{
-        float: none;
-        text-align: center;
-        font-size: 130%;
-    }
-}
-
 body{
     margin:0px;
     background-color: rgb(243, 166, 0);
     font-family: Verdana;
     text-align: center;
     background-repeat: no-repeat;   
-
     position: relative; /*added*/
     overflow:hidden;
 } 
@@ -81,10 +71,11 @@ input:hover{
 input:focus{outline:none;}
 
 #searchbar {
-	position : absolute;
+	position : relative;
 	top: 25%;
-	left: 50%;
-	transform: translate(-50%,-50%);
+    left: 50%;
+    width:340px;
+    transform: translate(-50%,-50%);
 	background: white;
 	height: 40px;
 	border-radius: 40px;
@@ -103,7 +94,7 @@ input:focus{outline:none;}
 	color:black;
 	font-size:16px;
 	line-height:40px;
-    width:300px;
+    width:280px;
     height:100%;
     top:50%;
     margin:0;
@@ -114,8 +105,6 @@ input:focus{outline:none;}
 	position : absolute;
 	height: 30%;
     width: 40%;
-	margin-top: -15%;
-	margin-left: -20%;
 	background: black;
 	color: white;
 	object-fit:contain;
@@ -124,7 +113,7 @@ input:focus{outline:none;}
 	display: block; /*stops overflow text, ellipsis '...' doesnt work tho  */
 	z-index: 0;
 	top: 99%;
-	left: 50%;
+	left: 30%;
 	transform: translateX(-50%);
     animation: animate 1s ease-out 1 normal forwards;
 }
@@ -168,7 +157,6 @@ input:focus{outline:none;}
 	left: 50%;
 }
 
-
 #controlDiv > .controlicons {
 	background-color : transparent;
 	background-size: 32px 32px;
@@ -188,7 +176,7 @@ input:focus{outline:none;}
 		transform: translateY(99%);
 	}
 	100%{
-		top:40%;
+		top:10%;
 		transform: translateY(125%);
 	}
 }
@@ -200,11 +188,33 @@ input:focus{outline:none;}
 	outline: none;
 	float:right;
 	margin:5px;
-	display:flex;
 	justify-content:center;
 	align-items:center;
-	margin-right:5px;
     height: 32px;
     width: 32px;
 	transition:0.5s;
+}
+
+@media screen and (max-width: 600px) {
+    ul li.logo, 
+    ul li{
+        float: none;
+        text-align: center;
+        font-size: 130%;
+    }
+    #detailsDiv{
+        width: 100%;
+        left:0;
+    }
+    #searchbar{
+        top: 10%;
+        width:100%;
+        border-radius:0;
+    }
+    #searchbar > .searchtext{
+        margin-left:30px;
+    }
+    .searchicon{
+        margin-right:30px;
+    }
 }
