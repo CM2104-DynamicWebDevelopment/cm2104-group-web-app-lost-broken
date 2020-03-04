@@ -1,0 +1,123 @@
+<html>
+<!-- 
+--TODO--
+	Add quick Loading... animation/text
+	Add fail message on no hits
+	Set a max length of sound clip? Pick another if its over 15-30s long?
+-->
+<head>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- needed to use Ajax/jquery -->
+	</head>
+<body background="resources/backwave.svg">
+
+<title> When you just want to hear a cat purr?? I dunno </title>
+<header id="PageHeader">
+	<ul>
+		<li class='logo'><a href="index.html">(Audstrum)</a></li>
+		<li class='out'><a href="login.html">Sign In</a></li>
+		<li class='out'><a href="register.html">Register</a></li>
+		<li class='in'><a href="profile.html">Profile</a></li>
+		<li class='in'><a href="#">Log Out</a></li>
+	</ul>
+</header>
+
+<div id="searchbar">
+	<input class="searchtext" type="text" name="searchterm" placeholder="Search"> <!-- Search input box -->
+	<button class="searchicon" onclick="requestAPIResponse()" type="button" style= "background: url('resources/speakerIconNoAudio.svg') 0% 0% / 32px 32px"></button> <!-- Search Icon (img of a Speaker), points to the API function-->
+	<!--Offline test code, replace above line with this one to not call the API all the time while testing repeatedly, might be useful especially if freesound is down -->
+	<!--<button class="searchicon" onclick="createDetailsDiv('title', 'username', 'description...', '10s', 'resources/testWav.png')" type="button"></button>-->
+</div>
+
+
+<script>
+function requestAPIResponse(){
+	var inputString = document.getElementsByClassName("searchtext")[0].value; //this finds searchtext class declared above and gets the user input
+	//next line constructs initial API request, the response of first request is just used to work out how many pages there are, so the next call can pick a random page and not go OOB
+	var fetchForMaxLengthURL = "https://freesound.org/apiv2/search/text/?query=" + inputString + "&page_size=1&fields=name&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ"; 
+	fetch(fetchForMaxLengthURL) //initial request to get search result length without loads of data
+	  .then(response => response.json())
+	  .then(data => {
+		if(data.count > 1){ //if there is at least 1 item
+			var searchPage = Math.floor(Math.random() * (data.count/15)); //pick a random page using the response (data.count is total items, 15 is the page length)
+			//next line constructs the main API request, it asks for name,description,title,.ogg waveform etc using same input string as above and random page calculated above
+			var fetchForDataURL = "https://freesound.org/apiv2/search/text/?query=" + inputString + "&page=" + searchPage.toString() + "&page_size=15&fields=name,description,previews,duration,username,images&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ";
+			fetch(fetchForDataURL)
+		  	.then(response => response.json())
+		  	.then(data => {
+				//console.log(data);
+				var rand = Math.floor(Math.random() * (data.results.length-1));
+				var duration = data.results[rand].duration;
+				var previewURL = data.results[rand].previews["preview-lq-ogg"];
+				var waveformURL = data.results[rand].images.waveform_l;
+				var title = data.results[rand].name;
+				var description = data.results[rand].description;
+				var username = data.results[rand].username;
+				createAudioElement(previewURL); //could change this to append to the details div, but start downloading it first?
+				createDetailsDiv(title, username, description, duration, waveformURL);
+		  	});
+		}
+		else{
+			console.log("No hits, should tell user that search failed");
+		}
+	});
+}
+
+function createDetailsDiv(title, username, description, duration, waveformURL){
+	$("#detailsDiv").remove();//remove old detailsDiv if it exists
+	$('body').append('<div id="detailsDiv"></div>');
+	var detailsDiv = $("#detailsDiv");
+	detailsDiv.append($('<img id="waveformElement"></img>').attr("src",waveformURL));
+	detailsDiv.append($('<a id="titleElement"></a>').text(title + "\r\n \r\n User : " + username +  "\r\n \r\n Duration : "  + duration + "s"));
+	detailsDiv.append($('<a id="descriptionElement"></a>').text(description));
+	createControlElement(detailsDiv);
+}
+
+function createControlElement(detailsDiv){
+	var controlDiv = $('<div id="controlDiv"></div>').appendTo(detailsDiv);
+	$('<button class="controlicons" onclick="playAudio()"></button>').appendTo(controlDiv).css({'background-color' : 'transparent', 'background-image' :  'url(resources/playIcon.svg)','background-size' :  '32px'});
+	$('<button class="controlicons" onclick="stopAudio()"></button>').appendTo(controlDiv).css({'background-color' : 'transparent', 'background-image' :  'url(resources/stopIcon.svg)','background-size' :  '32px'});
+	$('<button class="controlicons" onclick="favAudio()"></button>').appendTo(controlDiv).css({'background-color' : 'transparent', 'background-image' :  'url(resources/favIcon.svg)','background-size' :  '32px'});
+}
+
+//dynamically create and insert audio element	
+function createAudioElement(previewURL) {
+	$("#audioElement").remove(); //if already exists then remove
+	$('<audio id="audioElement"></audio>').appendTo('body').attr("src", previewURL);
+	$("#audioElement")[0].play();
+}
+
+function playAudio() { 
+	$("#audioElement")[0].play();
+}
+
+function stopAudio() { 
+	var a = document.getElementById("audioElement");
+	//there is no stop function in html5? so pause it and reset time to start
+	a.pause(); 
+	a.currentTime = 0.0;
+}
+
+function favAudio() { 
+	var a = document.getElementById("audioElement");
+	//$("#audioElement")[0];
+	//wrap up the audio in a JSON? 
+	//send it to server so it can save it under this user
+	//if user is not logged in redirect to login/create account 
+	//(this would mean the user could probably lose this sound, could work in a solution if needed)
+}
+</script>
+	
+<!-- JQuery controlling hover functions with DOM-->
+<script>
+$(".searchicon").hover(function(){ //get the searchicon element on mouseover, and change the icon
+	$(".searchicon").css({"background": "url('resources/speakerIcon.svg')", "background-size" : "32px 32px"});
+	});
+	
+$(".searchicon").mouseleave(function(){  //get the searchicon element on mouse leave, and change the icon
+	$(".searchicon").css({"background": "url('resources/speakerIconNoAudio.svg')", "background-size" : "32px 32px"});
+	});
+</script>
+	
+</body>
+</html>

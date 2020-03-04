@@ -1,0 +1,59 @@
+<!--
+    TO DO:
+
+    create code for login check with message
+    upload code to database with redirect
+
+
+    -
+
+    merge css with main css
+
+    -
+
+    create code for navigation hiding
+    deppending if signed on
+
+    if yes then display account username(profile) 
+    and logout. if no then sign in, sign up
+
+    -
+-->
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>AUDSTRUM | SIGN IN</title>
+        <meta name="Description" content="Author">
+        <link rel="stylesheet" href="css/style.css?v=1.0">
+    </head>
+    <body background="resources/backwave.svg">
+        <header id="PageHeader">
+            <ul>
+                <li class='logo'><a href="index.html">(Audstrum)</a></li>
+                <li class='out'><a href="login.html">Sign In</a></li>
+                <li class='out'><a href="register.html">Register</a></li>
+                <li class='in'><a href="profile.html">Profile</a></li>
+                <li class='in'><a href="#">Log Out</a></li>
+            </ul>
+        </header>
+
+        <section id="PageContent">
+            <h1>Sign  In.</h1>
+            <!--the form below will be in jquery once the back end is done
+            complete. This code will also then check the inputs
+            and sign the user in.-->
+            <form>
+                <input type="text" id="user" name="user" placeholder="Username">
+                <input type="password" id="pass" name="pass" placeholder="Password">
+                <input type="submit" value="Submit">
+            </form>
+        </section>
+
+        <footer id="PageFooter">
+
+        </footer>
+        <script src="js/scripts.js"></script> 
+    </body>
+</html>
