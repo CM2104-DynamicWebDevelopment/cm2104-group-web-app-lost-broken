@@ -1,129 +1,37 @@
-<html>
+<!DOCTYPE html>
 
+<html lang="en">
     <head>
-	    <link rel="stylesheet" href="css/style.css">
-	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- needed to use Ajax/jquery -->
+        <meta charset="utf-8">
+        <title>AUDSTRUM | SIGN IN</title>
+        <meta name="Description" content="Author">
+        <link rel="stylesheet" href="css/style.css?v=1.0">
     </head>
-    
-    <body>
-
-        <title>Swim in your own sounds of gold!!!</title>
-
-        <div id="titlebar">
-            <header id="PageHeader">
-            <ul>
+    <body background="resources/backwave.svg">
+        <header id="PageHeader">
+            <ul class='nav'>
                 <li class='logo'><a href="index.html">(Audstrum)</a></li>
                 <li class='out'><a href="login.html">Sign In</a></li>
                 <li class='out'><a href="register.html">Register</a></li>
-                <li class='in'><a href="Profile.html">Profile</a></li>
+                <li class='in'><a href="profile.html">Profile</a></li>
                 <li class='in'><a href="#">Log Out</a></li>
             </ul>
         </header>
 
-        <div id ="waveBgImg">
-            <img src="resources/backwave.svg">
-        </div>
+        <section id="PageContent">
+            <h1>Profile</h1>
+            <div id='favs'>
+                <li class='list'><h3>Cat Screech</h3></li>
+                <li class='list'><h3>Cat Purr</h3></li>
+                <li class='list'><h3>Static</h3></li>
+                <li class='list'><h3>Door Creek</h3></li>
+                <li class='list'><h3>Bang</h3></li>
+            </div>
+        </section>
 
-        <h2 style="position: absolute; top: 10%; font-size: 50; text-align: center; left: 45%">Favourites</h2>
+        <footer id="PageFooter">
 
-        <style>
-            .rectangle1 {
-                position: absolute;
-                height: 30%;
-                width: 40%;
-                margin-top: -15%;
-	            margin-left: -20%;
-                background-color:black;
-                z-index: 0;
-                top: 60%;
-                left: 25%;
-            }
-
-            .rectangle2 {
-                position: absolute;
-                height: 30%;
-                width: 40%;
-                margin-top: -15%;
-	            margin-right: -20%;
-                background-color:black;
-                z-index: 0;
-                top: 60%;
-                right: 25%;
-            }
-
-            .rectangle3 {
-                position: absolute;
-                height: 30%;
-                width: 40%;
-                margin-top: -15%;
-	            margin-left: -20%;
-                background-color:black;
-                z-index: 0;
-                top: 100%;
-                left: 25%;
-            }
-
-            .rectangle4 {
-                position: absolute;
-                height: 30%;
-                width: 40%;
-                margin-top: -15%;
-	            margin-right: -20%;
-                background-color:black;
-                z-index: 0;
-                top: 100%;
-                right: 25%;
-            }
-        </style>
-
-        <div class="rectangle1">
-            
-            <img src="resources/testWav.png" width="50%" height="auto" style="margin:2.5%">
-            <img src="resources/playIcon.svg" width="5%" style="position: absolute; left: 60%; top: 15%">
-            <img src="resources/stopIcon.svg" width="5%" style="position: absolute; left: 75%; top: 15%">
-            <img src="resources/favIcon.svg" width="5%" style="position: absolute; left: 90%; top: 15%">
-            <p style="position: absolute; top: 50%; font-size: 16; color: white; left: 20%">Description</p>
-            <p style="position: absolute; top: 50%; font-size: 16; color: white; left: 45%">Title</p>
-            <p style="position: absolute; top: 50%; font-size: 16; color: white; left: 70%">Downloadable File</p>
-
-        </div>
-        
-        <div class="rectangle2">
-            
-            <img src="resources/testWav.png" width="50%" style="margin:2.5%">
-            <img src="resources/playIcon.svg" width="5%" style="position: absolute; left: 60%; top: 15%">
-            <img src="resources/stopIcon.svg" width="5%" style="position: absolute; left: 75%; top: 15%">
-            <img src="resources/favIcon.svg" width="5%" style="position: absolute; left: 90%; top: 15%">
-            <p style="position: absolute; top: 50%; font-size: 16; color: white; left: 20%">Description</p>
-            <p style="position: absolute; top: 50%; font-size: 16; color: white; left: 45%">Title</p>
-            <p style="position: absolute; top: 50%; font-size: 16; color: white; left: 70%">Downloadable File</p>
-        
-        </div>
-        
-        <div class="rectangle3">
-            
-            <img src="resources/testWav.png" width="50%" height="auto" style="margin:2.5%">
-            <img src="resources/playIcon.svg" width="5%" style="position: absolute; left: 60%; top: 15%">
-            <img src="resources/stopIcon.svg" width="5%" style="position: absolute; left: 75%; top: 15%">
-            <img src="resources/favIcon.svg" width="5%" style="position: absolute; left: 90%; top: 15%">
-            <p style="position: absolute; top: 50%; font-size: 16; color: white; left: 20%">Description</p>
-            <p style="position: absolute; top: 50%; font-size: 16; color: white; left: 45%">Title</p>
-            <p style="position: absolute; top: 50%; font-size: 16; color: white; left: 70%">Downloadable File</p>
-        
-        </div>
-        
-        <div class="rectangle4">
-            
-            <img src="resources/testWav.png" width="50%" height="auto" style="margin:2.5%">
-            <img src="resources/playIcon.svg" width="5%" style="position: absolute; left: 60%; top: 15%">
-            <img src="resources/stopIcon.svg" width="5%" style="position: absolute; left: 75%; top: 15%">
-            <img src="resources/favIcon.svg" width="5%" style="position: absolute; left: 90%; top: 15%">
-            <p style="position: absolute; top: 50%; font-size: 16; color: white; left: 20%">Description</p>
-            <p style="position: absolute; top: 50%; font-size: 16; color: white; left: 45%">Title</p>
-            <p style="position: absolute; top: 50%; font-size: 16; color: white; left: 70%">Downloadable File</p>
-        
-        </div>
-        
+        </footer>
+        <script src="js/scripts.js"></script> 
     </body>
-
 </html>
