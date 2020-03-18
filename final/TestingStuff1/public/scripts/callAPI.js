@@ -24,7 +24,6 @@ function getResults(searchTerms){
 				createAudioElement(previewURL); //could change this to append to the details div, but start downloading it first?
                 createDetailsDiv(title, username, description, duration, waveformURL);
             });*/
-        }
     });
 }
 
