@@ -27,7 +27,7 @@ function getResults(searchTerms){
             });
         }
     });*/
-    $.getJSON("/doAPICall", function(init) {
+    $.getJSON("/doAPICall", searchTerms, function(init) {
         if(init.count > 0){ //if there is at least 1 item
             console.log(init);
            /* var searchPage = Math.floor(Math.random() * (init.count/15)); //pick a random page using the response (data.count is total items, 15 is the page length)

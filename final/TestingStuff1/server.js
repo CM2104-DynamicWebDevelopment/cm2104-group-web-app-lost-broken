@@ -8,7 +8,7 @@ app.use(express.static('public'))
 
 
 app.get('/doAPICall', function(req, res){
-    var url = "https://freesound.org/apiv2/search/text/?query=" + searchTerms + "&page_size=1&fields=name&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ"; 
+    var url = "https://freesound.org/apiv2/search/text/?query=" + req.searchTerms + "&page_size=1&fields=name&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ"; 
     https.get(url, (resp) => {
     let data = '';
 
