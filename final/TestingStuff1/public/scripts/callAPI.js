@@ -9,13 +9,13 @@ $(function(){
 
 function getResults(params){
 	$.getJSON("/doAPICall", params)
-    .done(function( response ) {
-		var duration = response.duration;
-		var previewURL = response.previewURL;
-		var waveformURL = response.waveformURL;
-		var title = response.title;
-		var description = response.description;
-		var username = response.username;
+    .done(function(response) {
+		var duration = response[0].duration;
+		var previewURL = response[0].previewURL;
+		var waveformURL = response[0].waveformURL;
+		var title = response[0].title;
+		var description = response[0].description;
+		var username = response[0].username;
 		createAudioElement(previewURL); //could change this to append to the details div, but start downloading it first?
         createDetailsDiv(title, username, description, duration, waveformURL);
     })
