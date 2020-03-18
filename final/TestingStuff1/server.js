@@ -10,9 +10,37 @@ app.get('/doAPICall', function(req, res){
 
     request(url, { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
-        console.log(body.url);
-        console.log(body.explanation);
-        console.log(res);
+        if(body.count > 0){ //if at least one item in response
+            console.log(body.count);
+            console.log(body.results[0].name);
+
+            var searchPage = Math.floor(Math.random() * (body.count/15)); //pick a random page using the response (data.count is total items, 15 is the page length)
+            //next line constructs the main API request, it asks for name,description,title,.ogg waveform etc using same input string as above and random page calculated above
+            var fetchForDataURL = "https://freesound.org/apiv2/search/text/?query=" + req.query + "&page=" + searchPage.toString() + "&page_size=15&fields=name,description,previews,duration,username,images&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ";
+
+            request(fetchForDataURL, { json: true }, (err, res, body) => {
+                if (err) { return console.log(err); }
+                
+                var rand = Math.floor(Math.random() * (body.results.length-1));
+                /*var duration = data.results[rand].duration;
+				var previewURL = data.results[rand].previews["preview-lq-ogg"];
+				var waveformURL = data.results[rand].images.waveform_l;
+				var title = data.results[rand].name;
+				var description = data.results[rand].description;
+                var username = data.results[rand].username;*/
+                console.log(body.count);
+                console.log(body.results[rand].name);
+				//createAudioElement(previewURL); //could change this to append to the details div, but start downloading it first?
+                //createDetailsDiv(title, username, description, duration, waveformURL);
+            });
+            /*var json = [];
+            for (var i = 0; i < tweets.length; i++) {
+            json.push({
+                name: tweets[i].user.name,
+                text: tweets[i].text
+            });
+            }*/
+        }
     });
 
 
@@ -29,14 +57,7 @@ app.get('/doAPICall', function(req, res){
     resp.on('end', () => {
         console.log(JSON.parse(data).explanation);
         res.send(data);
-        /*var json = [];
-        for (var i = 0; i < tweets.length; i++) {
-		json.push({
-			name: tweets[i].user.name,
-			text: tweets[i].text
-		});
-        }
-        ----
+       
     });
 
     }).on("error", (err) => {
