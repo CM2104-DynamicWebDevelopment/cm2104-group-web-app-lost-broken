@@ -6,6 +6,7 @@ app.use(express.static('public'));
 
 
 app.get('/doAPICall', function(req, res){
+    var json = [];
     var url = "https://freesound.org/apiv2/search/text/?query=" + req.query + "&page_size=1&fields=name&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ"; 
     request(url, { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
@@ -16,7 +17,7 @@ app.get('/doAPICall', function(req, res){
             request(fetchForDataURL, { json: true }, (err, res, body) => {
                 if (err) { return console.log(err); }
                 var rand = Math.floor(Math.random() * (body.results.length-1));
-                var json = [];
+                
                 json.push({
                     title: body.results[rand].name,
                     duration: body.results[rand].duration,
@@ -26,12 +27,13 @@ app.get('/doAPICall', function(req, res){
                     description: body.results[rand].description,
                     username: body.results[rand].username
                 });
-                res.send(json);
+                
                 console.log(body.count);
                 console.log(body.results[rand].name);
             });
         }
     });
+    res.send(json);
 });
 
 app.listen(8080);
