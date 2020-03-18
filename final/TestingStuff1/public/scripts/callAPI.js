@@ -7,39 +7,21 @@ $(function(){
     });
 });
 
-
-
 function getResults(params){
-
-	var json = $.getJSON("/doAPICall", params)
+	$.getJSON("/doAPICall", params)
     .done(function( response ) {
-        json = response;
-		console.log(response);
+		var duration = response.duration;
+		var previewURL = response.previewURL;
+		var waveformURL = response.waveformURL;
+		var title = response.title;
+		var description = response.description;
+		var username = response.username;
+		createAudioElement(previewURL); //could change this to append to the details div, but start downloading it first?
+        createDetailsDiv(title, username, description, duration, waveformURL);
     })
-    .fail(function() {
-        console.log( "error" );
+    .fail(function(){
+        console.log("Invalid API response");
     });
-
-
-   /*() $.getJSON("/doAPICall", params, function(response) {
-		console.log(response);
-		console.log(response[0]);
-           /* var searchPage = Math.floor(Math.random() * (init.count/15)); //pick a random page using the response (data.count is total items, 15 is the page length)
-			//next line constructs the main API request, it asks for name,description,title,.ogg waveform etc using same input string as above and random page calculated above
-			var fetchForDataURL = "https://freesound.org/apiv2/search/text/?query=" + searchTerms + "&page=" + searchPage.toString() + "&page_size=15&fields=name,description,previews,duration,username,images&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ";
-            $.getJSON(fetchForDataURL, function(data) {
-                //console.log(data);
-                var rand = Math.floor(Math.random() * (data.results.length-1));
-				var duration = data.results[rand].duration;
-				var previewURL = data.results[rand].previews["preview-lq-ogg"];
-				var waveformURL = data.results[rand].images.waveform_l;
-				var title = data.results[rand].name;
-				var description = data.results[rand].description;
-				var username = data.results[rand].username;
-				createAudioElement(previewURL); //could change this to append to the details div, but start downloading it first?
-                createDetailsDiv(title, username, description, duration, waveformURL);
-            });
-    });*/
 }
 
 function createDetailsDiv(title, username, description, duration, waveformURL){

@@ -17,7 +17,6 @@ app.get('/doAPICall', function(req, res){
             request(fetchForDataURL, { json: true }, (err, resp, full) => {
                 if (err) { return console.log(err); }
                 var rand = Math.floor(Math.random() * (full.results.length-1));
-                
                 returnJSON.push({
                     title: full.results[rand].name,
                     duration: full.results[rand].duration,
@@ -27,7 +26,6 @@ app.get('/doAPICall', function(req, res){
                     description: full.results[rand].description,
                     username: full.results[rand].username
                 });
-                console.log(returnJSON);
                 res.send(returnJSON);
             });
         }
