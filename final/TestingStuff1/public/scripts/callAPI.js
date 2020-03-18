@@ -1,7 +1,7 @@
 $(function(){
     $('.searchicon').on('click', function () {
 		//var searchTerms = $('.searchtext').val();
-		var params = {searchTerms: $('.searchtext').val()};
+		var params = {search: $('.searchtext').val()};
         getResults(params);
         return false;
     });
