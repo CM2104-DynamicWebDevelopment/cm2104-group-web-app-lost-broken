@@ -14,9 +14,7 @@ function getResults(params){
 	var json = $.getJSON("/doAPICall", params)
     .done(function( response ) {
         json = response;
-		console.log( "json variable ready" );
 		console.log(response);
-		console.log(response[0]);
     })
     .fail(function() {
         console.log( "error" );
