@@ -1,13 +1,14 @@
 $(function(){
     $('.searchicon').on('click', function () {
-        var searchTerms = $('.searchtext').val();
-        getResults(searchTerms);
+		//var searchTerms = $('.searchtext').val();
+		var params = {searchTerms: $('.searchtext').val()};
+        getResults(params);
         return false;
     });
 });
 
-function getResults(searchTerms){
-    $.getJSON("/doAPICall", searchTerms, function(response) {
+function getResults(params){
+    $.getJSON("/doAPICall", params, function(response) {
         console.log(response);
            /* var searchPage = Math.floor(Math.random() * (init.count/15)); //pick a random page using the response (data.count is total items, 15 is the page length)
 			//next line constructs the main API request, it asks for name,description,title,.ogg waveform etc using same input string as above and random page calculated above
