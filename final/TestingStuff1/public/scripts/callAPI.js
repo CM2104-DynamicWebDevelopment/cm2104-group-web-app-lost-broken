@@ -8,8 +8,8 @@ $(function(){
 
 function getResults(searchTerms){
     $.getJSON("/doAPICall", searchTerms, function(response) {
-        if(init.count > 0){ //if there is at least 1 item
-            console.log(init);
+        if(response.count > 0){ //if there is at least 1 item
+            console.log(response);
            /* var searchPage = Math.floor(Math.random() * (init.count/15)); //pick a random page using the response (data.count is total items, 15 is the page length)
 			//next line constructs the main API request, it asks for name,description,title,.ogg waveform etc using same input string as above and random page calculated above
 			var fetchForDataURL = "https://freesound.org/apiv2/search/text/?query=" + searchTerms + "&page=" + searchPage.toString() + "&page_size=15&fields=name,description,previews,duration,username,images&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ";
