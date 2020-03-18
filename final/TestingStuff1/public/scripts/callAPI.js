@@ -7,10 +7,25 @@ $(function(){
     });
 });
 
+
+
 function getResults(params){
-    $.getJSON("/doAPICall", params, function(response) {
-		console.log(response[0].title);
-		console.log(response[0].waveformURL);
+
+	var json = $.getJSON("/doAPICall", params)
+    .done(function( response ) {
+        json = response;
+		console.log( "json variable ready" );
+		console.log(response);
+		console.log(response[0]);
+    })
+    .fail(function() {
+        console.log( "error" );
+    });
+
+
+   /*() $.getJSON("/doAPICall", params, function(response) {
+		console.log(response);
+		console.log(response[0]);
            /* var searchPage = Math.floor(Math.random() * (init.count/15)); //pick a random page using the response (data.count is total items, 15 is the page length)
 			//next line constructs the main API request, it asks for name,description,title,.ogg waveform etc using same input string as above and random page calculated above
 			var fetchForDataURL = "https://freesound.org/apiv2/search/text/?query=" + searchTerms + "&page=" + searchPage.toString() + "&page_size=15&fields=name,description,previews,duration,username,images&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ";
@@ -25,8 +40,8 @@ function getResults(params){
 				var username = data.results[rand].username;
 				createAudioElement(previewURL); //could change this to append to the details div, but start downloading it first?
                 createDetailsDiv(title, username, description, duration, waveformURL);
-            });*/
-    });
+            });
+    });*/
 }
 
 function createDetailsDiv(title, username, description, duration, waveformURL){
