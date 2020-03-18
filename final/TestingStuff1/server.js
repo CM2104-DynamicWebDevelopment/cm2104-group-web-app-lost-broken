@@ -8,6 +8,8 @@ app.use(express.static('public'));
 app.get('/doAPICall', function(req, res){
     var returnJSON = [];
     var url = "https://freesound.org/apiv2/search/text/?query=" + req.query + "&page_size=1&fields=name&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ"; 
+    console.log(req.query);
+    console.log(url);
     request(url, { json: true }, (err, res, init) => {
         if (err) { return console.log(err); }
         if(init.count > 0){ //if at least one item in response
@@ -18,7 +20,7 @@ app.get('/doAPICall', function(req, res){
                 if (err) { return console.log(err); }
                 var rand = Math.floor(Math.random() * (full.results.length-1));
                 
-                json.push({
+                returnJSON.push({
                     title: full.results[rand].name,
                     duration: full.results[rand].duration,
                     previewURL: full.results[rand].previews["preview-lq-ogg"],
