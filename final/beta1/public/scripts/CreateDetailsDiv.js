@@ -15,7 +15,6 @@ function createControlElement(detailsDiv){
 	$('<button class="controlicons" onclick="favAudio()"></button>').appendTo(controlDiv).css({'background-color' : 'transparent', 'background-image' :  'url(resources/favIcon.svg)','background-size' :  '32px'});
 }
 
-//dynamically create and insert audio element	
 function createAudioElement(previewURL) {
 	$("#audioElement").remove(); //if already exists then remove
 	$('<audio id="audioElement"></audio>').appendTo('body').attr("src", previewURL);
