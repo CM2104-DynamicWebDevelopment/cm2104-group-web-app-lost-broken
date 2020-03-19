@@ -1,4 +1,4 @@
-$(function(){
+/*$(function(){
     $('.controlicons').on('click', function () {
         if(this.id == "play")
             playAudio();
@@ -7,7 +7,7 @@ $(function(){
         else if (this.id == "fav")
             favAudio();
     });
-});
+});*/
 
 function playAudio() { 
 	$("#audioElement")[0].play();
