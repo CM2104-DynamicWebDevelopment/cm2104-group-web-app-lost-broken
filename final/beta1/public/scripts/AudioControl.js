@@ -1,14 +1,3 @@
-/*$(function(){
-    $('.controlicons').on('click', function () {
-        if(this.id == "play")
-            playAudio();
-        else if (this.id == "stop")
-            stopAudio();
-        else if (this.id == "fav")
-            favAudio();
-    });
-});*/
-
 function playAudio() { 
 	$("#audioElement")[0].play();
 }

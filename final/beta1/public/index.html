@@ -9,8 +9,9 @@
 <head>
 	<link rel="stylesheet" href="/css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- needed to use Ajax/jquery -->
-	<script src="/scripts/callAPI.js"></script> <!-- API call script -->
-	<script src="/scripts/audioControl.js"></script> <!-- Audio controls script -->
+	<script src="/scripts/CallAPI.js"></script> <!-- API call script -->
+	<script src="/scripts/AudioControl.js"></script> <!-- Audio controls script -->
+	<script src="/scripts/CreateDetailsDiv.js"></script> <!-- Script that can handle creating the detail div -->
 	</head>
 <body background="resources/backwave.svg">
 
@@ -30,29 +31,6 @@
 	<button class="searchicon" type="button" style= "background: url('resources/speakerIconNoAudio.svg') 0% 0% / 32px 32px"></button> <!-- Search Icon (img of a Speaker), points to the API function-->
 </div>
 
-
-<script>
-/*function playAudio() { 
-	$("#audioElement")[0].play();
-}
-
-function stopAudio() { 
-	var a = document.getElementById("audioElement");
-	//there is no stop function in html5? so pause it and reset time to start
-	a.pause(); 
-	a.currentTime = 0.0;
-}
-
-function favAudio() { 
-	var a = document.getElementById("audioElement");
-	//$("#audioElement")[0];
-	//wrap up the audio in a JSON? 
-	//send it to server so it can save it under this user
-	//if user is not logged in redirect to login/create account 
-	//(this would mean the user could probably lose this sound, could work in a solution if needed)
-}*/
-</script>
-	
 <!-- JQuery controlling hover functions with DOM-->
 <script>
 $(".searchicon").hover(function(){ //get the searchicon element on mouseover, and change the icon
