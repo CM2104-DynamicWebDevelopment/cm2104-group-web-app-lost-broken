@@ -4,24 +4,24 @@
 	Add quick Loading... animation/text
 	Add fail message on no hits
 	Simpler Container Div Design
+	Add favourite function in js controls/server. Waiting for DB and login setup
+	Add comments
 -->
-<head>
-	<%- include('../partials/head') %>
-	<script src="/scripts/CallAPI.js"></script> <!-- API call script -->
-	<script src="/scripts/Controls.js"></script> <!-- Audio controls script -->
-	<script src="/scripts/CreateDetailsDiv.js"></script> <!-- Script that can handle creating the detail div -->
-</head>
+<body>
+	<head>
+		<%- include('../partials/head') %>
+		<script src="/scripts/CallAPI.js"></script> <!-- API call script -->
+		<script src="/scripts/Controls.js"></script> <!-- Audio controls script -->
+		<script src="/scripts/CreateDetailsDiv.js"></script> <!-- Script that can handle creating the detail div -->
+	</head>
 
-<header id="PageHeader">
-	<%- include('../partials/header') %>
-</header>
+	<header id="PageHeader">
+		<%- include('../partials/header') %>
+	</header>
 
-<div id="searchbar">
-	<input class="searchtext" type="text" name="searchterm" placeholder="Search"> <!-- Search input box -->
-	<button class="searchicon" type="button" style= "background: url('/resources/speakerIconNoAudio.svg') 0% 0% / 32px 32px"></button> <!-- Search Icon (img of a Speaker), points to the API function-->
-</div>
-
-<!-- JQuery controlling hover functions with DOM-->
-	
+	<div id="searchbar">
+		<input class="searchtext" type="text" name="searchterm" placeholder="Search"> <!-- Search input box -->
+		<button class="searchicon" type="button" style= "background: url('/resources/speakerIconNoAudio.svg') 0% 0% / 32px 32px"></button> <!-- Search Icon (img of a Speaker), points to the API function-->
+	</div>
 </body>
 </html>
