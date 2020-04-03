@@ -8,11 +8,10 @@
 <head>
 	<%- include('../partials/head') %>
 	<script src="/scripts/CallAPI.js"></script> <!-- API call script -->
-	<script src="/scripts/AudioControl.js"></script> <!-- Audio controls script -->
+	<script src="/scripts/Controls.js"></script> <!-- Audio controls script -->
 	<script src="/scripts/CreateDetailsDiv.js"></script> <!-- Script that can handle creating the detail div -->
 </head>
 
-<title> When you just want to hear a cat purr?? I dunno </title>
 <header id="PageHeader">
 	<%- include('../partials/header') %>
 </header>
@@ -23,15 +22,6 @@
 </div>
 
 <!-- JQuery controlling hover functions with DOM-->
-<script>
-$(".searchicon").hover(function(){ //get the searchicon element on mouseover, and change the icon
-	$(".searchicon").css({"background": "url('resources/speakerIcon.svg')", "background-size" : "32px 32px"});
-	});
-	
-$(".searchicon").mouseleave(function(){  //get the searchicon element on mouse leave, and change the icon
-	$(".searchicon").css({"background": "url('resources/speakerIconNoAudio.svg')", "background-size" : "32px 32px"});
-	});
-</script>
 	
 </body>
 </html>

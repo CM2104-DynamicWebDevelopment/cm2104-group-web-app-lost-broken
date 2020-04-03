@@ -17,3 +17,11 @@ function favAudio() {
 	//if user is not logged in redirect to login/create account 
 	//(this would mean the user could probably lose this sound, could work in a solution if needed)
 }
+
+$(".searchicon").hover(function(){ //get the searchicon element on mouseover, and change the icon
+	$(".searchicon").css({"background": "url('resources/speakerIcon.svg')", "background-size" : "32px 32px"});
+	});
+	
+$(".searchicon").mouseleave(function(){  //get the searchicon element on mouse leave, and change the icon
+	$(".searchicon").css({"background": "url('resources/speakerIconNoAudio.svg')", "background-size" : "32px 32px"});
+});
