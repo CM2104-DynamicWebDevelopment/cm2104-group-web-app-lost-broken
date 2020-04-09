@@ -2,7 +2,7 @@ function createDetailsDiv(title, username, description, duration, waveformURL){
 	$("#detailsDiv").remove();//remove old detailsDiv if it exists
 	$('body').append('<div id="detailsDiv"></div>');
 	var detailsDiv = $("#detailsDiv");
-	detailsDiv.append($('<img id="waveformElement"></img>').attr("src",waveformURL));
+	detailsDiv.append($('<img id="waveformElement" alt="Waveform Image"></img>').attr("src",waveformURL));
 	detailsDiv.append($('<a id="titleElement"></a>').text(title + "\r\n \r\n User : " + username +  "\r\n \r\n Duration : "  + duration + "s"));
 	detailsDiv.append($('<a id="descriptionElement"></a>').text(description));
 	createControlElement(detailsDiv);

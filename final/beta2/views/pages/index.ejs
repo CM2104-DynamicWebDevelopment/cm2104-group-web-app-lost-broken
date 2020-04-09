@@ -12,12 +12,13 @@
 		<%- include('../partials/head') %>
 		<script src="/scripts/Controls.js"></script> <!-- controls script -->
 		<script src="/scripts/CreateDetailsDiv.js"></script> <!-- Script that can handle creating the detail div -->
+		<noscript> <p class="scriptwarning">Javascript not found, please enable to use site.</p></noscript>
 	</head>
 
 	<%- include('../partials/header') %>
 
 	<div id="searchbar">
-		<input class="searchtext" type="text" name="searchterm" placeholder="Search"> <!-- Search input box -->
+		<input class="searchtext" type="text" name="searchterm" placeholder="Search" tabIndex="1"> <!-- Search input box -->
 		<button class="searchicon" type="button" style= "background: url('/resources/speakerIconNoAudio.svg') 0% 0% / 32px 32px"></button> <!-- Search Icon (img of a Speaker), points to the API function-->
 	</div>
 </body>

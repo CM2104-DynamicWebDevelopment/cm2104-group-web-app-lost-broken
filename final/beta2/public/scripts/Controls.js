@@ -6,8 +6,8 @@ $(function(){
 	$(".searchicon").mouseleave(function(){  //get the searchicon element on mouse leave, and change the icon
 		$(".searchicon").css({"background": "url('resources/speakerIconNoAudio.svg')", "background-size" : "32px 32px"});
 	});
-	$('.searchicon').on('click', function () {
-		var params = {search: $('.searchtext').val()};
+	$(".searchicon").on("click", function () {
+		var params = {search: $(".searchtext").val()};
         getResults(params);
         return false;
     });

@@ -140,7 +140,7 @@ input:focus{outline:none;}
 	position : relative;
 	height: 30%;
     width: 50%;
-	background: black;
+	border-color: rgb(41,41,41);
 	color: white;
 	object-fit:contain;
 	text-overflow:ellipsis; /*stops overflow text, ellipsis '...' doesnt work tho  */
