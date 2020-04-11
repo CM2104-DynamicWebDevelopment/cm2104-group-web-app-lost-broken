@@ -137,10 +137,11 @@ input:focus{outline:none;}
 
 /* main Div that holds all the Wav details and control elements below */
 #detailsDiv{
+	display: block;
 	position : relative;
 	height: 30%;
     width: 50%;
-	border-color: rgb(41,41,41);
+	background: rgb(41,41,41);
 	color: white;
 	object-fit:contain;
 	text-overflow:ellipsis; /*stops overflow text, ellipsis '...' doesnt work tho  */
@@ -150,46 +151,41 @@ input:focus{outline:none;}
 	top: 99%;
     left: 25%;
     animation: animate 1s ease-out 1 normal forwards;
+	padding:0;
+    margin:0;
 }
 
-#detailsDiv a, img{
-    padding:10px;
-    margin:10px;
+#detailsDiv > #controls{
+	position : relative;
+	color: white;
+	height: 20%;
+    width: 100%;
+    top: 70%;
+	left: 0px;
 }
 
 #detailsDiv > #titleElement{
     position : absolute;
-	height: 50%;
-    width: 50%;
-	top: 50%;
-	left: 50%;
+	height: 20%;
+    width: 66%;
+	top: 0;
+	left: 33%;
 }
 
 #detailsDiv > #descriptionElement{
     position : absolute;
-    height: 50%;
-    width: 50%;
-    top: 50%;
-    left:0;
+    height: 80%;
+    width: 66%;
+	top: 20%;
+	left: 33%;
 }
 
 #detailsDiv > #waveformElement{
     position : absolute;
-	height: 50%;
-    width: 50%;
+	height: 80%;
+    width: 100%;
     top: 0;
     left:0;
-}
-
-#detailsDiv > #controlDiv {
-    position : absolute;
-	color: white;
-	height: 20%;
-    width: 50%;
-    top: 80%;
-	left: 0;
-	display: flex;
-	align-items: flex-start;
 }
 
 /*Controls Buttons*/

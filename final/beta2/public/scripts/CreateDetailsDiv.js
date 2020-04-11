@@ -4,7 +4,7 @@ function createDetailsDiv(title, username, description, duration, waveformURL){
 	var detailsDiv = $("#detailsDiv");
 	detailsDiv.append($('<img id="waveformElement" alt="Waveform Image"></img>').attr("src",waveformURL));
 	detailsDiv.append($('<a id="titleElement"></a>').text(title + "\r\n \r\n User : " + username +  "\r\n \r\n Duration : "  + duration + "s"));
-	detailsDiv.append($('<a id="descriptionElement"></a>').text(description));
+	//detailsDiv.append($('<a id="descriptionElement"></a>').text(description));
 	createControlElement(detailsDiv);
 }
 
