@@ -9,7 +9,8 @@ function createDetailsDiv(title, username, description, duration, waveformURL, u
 
 function createTitleElement(detailsDiv, url, title, username){
 	var controlDiv = $('<div id="titleLinkDiv"></div>').appendTo(detailsDiv);
-	$('<button class="controlButtons titleLnk" onclick="location.href=' + url + '" alt="Play">' + title + '</button>').appendTo(controlDiv);
+	var fixedURL = "'" + url + "'";
+	$('<button class="controlButtons titleLnk" onclick="location.href=' + fixedURL + '" alt="Play">' + title + '</button>').appendTo(controlDiv);
 }
 
 function createControlElement(detailsDiv){
