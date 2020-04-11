@@ -196,7 +196,7 @@ input:focus{outline:none;}
 	height: 20%;
     width: 50%;
     top: 80%;
-	left: 0;
+	left: 50%;
 	display: flex;
 	align-items: flex-start;
 }
@@ -208,7 +208,7 @@ input:focus{outline:none;}
 	background-color : transparent;
   	color: black;
   	padding: 14px 28px;
-  	font-size: 2vmin;
+  	font-size: 3vmin;
   	cursor: pointer;
 	height:100%;
 	width:33%;
@@ -242,10 +242,12 @@ input:focus{outline:none;}
 .titleLnk {
     border-color: purple;
     color: purple;
+    width:100%;
 }
 .titleLnk:hover {
     background: purple;
     color: white;
+    width:100%;
 }
 
 /*#controlDiv > .controlicons {
