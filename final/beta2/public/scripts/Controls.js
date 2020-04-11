@@ -1,8 +1,9 @@
 $(function(){
+	//should move this to css, and repalce with font awesome?
 	$(".searchicon").hover(function(){ //get the searchicon element on mouseover, and change the icon
 		$(".searchicon").css({"background": "url('resources/speakerIcon.svg')", "background-size" : "32px 32px"});
 		});
-		
+	//should move this to css, and repalce with font awesome?	
 	$(".searchicon").mouseleave(function(){  //get the searchicon element on mouse leave, and change the icon
 		$(".searchicon").css({"background": "url('resources/speakerIconNoAudio.svg')", "background-size" : "32px 32px"});
 	});
@@ -10,7 +11,7 @@ $(function(){
 		var params = {search: $(".searchtext").val()};
         getResults(params);
         return false;
-    });
+	});
  });
 
 function getResults(params){

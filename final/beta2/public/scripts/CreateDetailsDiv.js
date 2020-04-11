@@ -10,9 +10,12 @@ function createDetailsDiv(title, username, description, duration, waveformURL){
 
 function createControlElement(detailsDiv){
 	var controlDiv = $('<div id="controlDiv"></div>').appendTo(detailsDiv);
-	$('<button class="controlicons" onclick="playAudio()"></button>').appendTo(controlDiv).css({'background-color' : 'transparent', 'background-image' :  'url(resources/playIcon.svg)','background-size' :  '32px'});
-	$('<button class="controlicons" onclick="stopAudio()"></button>').appendTo(controlDiv).css({'background-color' : 'transparent', 'background-image' :  'url(resources/stopIcon.svg)','background-size' :  '32px'});
-	$('<button class="controlicons" onclick="favAudio()"></button>').appendTo(controlDiv).css({'background-color' : 'transparent', 'background-image' :  'url(resources/favIcon.svg)','background-size' :  '32px'});
+	//$('<button class="controlButttons" onclick="playAudio()"></button>').appendTo(controlDiv).css({'background-color' : 'transparent', 'background-image' :  'url(resources/playIcon.svg)','background-size' :  '32px'});
+	//$('<button class="controlButttons" onclick="stopAudio()"></button>').appendTo(controlDiv).css({'background-color' : 'transparent', 'background-image' :  'url(resources/stopIcon.svg)','background-size' :  '32px'});
+	//$('<button class="controlButttons" onclick="favAudio()"></button>').appendTo(controlDiv).css({'background-color' : 'transparent', 'background-image' :  'url(resources/favIcon.svg)','background-size' :  '32px'});
+	$('<button class="cBtn playIco" onclick="playAudio()" alt="Play"><i class="fas fa-play"></i></button>').appendTo(controlDiv);
+	$('<button class="cBtn stopIco" onclick="stopAudio() alt="Stop"><i class="fas fa-stop"></i></button>').appendTo(controlDiv);
+	$('<button class="cBtn favIco" onclick="favAudio() alt="Fav"><i class="fas fa-star"></i></button>').appendTo(controlDiv);
 }
 
 function createAudioElement(previewURL) {
