@@ -23,8 +23,9 @@ function getResults(params){
 		var title = response[0].title;
 		var description = response[0].description;
 		var username = response[0].username;
+		var url = response[0].url;
 		createAudioElement(previewURL);
-        createDetailsDiv(title, username, description, duration, waveformURL);
+        createDetailsDiv(title, username, description, duration, waveformURL, url);
     })
     .fail(function(){
         console.log("Invalid API response");
