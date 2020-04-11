@@ -3,19 +3,13 @@ function createDetailsDiv(title, username, description, duration, waveformURL, u
 	$('body').append('<div id="detailsDiv"></div>');
 	var detailsDiv = $("#detailsDiv");
 	detailsDiv.append($('<img id="waveformElement" alt="Waveform Image"></img>').attr("src",waveformURL));
-
-	//add title, should move to div in bottom right in same style as btn and link to url
-	//detailsDiv.append($('<a id="titleElement"></a>').text(title + "\r\n \r\n User : " + username +  "\r\n \r\n Duration : "  + duration + "s"));
-
 	createTitleElement(detailsDiv, url, title, username);
-
-	//detailsDiv.append($('<a id="descriptionElement"></a>').text(description)); //no longer needed?
 	createControlElement(detailsDiv);
 }
 
 function createTitleElement(detailsDiv, url, title, username){
 	var controlDiv = $('<div id="titleLinkDiv"></div>').appendTo(detailsDiv);
-	$('<button class="controlButtons titleLnk" onclick=' + url + ' alt="Play">' + title + '</button>').appendTo(controlDiv);
+	$('<button class="controlButtons titleLnk" onclick="location.href=' + url + '" alt="Play">' + title + '</button>').appendTo(controlDiv);
 }
 
 function createControlElement(detailsDiv){
