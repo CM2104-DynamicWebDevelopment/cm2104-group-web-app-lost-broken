@@ -249,30 +249,8 @@ input:focus{outline:none;}
     color: white;
     width:100%;
 }
-
-/*#controlDiv > .controlicons {
-	background-color : transparent;
-	background-size: 32px 32px;
-	border: none;
-	outline: none;
-	margin-top:10%;
-	margin-left:15%;
-	justify-content:center;
-	align-items:center;
-    height: 32px;
-    width: 32px;
-}*/
-
-/* animates the details div, start at bottom of page (100% in Y) and move to just below center*/
-@keyframes animate{
-	100%{
-		top:0;
-		transform: translateY(100%);
-	}
-}
-
 .searchicon {
-    background: url('resources/speakerIconNoAudio.svg');
+    background: url('../resources/speakerIconNoAudio.svg');
 	background-size: 32px 32px;
 	border: none;
 	outline: none;
@@ -283,6 +261,17 @@ input:focus{outline:none;}
     height: 32px;
     width: 32px;
 	transition:0.5s;
+}
+.searchicon:hover {
+    background: url('../resources/speakerIcon.svg');
+}
+
+/* animates the details div, start at bottom of page (100% in Y) and move to just below center*/
+@keyframes animate{
+	100%{
+		top:0;
+		transform: translateY(100%);
+	}
 }
 
 /*smartphone*/
