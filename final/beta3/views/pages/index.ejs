@@ -1,0 +1,26 @@
+<html>
+<!-- 
+--TODO--
+	Add quick Loading... animation/text
+	Add fail message on no hits
+	Simpler Container Div Design
+	Add favourite function in js controls/server. Waiting for DB and login setup
+	Add comments
+-->
+<body>
+	<head>
+		<%- include('../partials/head') %>
+		<script src="/scripts/Controls.js"></script> <!-- controls script -->
+		<script src="/scripts/CreateDetailsDiv.js"></script> <!-- Script that can handle creating the detail div -->
+		<script src="https://kit.fontawesome.com/2503083cac.js" crossorigin="anonymous"></script>
+		<noscript> <p class="scriptwarning">Javascript not found, please enable to use site.</p></noscript>
+	</head>
+
+	<%- include('../partials/header') %>
+
+	<div id="searchbar">
+		<input class="searchtext" type="text" name="searchterm" placeholder="Search" tabIndex="1"> <!-- Search input box -->
+		<button class="searchicon" type="button" style= "background: url('/resources/speakerIconNoAudio.svg') 0% 0% / 32px 32px"></button> <!-- Search Icon (img of a Speaker), points to the API function-->
+	</div>
+</body>
+</html>
