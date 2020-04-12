@@ -1,12 +1,12 @@
 $(function(){
-	//should move this to css, and repalce with font awesome?
-	/*$(".searchicon").hover(function(){ //get the searchicon element on mouseover, and change the icon
+	//should move this to css, and repalce with font awesome? moved to css but doesnt work rolling back
+	$(".searchicon").hover(function(){ //get the searchicon element on mouseover, and change the icon
 		$(".searchicon").css({"background": "url('resources/speakerIcon.svg')", "background-size" : "32px 32px"});
 		});
-	//should move this to css, and repalce with font awesome?	
+	//should move this to css, and repalce with font awesome? moved to css but doesnt work rolling back
 	$(".searchicon").mouseleave(function(){  //get the searchicon element on mouse leave, and change the icon
 		$(".searchicon").css({"background": "url('resources/speakerIconNoAudio.svg')", "background-size" : "32px 32px"});
-	});*/
+	});
 	$(".searchicon").on("click", function () {
 		try {
 			var params = {search: $(".searchtext").val()};
