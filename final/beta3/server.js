@@ -16,6 +16,11 @@ app.get('/about', function(req, res) {
     res.render('pages/about');
 });
 
+// profile page
+app.get('/about', function(req, res) {
+    res.render('pages/profile');
+});
+
 app.get('/doAPICall', function(req, res){
     var returnJSON = [];
     var getLengthURL = "https://freesound.org/apiv2/search/text/?query=" + req.query.search + "&page_size=1&fields=name&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ"; 
