@@ -57,7 +57,7 @@ app.get('/doAPICall', function(req, res){
                     username: full.results[rand].username,
                     url: full.results[rand].url
                 });*/
-                console.log("in Func" + returnJSON);
+                console.log("in Func" + JSON.stringify(returnJSON));
                 //res.send(returnJSON);
             });
         }
@@ -65,7 +65,7 @@ app.get('/doAPICall', function(req, res){
         //    console.log(err)
         //}
     });
-    console.log("out Func" + returnJSON);
+    console.log("out Func" + JSON.stringify(returnJSON));
     res.send(returnJSON);
 });
 
