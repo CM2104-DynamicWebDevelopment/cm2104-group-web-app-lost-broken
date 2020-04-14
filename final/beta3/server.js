@@ -22,8 +22,7 @@ app.get('/about', function(req, res) {
 });
 
 app.get('/doAPICall', function(req, res){
-    var returnJSON = [];
-    returnJSON.push({ success: "false" });
+    var returnJSON = {success: "false" };
     var getLengthURL = "https://freesound.org/apiv2/search/text/?query=" + req.query.search + "&page_size=1&filter=duration:[0.2 TO 20]&fields=name&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ"; 
     request(getLengthURL, { json: true }, (err, resp, init) => {
         if (err) { return console.log(err); }
@@ -44,7 +43,7 @@ app.get('/doAPICall', function(req, res){
                     username: full.results[rand].username,
                     url: full.results[rand].url
                 });
-                console.log(returnJSON);
+                console.log("in Func" + returnJSON);
                 //res.send(returnJSON);
             });
         }
@@ -52,7 +51,7 @@ app.get('/doAPICall', function(req, res){
         //    console.log(err)
         //}
     });
-    console.log(returnJSON);
+    console.log("out Func" + returnJSON);
     res.send(returnJSON);
 });
 
