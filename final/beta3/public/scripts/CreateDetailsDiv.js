@@ -3,7 +3,8 @@ function createDetailsDiv(title, username, description, duration, waveformURL, u
 	$('body').append('<div id="detailsDiv"></div>');
 	var detailsDiv = $("#detailsDiv");
 	detailsDiv.append($('<img id="waveformElement" alt="Waveform Image"></img>').attr("src",waveformURL));
-	createTitleElement(detailsDiv, url, title, username);
+	createTitleElement(detailsDiv, url, title);
+	createStatsElement(detailsDiv, username, duration);
 	createControlElement(detailsDiv);
 }
 
@@ -11,6 +12,11 @@ function createTitleElement(detailsDiv, url, title, username){
 	var controlDiv = $('<div id="titleLinkDiv"></div>').appendTo(detailsDiv);
 	var fixedURL = "'" + url + "'";
 	$('<button class="controlButtons titleLnk" onclick="location.href=' + fixedURL + '" alt="Play">' + title + '</button>').appendTo(controlDiv);
+}
+
+function createStatsElement(detailsDiv, username, duration){
+	var statsDiv = $('<div id="statsDiv"></div>').appendTo(detailsDiv);
+	$('<p>User : ' + username + 'Length : ' + duration + '</p>').appendTo(statsDiv);
 }
 
 function createControlElement(detailsDiv){
