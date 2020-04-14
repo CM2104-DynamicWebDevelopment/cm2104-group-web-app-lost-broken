@@ -40,33 +40,21 @@ app.get('/doAPICall', function(req, res){
             request(getDataURL, { json: true }, (err, resp, full) => {
                 if (err) { return console.log(err); }
                 var rand = Math.floor(Math.random() * (full.results.length-1));
-                returnJSON["success"] = "true";
-                returnJSON["title"] = full.results[rand].name;
-                returnJSON["duration"] = full.results[rand].duration;
-                returnJSON["previewURL"] = full.results[rand].previews["preview-lq-ogg"];
-                returnJSON["waveformURL"] = full.results[rand].images.waveform_l;
-                returnJSON["description"] = full.results[rand].description;
-                returnJSON["username"] = full.results[rand].username;
-                returnJSON["url"] = full.results[rand].url;
-                /*returnJSON.push({ //fill returnJSON with just one item
-                    title: full.results[rand].name,
-                    duration: full.results[rand].duration,
-                    previewURL: full.results[rand].previews["preview-lq-ogg"],
-                    waveformURL: full.results[rand].images.waveform_l,
-                    description: full.results[rand].description,
-                    username: full.results[rand].username,
-                    url: full.results[rand].url
-                });*/
-                console.log("in Func" + JSON.stringify(returnJSON));
-                //res.send(returnJSON);
+                returnJSON.success = "true";
+                returnJSON.title = full.results[rand].name;
+                returnJSON.duration = full.results[rand].duration;
+                returnJSON.previewURL = full.results[rand].previews["preview-lq-ogg"];
+                returnJSON.waveformURL = full.results[rand].images.waveform_l;
+                returnJSON.description = full.results[rand].description;
+                returnJSON.username = full.results[rand].username;
+                returnJSON.url = full.results[rand].url;
+                res.send(returnJSON);
             });
         }
-        //else{
-        //    console.log(err)
-        //}
+        else{ //else there is no item in response so send success:"false"
+            res.send(returnJSON);
+        }
     });
-    console.log("out Func" + JSON.stringify(returnJSON));
-    res.send(returnJSON);
 });
 
 app.listen(8080);
