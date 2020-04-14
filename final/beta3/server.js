@@ -24,6 +24,7 @@ app.get('/about', function(req, res) {
 app.get('/doAPICall', function(req, res){
     var returnJSON = [];
     returnJSON.push({ success: "false" });
+    console.log(returnJSON);
     var getLengthURL = "https://freesound.org/apiv2/search/text/?query=" + req.query.search + "&page_size=1&filter=duration:[0.2 TO 20]&fields=name&token=qxCIuynZMi8Cmvw70H1aPMKofG87c6LFuZ2PvbSZ"; 
     request(getLengthURL, { json: true }, (err, resp, init) => {
         if (err) { return console.log(err); }
@@ -34,7 +35,7 @@ app.get('/doAPICall', function(req, res){
             request(getDataURL, { json: true }, (err, resp, full) => {
                 if (err) { return console.log(err); }
                 var rand = Math.floor(Math.random() * (full.results.length-1));
-                returnJSON.set(success, "true");
+                returnJSON["success"] = "true";
                 returnJSON.push({ //fill returnJSON with just one item
                     title: full.results[rand].name,
                     duration: full.results[rand].duration,
