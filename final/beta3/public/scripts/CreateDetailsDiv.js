@@ -16,7 +16,7 @@ function createTitleElement(detailsDiv, url, title, username){
 
 function createStatsElement(detailsDiv, username, duration){
 	var statsDiv = $('<div id="statsDiv"></div>').appendTo(detailsDiv);
-	$('<p>User : ' + username + 'Length : ' + duration + '</p>').appendTo(statsDiv);
+	$('<p>User : ' + username + '</p><p>Length : ' + duration + '</p>').appendTo(statsDiv);
 }
 
 function createControlElement(detailsDiv){
