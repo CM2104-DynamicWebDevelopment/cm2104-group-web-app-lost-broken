@@ -3,7 +3,8 @@ function createDetailsDiv(title, username, description, duration, waveformURL, u
 	$('body').append('<div id="detailsDiv"></div>');
 	var detailsDiv = $("#detailsDiv");
 	detailsDiv.append($('<img id="waveformElement" alt="Waveform Image"></img>').attr("src",waveformURL));
-	createTitleElement(detailsDiv, url, title, username);
+	createTitleElement(detailsDiv, url, title);
+	createStatsElement(detailsDiv, username, duration);
 	createControlElement(detailsDiv);
 }
 
@@ -11,6 +12,11 @@ function createTitleElement(detailsDiv, url, title, username){
 	var controlDiv = $('<div id="titleLinkDiv"></div>').appendTo(detailsDiv);
 	var fixedURL = "'" + url + "'";
 	$('<button class="controlButtons titleLnk" onclick="location.href=' + fixedURL + '" alt="Play">' + title + '</button>').appendTo(controlDiv);
+}
+
+function createStatsElement(detailsDiv, username, duration){
+	var statsDiv = $('<div id="statsDiv"></div>').appendTo(detailsDiv);
+	$('<p>User : ' + username + '</p><p>Length : ' + duration + '</p>').appendTo(statsDiv);
 }
 
 function createControlElement(detailsDiv){
@@ -24,4 +30,11 @@ function createAudioElement(previewURL) {
 	$("#audioElement").remove(); //if already exists then remove
 	$('<audio id="audioElement"></audio>').appendTo('body').attr("src", previewURL);
 	$("#audioElement")[0].play();
+}
+
+function showFailureMessage(){
+	$("#detailsDiv").remove();//remove old detailsDiv if it exists
+	$('body').append('<div id="detailsDiv"><h2>No Results Found</h2><p>Retry or try a different search term.</p></div>');
+	//var detailsDiv = $("#detailsDiv");
+	//detailsDiv.append($('<img id="waveformElement" alt="Waveform Image"></img>').attr("src",waveformURL));
 }

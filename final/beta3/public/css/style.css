@@ -155,22 +155,6 @@ input:focus{outline:none;}
     margin:0;
 }
 
-#detailsDiv > #titleElement{
-    position : absolute;
-	height: 20%;
-    width: 66%;
-	top: 0;
-	left: 33%;
-}
-
-#detailsDiv > #descriptionElement{
-    position : absolute;
-    height: 80%;
-    width: 66%;
-	top: 20%;
-	left: 33%;
-}
-
 #detailsDiv > #waveformElement{
     position : absolute;
 	height: 80%;
@@ -199,6 +183,15 @@ input:focus{outline:none;}
 	left: 50%;
 	display: flex;
 	align-items: flex-start;
+}
+
+#detailsDiv > #statsDiv {
+    position : absolute;
+	color: white;
+	height: 20%;
+    width: 50%;
+    top: 0;
+	left: 0;
 }
 
 /*Controls Buttons*/
@@ -241,7 +234,7 @@ input:focus{outline:none;}
 }
 .titleLnk {
     border-color: purple;
-    color: purple;
+    color: white;
     width:100%;
 }
 .titleLnk:hover {
