@@ -25,3 +25,10 @@ function createAudioElement(previewURL) {
 	$('<audio id="audioElement"></audio>').appendTo('body').attr("src", previewURL);
 	$("#audioElement")[0].play();
 }
+
+function showFailureMessage(){
+	$("#detailsDiv").remove();//remove old detailsDiv if it exists
+	$('body').append('<div id="detailsDiv"><h2>No Results Found</h2><p>Retry or try a different search term.</p></div>');
+	//var detailsDiv = $("#detailsDiv");
+	//detailsDiv.append($('<img id="waveformElement" alt="Waveform Image"></img>').attr("src",waveformURL));
+}
