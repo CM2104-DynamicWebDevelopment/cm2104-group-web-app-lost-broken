@@ -17,6 +17,16 @@ app.get('/about', function(req, res) {
 });
 
 // profile page
+app.get('/profile', function(req, res) {
+    res.render('pages/profile');
+});
+
+// login page
+app.get('/login', function(req, res) {
+    res.render('pages/login');
+});
+
+// profile page
 app.get('/about', function(req, res) {
     res.render('pages/profile');
 });
