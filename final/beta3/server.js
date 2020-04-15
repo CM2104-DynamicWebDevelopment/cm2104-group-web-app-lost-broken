@@ -68,3 +68,60 @@ app.get('/doAPICall', function(req, res){
 });
 
 app.listen(8080);
+
+//___________
+
+const MongoClient = require('mongodb').MongoClient;//npm install mongodb@2.2.32
+//audstrum is the database name
+const url = "mongodb://localhost:27017/audstrum";
+
+const bodyParser = require('body-parser'); //npm install body-parser
+const session = require('express-session'); //npm install express-session
+const bodyParser = require('body-parser'); //npm install body-parser
+
+app.use(express.static('public'))
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
+
+var db;
+
+MongoClient.connect(url, function(err, database){
+ if(err) throw err;
+ db = database;
+ app.listen(8080);
+});
+
+//need to change variable names to make it my own code
+app.post('/dologin', function(req, res) {
+    console.log(JSON.stringify(req.body))
+
+    var uname = req.body.username;
+    var pword = req.body.password;
+  
+    db.collection('users').findOne({"username":uname}, function(err, result) {
+      if (err) throw err;//if there is an error, throw the error
+      //if there is no result, redirect the user back to the login system as that username must not exist
+      if(!result){res.redirect('/login');
+        return
+      }
+      //if there is a result then check the password, if the password is correct set session loggedin to true and send the user to the index
+      if(result.login.password == pword){ 
+        req.session.loggedin = true; 
+        res.redirect('/') 
+      }
+      //otherwise send them back to login
+      else{res.redirect('/login')}
+    });
+});
+
+app.use(session({
+    secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
+}));
+
+app.get('/logout', function(req, res) {
+    req.session.loggedin = false;
+    req.session.destroy();
+    res.redirect('/');
+});
