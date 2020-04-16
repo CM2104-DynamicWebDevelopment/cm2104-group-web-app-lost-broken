@@ -18,9 +18,9 @@ app.use(bodyParser.urlencoded({
 var db;
 
 MongoClient.connect(url, function(err, database){
- if(err) throw err;
- db = database;
- app.listen(8080);
+    if(err) throw err;
+    db = database;
+    //removed app.listen(8080); and moved to eof
 });
 
 app.use(express.static('public'));
@@ -89,8 +89,6 @@ app.get('/doAPICall', function(req, res){
     });
 });
 
-app.listen(8080);
-
 //_login check_
 
 //need to change variable names to make it look like my own code
@@ -107,7 +105,7 @@ app.post('/dologin', function(req, res) {
         return
       }
       //if there is a result then check the password, if the password is correct set session loggedin to true and send the user to the index
-      if(result.login.password == pword){ 
+      if(result.password == pword){ //changed from result.login.password 
         req.session.loggedin = true; 
         res.redirect('/') 
       }
@@ -126,3 +124,5 @@ app.get('/logout', function(req, res) {
     req.session.destroy();
     res.redirect('/');
 });
+
+app.listen(8080);
