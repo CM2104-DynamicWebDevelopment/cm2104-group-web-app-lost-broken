@@ -64,7 +64,6 @@ function favAudio() {
 		"title":sessionStorage.getItem("title"),
 		"image":sessionStorage.getItem("image"),
 		"sound":sessionStorage.getItem("sound")};
-
 	$.ajax({
 		type:"POST",
 		data:datatosend,
@@ -74,7 +73,10 @@ function favAudio() {
 			if(response.redirect == "true")
 				window.location = "/login";
 			//set Button to colour state, should check if saved or not saved, rather than just redirect
-			$(".favIco").css({"background-color": "yellow"});
+			if(response.save == "true")
+				$(".favIco").css({"background-color": "yellow"});
+			else
+				$(".favIco").css({"background-color": "transparent"});
 		}
 	});
 }
