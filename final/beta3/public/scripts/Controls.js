@@ -68,13 +68,10 @@ function favAudio() {
 		"image":sessionStorage.getItem("image"),
 		"sound":sessionStorage.getItem("sound")};
 
-		console.log(sessionStorage.getItem("title"));
-
 	$.ajax({
 		type:"POST",
 		data:datatosend,
-		url:"~/favsound",
-		contentType: "application/json",
+		url:"favsound",
 		success: function(response)
 		{
 			console.log(response);
