@@ -128,7 +128,8 @@ app.get('/logout', function(req, res) {
 app.post('/favsound', function(req, res) {
     //check we are logged in
     console.log("here");
-    if(!req.session.loggedin){res.redirect('/login');return;}
+    var redirect = {redirect: "true"};
+    if(!req.session.loggedin){res.send(redirect);return;}
     console.log("here2");
     //we create the data string from the form components that have been passed in
     var datatostore = {
@@ -142,8 +143,8 @@ app.post('/favsound', function(req, res) {
       if (err) throw err;
       console.log(JSON.stringify(datatostore) + ' --- saved to database')
 
-      var returnJSON = {success: "true"};
-      res.send(returnJSON);
+      //var returnJSON = {success: "true"};
+      //res.send(returnJSON);
 
       //when complete redirect to the index
       //res.redirect('/')

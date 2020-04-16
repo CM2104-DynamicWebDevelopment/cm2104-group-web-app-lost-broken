@@ -74,6 +74,8 @@ function favAudio() {
 		url:"favsound",
 		success: function(response)
 		{
+			if(response.redirect == "true")
+				window.location = "/login";
 			console.log(response);
 			alert("success");
 		}
