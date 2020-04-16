@@ -139,10 +139,13 @@ app.post('/favsound', function(req, res) {
     //once created we just run the data string against the database and all our new data will be saved/
     db.collection('saveSound').save(datatostore, function(err, result) {
       if (err) throw err;
-      console.log(datatostore + ' --- saved to database')
+      console.log(JSON.stringify(datatostore) + ' --- saved to database')
+
+      var returnJSON = {success: "true"};
+      res.send(returnJSON);
+
       //when complete redirect to the index
       //res.redirect('/')
-      //res.send(returnJSON); //return a bool? then check bool inf av and change icon colour
     })
   });
 

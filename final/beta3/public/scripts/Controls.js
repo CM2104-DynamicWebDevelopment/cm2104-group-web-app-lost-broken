@@ -60,10 +60,14 @@ function stopAudio() {
 }
 
 function favAudio() { 
-	var a = document.getElementById("audioElement");
-	//$("#audioElement")[0];
-	//wrap up the audio in a JSON? 
-	//send it to server so it can save it under this user
-	//if user is not logged in redirect to login/create account 
-	//(this would mean the user could probably lose this sound, could work in a solution if needed)
+	//var form = document.getElementById("favForm");
+	//document.getElementById("favForm").submit(); //form submission
+	
+	document.getElementById("favForm").ajaxForm({
+        url : '/favsound',
+        dataType : 'json',
+        success : function (response) {
+            alert("The server says: " + response);
+        }
+    });
 }
