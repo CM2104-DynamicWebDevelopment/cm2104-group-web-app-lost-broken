@@ -24,17 +24,11 @@ function createControlElement(detailsDiv, url, title, username, waveformURL, pre
 	//create play stop and fav buttons and append to controlDiv
 	$('<button class="controlButtons playIco" onclick="playAudio()" alt="Play"><i class="fas fa-play"></i></button>').appendTo(controlDiv);
 	$('<button class="controlButtons stopIco" onclick="stopAudio()" alt="Stop"><i class="fas fa-stop"></i></button>').appendTo(controlDiv);
-	//$('<button form="favForm" class="controlButtons favIco" alt="Fav"><i class="fas fa-star"></i></button>').appendTo(controlDiv);
 	$('<button class="controlButtons favIco" onclick="favAudio()" alt="Fav"><i class="fas fa-star"></i></button>').appendTo(controlDiv);
-	//create form that fav button submits, with hidden fields, append to detailsDiv so it can be hidden and doesnt mess up CSS
-	
-	
-	//$('<form action="/favsound" method="POST" id="favForm"><input type="hidden" name="title" value="'+title+'"></input><input type="hidden" name="image" value="'+waveformURL+'"></input><input type="hidden" name="sound" value="'+previewURL+'"></input></form>').appendTo(detailsDiv);
-	
+	//store variables in session
 	sessionStorage.setItem("title", title);
 	sessionStorage.setItem("image", waveformURL);
 	sessionStorage.setItem("sound", previewURL);
-
 }
 
 function createAudioElement(previewURL) {

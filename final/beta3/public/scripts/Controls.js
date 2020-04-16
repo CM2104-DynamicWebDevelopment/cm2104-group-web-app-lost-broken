@@ -60,9 +60,6 @@ function stopAudio() {
 }
 
 function favAudio() { 
-	//var form = document.getElementById("favForm");
-	//document.getElementById("favForm").submit(); //form submission
-
 	var datatosend = {
 		"title":sessionStorage.getItem("title"),
 		"image":sessionStorage.getItem("image"),
@@ -76,22 +73,8 @@ function favAudio() {
 		{
 			if(response.redirect == "true")
 				window.location = "/login";
-			console.log(response);
-			alert("success");
+			//set Button to colour state, should check if saved or not saved, rather than just redirect
+			$(".favIco").css({"background-color": "yellow"});
 		}
 	});
-
-	//$.get("favsound", {title:sessionStorage.getItem("title"), image:sessionStorage.getItem("image"),  sound:sessionStorage.getItem("sound")}, function(response){ 
-	//	console.log(response);
-	//	alert("success");
-	//});
-
-
-	/*$('#favForm').ajaxForm({
-        url : '/favsound',
-        dataType : 'json',
-        success : function (response) {
-            alert("The server says: " + response);
-        }
-    });*/
 }

@@ -126,29 +126,43 @@ app.get('/logout', function(req, res) {
 
 //fav sound route
 app.post('/favsound', function(req, res) {
+    var response = {redirect: "true",
+                    save: "false"}; //should check if saved or not saved, rather than just redirect
     //check we are logged in
-    console.log("here");
-    var redirect = {redirect: "true"};
-    if(!req.session.loggedin){res.send(redirect);return;}
-    console.log("here2");
+    if(!req.session.loggedin){res.send(response);return;} //have to send redirect as a response coz POST cant redirect :sss only took 4 hours to realize
     //we create the data string from the form components that have been passed in
     var datatostore = {
     "title":req.body.title,
     "image":req.body.image,
     "sound":req.body.sound,
     "user":req.session.username};
-    console.log("here3");
-    //once created we just run the data string against the database and all our new data will be saved/
-    db.collection('saveSound').save(datatostore, function(err, result) {
-      if (err) throw err;
-      console.log(JSON.stringify(datatostore) + ' --- saved to database')
 
-      //var returnJSON = {success: "true"};
-      //res.send(returnJSON);
+    response.redirect = "false";
 
-      //when complete redirect to the index
-      //res.redirect('/')
-    })
+    db.collection('saveSound').findOneAndDelete({
+        $and: [
+               { title : datatostore.title },
+               { image: datatostore.image },
+               { sound: datatostore.sound },
+               { user: datatostore.user }
+             ]
+      }
+    ).then(result => {
+        if(result) {
+          console.log(`Successfully found and deleted document: ${result}.`);
+          response.save = "false";
+          res.send(response);
+        } else {
+          console.log("No document matches the provided query.");
+          db.collection('saveSound').save(datatostore, function(err, result) {
+            if (err) throw err;
+            console.log(JSON.stringify(datatostore) + ' --- saved to database')
+            response.save = "true";
+            res.send(response);
+          })
+        }
+      })
+      .catch(err => console.error(`Failed to find document: ${err}`));    
   });
 
 app.listen(8080);
