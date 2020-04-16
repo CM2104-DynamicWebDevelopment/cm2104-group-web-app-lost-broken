@@ -110,6 +110,7 @@ app.post('/dologin', function(req, res) {
       //if there is a result then check the password, if the password is correct set session loggedin to true and send the user to the index
       if(result.password == pword){ //changed from result.login.password 
         req.session.loggedin = true; 
+        req.session.username = uname;
         res.redirect('/') 
       }
       //otherwise send them back to login
@@ -126,7 +127,7 @@ app.get('/logout', function(req, res) {
 //fav sound route
 app.post('/favsound', function(req, res) {
     //check we are logged in
-    if(!req.session.loggedin){res.redirect('/login');return;}
+    //if(!req.session.loggedin){res.redirect('/login');return;}
 
     console.log(JSON.stringify(req.body))
 
@@ -136,10 +137,11 @@ app.post('/favsound', function(req, res) {
     //we create the data string from the form components that have been passed in
     //db.saveSound.insert({title:"testsound",image:"testimage.png",sound:"testsound.mp3",user:"tester"})
     var datatostore = {
-    "title":title}//,
+    "title":title,
     //"image":imageURL,
     //"sound":soundURL,
-   // "user":user};
+    "user":"tester"};
+    //"user":req.session.username};
   
   
   //once created we just run the data string against the database and all our new data will be saved/
