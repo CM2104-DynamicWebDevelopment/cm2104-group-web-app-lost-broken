@@ -73,7 +73,7 @@ function favAudio() {
 	$.ajax({
 		type:"POST",
 		data:datatosend,
-		url:"favsound",
+		url:"~/favsound",
 		contentType: "application/json",
 		success: function(response)
 		{
