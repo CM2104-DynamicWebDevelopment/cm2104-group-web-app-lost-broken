@@ -11,6 +11,9 @@ const url = "mongodb://localhost:27017/audstrum";
 const bodyParser = require('body-parser'); //npm install body-parser
 const session = require('express-session'); //npm install express-session
 
+//moved from eof to before sessions are used
+app.use(session({secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8'})); 
+
 app.use(bodyParser.urlencoded({
     extended: true
 }))
@@ -113,11 +116,6 @@ app.post('/dologin', function(req, res) {
       else{res.redirect('/login')}
     });
 });
-
-//_session_
-app.use(session({
-    secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
-}));
 
 app.get('/logout', function(req, res) {
     req.session.loggedin = false;
