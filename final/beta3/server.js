@@ -78,8 +78,6 @@ const url = "mongodb://localhost:27017/audstrum";
 const bodyParser = require('body-parser'); //npm install body-parser
 const session = require('express-session'); //npm install express-session
 
-app.use(express.static('public'))
-
 app.use(bodyParser.urlencoded({
     extended: true
 }))
