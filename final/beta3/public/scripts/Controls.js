@@ -63,11 +63,18 @@ function favAudio() {
 	//var form = document.getElementById("favForm");
 	//document.getElementById("favForm").submit(); //form submission
 	
-	$('#favForm').ajaxForm({
+
+	$.post('/favsound', {title:localStorage.getItem("title"), image:localStorage.getItem("image"),  sound:localStorage.getItem("sound")}, function(response){ 
+		console.log("Success");
+		alert("success");
+	});
+
+
+	/*$('#favForm').ajaxForm({
         url : '/favsound',
         dataType : 'json',
         success : function (response) {
             alert("The server says: " + response);
         }
-    });
+    });*/
 }
