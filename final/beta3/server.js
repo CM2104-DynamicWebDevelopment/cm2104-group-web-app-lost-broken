@@ -148,7 +148,7 @@ app.post('/favsound', function(req, res) {
              ]
       }
     ).then(result => {
-        if(result) {
+        if(result.value != null) {
           console.log(`Successfully found and deleted document: ${JSON.stringify(result)}.`);
           response.save = "false";
           res.send(response);
