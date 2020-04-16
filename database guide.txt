@@ -1,0 +1,72 @@
+HELLO FELlOW SCRIPT KID!
+
+This is a little guide to help you set the database up on codio. 
+If you encounter an issue - it's probably this guide not you lol. 
+alright lets just get this started!
+
+(if you encounter an error - please skip to "IF ERROR" after step 11.)
+
+STEP 1. take a deep breath - you're in for one hell of a ride.
+
+STEP 2. go into codio terminal
+
+STEP 3. download mongo by Opening your Codio server as normal and select tools
+        -> install software from the menu at the top -> 
+        enter "mongo" ->install software.
+
+STEP 4. go into beta 3 directory by typing "cd cm2104-group-web-app-lost-broken/final/beta3"
+
+STEP 5. type "npm init" and follow instructions(all can be left blank if you want)
+
+STEP 6. Download those other things too by typing (for every "," press enter int the terminal for a new line) 
+        "npm install body-parser","npm install express-session"
+
+STEP 7. just for extra messure type "npm install mongodb@2.2.32" cuz I'm pretty paranoid
+
+STEP 8. type the following commands (for every "," press enter in the terminal for a new line) - 
+        "mongo","use audstrum","db.user.insert({username:"tester",password:"test123"})",
+        "db.saveSound.insert({title:"testsound",image:"testimage.png",sound:"testsound.mp3",user:"tester"})","exit"
+
+STEP 9. If for some miricle that actually worked - congrats! 
+        I didn't think it was possible to do it like that...
+
+STEP 10. check to see if the database is there, type (for every ',' press enter in the terminal for a new line)
+         "mongo","show dbs" ("audstrum" should now be there),"use audstrum","show collections"("user" and "saveSound") 
+         should be there.
+
+STEP 11. YOU'RE DONE! now my code should work fine (SHOULD...maybe...) and the database is all mixed 
+         in ready for you to work with in your code.
+
+IF ERROR: Aw well would you look at that. don't worry, we can't be winners all the time. 
+          I have messed up somewhere and you should tell me about it. I will be sad to hear it but 
+          don't worry - deep down I will be happy to fix the issue asap. or at least try...
+
+Now, the database consists of two files or collections - user and saveSound. user consists of the
+"fields" username and password. saveSound consists of the "fields" title, image, sound and user.
+to see this - after pressing enter after "use audstrum" (see step 10) type db.*collection name*.find()
+and it should display all the data within the collection. 
+
+Now, the login - if once again - it actually works - the currently logged in user will be stored as a cookie 
+reffered to as a session. in your own code you should be able to call this with a line to receive the user
+name of the logged on user (I don't know the line but it should say on the internet if you search 
+"node.js how to get username from current session" or something like that. Yeah I know very profesional of 
+me lol. 
+
+ASHLEIGH - you will get the username from the session and add it with the search data to the savesound collection.
+           make sure to refer to the labs and the db when adding them to not accidently create a new field lol. 
+           ofc you will need to store the actuall image and sound files in a seperate folder and store the 
+           link to it.
+
+ALRIC - you will get the username from the session and run a query - get all records from saveSound collection
+        where 'user' field is equal to the current logged in user. After that ofc just put it into html. 
+        note that the image and sound fields are actually just link to the files within the repo so make sure 
+        to use the correct html to display them as the file rather than just displaying it as a link.
+
+CONNOR - you will use the form to get username and password - after that you will write some simple code in 
+         server.js to append the forms data into the "users" collection. 
+
+Next week, I will be creating a navigation which will include a login but that's seperate so don't 
+worry too much about that.
+
+THANK YOU AND GOOD LUCK!
+        
