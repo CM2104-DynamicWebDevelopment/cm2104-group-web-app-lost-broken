@@ -1,6 +1,28 @@
 const express = require('express');
 const request = require('request');
 const app = express();
+
+app.use(express.static('public'));
+
+const MongoClient = require('mongodb').MongoClient;//npm install mongodb@2.2.32
+//audstrum is the database name
+const url = "mongodb://localhost:27017/audstrum";
+
+const bodyParser = require('body-parser'); //npm install body-parser
+const session = require('express-session'); //npm install express-session
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
+
+var db;
+
+MongoClient.connect(url, function(err, database){
+ if(err) throw err;
+ db = database;
+ app.listen(8080);
+});
+
 app.use(express.static('public'));
 
 // set the view engine to ejs
@@ -69,35 +91,16 @@ app.get('/doAPICall', function(req, res){
 
 app.listen(8080);
 
-//___________
+//_login check_
 
-const MongoClient = require('mongodb').MongoClient;//npm install mongodb@2.2.32
-//audstrum is the database name
-const url = "mongodb://localhost:27017/audstrum";
-
-const bodyParser = require('body-parser'); //npm install body-parser
-const session = require('express-session'); //npm install express-session
-
-app.use(bodyParser.urlencoded({
-    extended: true
-}))
-
-var db;
-
-MongoClient.connect(url, function(err, database){
- if(err) throw err;
- db = database;
- app.listen(8080);
-});
-
-//need to change variable names to make it my own code
+//need to change variable names to make it look like my own code
 app.post('/dologin', function(req, res) {
     console.log(JSON.stringify(req.body))
 
     var uname = req.body.username;
     var pword = req.body.password;
   
-    db.collection('users').findOne({"username":uname}, function(err, result) {
+    db.collection('user').findOne({"username":uname}, function(err, result) {
       if (err) throw err;//if there is an error, throw the error
       //if there is no result, redirect the user back to the login system as that username must not exist
       if(!result){res.redirect('/login');
@@ -113,6 +116,7 @@ app.post('/dologin', function(req, res) {
     });
 });
 
+//_session_
 app.use(session({
     secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
 }));
