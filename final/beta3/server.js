@@ -127,15 +127,16 @@ app.get('/logout', function(req, res) {
 //fav sound route
 app.post('/favsound', function(req, res) {
     //check we are logged in
+    console.log("here");
     if(!req.session.loggedin){res.redirect('/login');return;}
-
+    console.log("here2");
     //we create the data string from the form components that have been passed in
     var datatostore = {
     "title":req.body.title,
     "image":req.body.image,
     "sound":req.body.sound,
     "user":req.session.username};
-  
+    console.log("here3");
     //once created we just run the data string against the database and all our new data will be saved/
     db.collection('saveSound').save(datatostore, function(err, result) {
       if (err) throw err;
