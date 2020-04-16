@@ -63,6 +63,10 @@ input{
     font-size: 30px;
 }
 
+#favForm{
+    display: inline-flex;
+}
+
 #favs{
     position: absolute;
     left: 25%;
