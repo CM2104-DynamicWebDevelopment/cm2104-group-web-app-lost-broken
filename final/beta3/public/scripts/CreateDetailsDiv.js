@@ -1,11 +1,11 @@
-function createDetailsDiv(title, username, description, duration, waveformURL, url){
+function createDetailsDiv(title, username, description, duration, waveformURL, url, previewURL){
 	$("#detailsDiv").remove();//remove old detailsDiv if it exists
 	$('body').append('<div id="detailsDiv"></div>');
 	var detailsDiv = $("#detailsDiv");
 	detailsDiv.append($('<img id="waveformElement" alt="Waveform Image"></img>').attr("src",waveformURL));
 	createTitleElement(detailsDiv, url, title);
 	createStatsElement(detailsDiv, username, duration);
-	createControlElement(detailsDiv), title;
+	createControlElement(detailsDiv, url, title, username, waveformURL, previewURL);
 }
 
 function createTitleElement(detailsDiv, url, title, username){
@@ -19,7 +19,7 @@ function createStatsElement(detailsDiv, username, duration){
 	$('<p>User : ' + username + '</p><p>Length : ' + duration + '</p>').appendTo(statsDiv);
 }
 
-function createControlElement(detailsDiv){
+function createControlElement(detailsDiv, url, title, username, waveformURL, previewURL){
 	var controlDiv = $('<div id="controlDiv"></div>').appendTo(detailsDiv);
 	$('<button class="controlButtons playIco" onclick="playAudio()" alt="Play"><i class="fas fa-play"></i></button>').appendTo(controlDiv);
 	$('<button class="controlButtons stopIco" onclick="stopAudio()" alt="Stop"><i class="fas fa-stop"></i></button>').appendTo(controlDiv);

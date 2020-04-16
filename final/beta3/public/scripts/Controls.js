@@ -35,7 +35,7 @@ function getResults(params){
 			var username = response.username;
 			var url = response.url;
 			createAudioElement(previewURL);
-			createDetailsDiv(title, username, description, duration, waveformURL, url);
+			createDetailsDiv(title, username, description, duration, waveformURL, url, previewURL);
 		}
 		else{
 			showFailureMessage();
