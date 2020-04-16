@@ -149,7 +149,7 @@ app.post('/favsound', function(req, res) {
       }
     ).then(result => {
         if(result) {
-          console.log(`Successfully found and deleted document: ${result}.`);
+          console.log(`Successfully found and deleted document: ${JSON.stringify(result)}.`);
           response.save = "false";
           res.send(response);
         } else {
