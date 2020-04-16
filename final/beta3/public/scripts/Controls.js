@@ -63,7 +63,7 @@ function favAudio() {
 	//var form = document.getElementById("favForm");
 	//document.getElementById("favForm").submit(); //form submission
 	
-	document.getElementById("favForm").ajaxForm({
+	$('#favForm').ajaxForm({
         url : '/favsound',
         dataType : 'json',
         success : function (response) {
