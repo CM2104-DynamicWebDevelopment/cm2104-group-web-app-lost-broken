@@ -62,12 +62,28 @@ function stopAudio() {
 function favAudio() { 
 	//var form = document.getElementById("favForm");
 	//document.getElementById("favForm").submit(); //form submission
-	
 
-	$.get("favsound", {title:sessionStorage.getItem("title"), image:sessionStorage.getItem("image"),  sound:sessionStorage.getItem("sound")}, function(response){ 
-		console.log(response);
-		alert("success");
+	var datatosend = {
+		"title":sessionStorage.getItem("title"),
+		"image":sessionStorage.getItem("image"),
+		"sound":sessionStorage.getItem("sound")};
+
+	$.ajax({
+		type:'POST',
+		data:datatosend,
+		url:"/favsound",
+		contentType: "application/json",
+		success: function(response)
+		{
+			console.log(response);
+			alert("success");
+		}
 	});
+
+	//$.get("favsound", {title:sessionStorage.getItem("title"), image:sessionStorage.getItem("image"),  sound:sessionStorage.getItem("sound")}, function(response){ 
+	//	console.log(response);
+	//	alert("success");
+	//});
 
 
 	/*$('#favForm').ajaxForm({

@@ -125,7 +125,7 @@ app.get('/logout', function(req, res) {
 });
 
 //fav sound route
-app.get('/favsound', function(req, res) {
+app.post('/favsound', function(req, res) {
     //check we are logged in
     if(!req.session.loggedin){res.redirect('/login');return;}
 
