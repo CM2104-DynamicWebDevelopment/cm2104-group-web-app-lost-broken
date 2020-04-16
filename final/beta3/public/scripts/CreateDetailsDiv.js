@@ -23,9 +23,10 @@ function createControlElement(detailsDiv, url, title, username, waveformURL, pre
 	var controlDiv = $('<div id="controlDiv"></div>').appendTo(detailsDiv);
 	$('<button class="controlButtons playIco" onclick="playAudio()" alt="Play"><i class="fas fa-play"></i></button>').appendTo(controlDiv);
 	$('<button class="controlButtons stopIco" onclick="stopAudio()" alt="Stop"><i class="fas fa-stop"></i></button>').appendTo(controlDiv);
+	$('<form action="/favsound" method="POST" id="favForm"><input type="hidden" name="title" value="' + title + '"></input><input type="hidden" name="waveformURL" value="' + waveformURL + '"></input></form>').appendTo("body");
 	//$('<button class="controlButtons favIco" onclick="favAudio()" alt="Fav"><i class="fas fa-star"></i></button>').appendTo(controlDiv);
 	//$('<form action="/favsound"  method="get"><input type="submit" value="enviar"><button class="controlButtons favIco" alt="Fav"><i class="fas fa-star"></i></button></input></form>').appendTo(controlDiv);
-	$('<form action="/favsound" method="POST" id="favForm"><input type="hidden" name="title" value="' + title + '"><button class="controlButtons favIco" alt="Fav"><i class="fas fa-star"></i></button></input></form>').appendTo(controlDiv);
+	$('<button form="favForm" class="controlButtons favIco" alt="Fav"><i class="fas fa-star"></i></button>').appendTo(controlDiv);
 	//$('<form action="/favsound" method="POST"><button class="controlButtons favIco" type="submit" formmethod="post" name="title" value="' + title + '" alt="Fav"><i class="fas fa-star"></i></button></form>').appendTo(controlDiv);
 }
 

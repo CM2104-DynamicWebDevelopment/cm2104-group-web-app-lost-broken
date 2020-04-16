@@ -64,7 +64,6 @@ input{
 }
 
 #favForm{
-    display: inline-flex;
     display:none;
 }
 
