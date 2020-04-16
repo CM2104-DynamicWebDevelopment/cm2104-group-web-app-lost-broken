@@ -64,7 +64,7 @@ function favAudio() {
 	//document.getElementById("favForm").submit(); //form submission
 	
 
-	$.post('/favsound', {title:localStorage.getItem("title"), image:localStorage.getItem("image"),  sound:localStorage.getItem("sound")}, function(response){ 
+	$.post('/favsound', {title:sessionStorage.getItem("title"), image:sessionStorage.getItem("image"),  sound:sessionStorage.getItem("sound")}, function(response){ 
 		console.log("Success");
 		alert("success");
 	});
