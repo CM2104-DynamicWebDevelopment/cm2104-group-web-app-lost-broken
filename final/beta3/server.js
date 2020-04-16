@@ -123,4 +123,33 @@ app.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
+//fav sound route
+app.post('/favsound', function(req, res) {
+    //check we are logged in
+    if(!req.session.loggedin){res.redirect('/login');return;}
+
+    console.log(JSON.stringify(req.body))
+
+    var title = req.body.title;
+    //var pword = req.body.password;
+  
+    //we create the data string from the form components that have been passed in
+    //db.saveSound.insert({title:"testsound",image:"testimage.png",sound:"testsound.mp3",user:"tester"})
+    var datatostore = {
+    "title":title}//,
+    //"image":imageURL,
+    //"sound":soundURL,
+   // "user":user};
+  
+  
+  //once created we just run the data string against the database and all our new data will be saved/
+    db.collection('saveSound').save(datatostore, function(err, result) {
+      if (err) throw err;
+      console.log('saved to database')
+      //when complete redirect to the index
+      res.redirect('/')
+      //res.send(returnJSON); //return a bool, then check bool inf av and change icon colour
+    })
+  });
+
 app.listen(8080);
