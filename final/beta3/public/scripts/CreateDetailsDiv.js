@@ -25,7 +25,7 @@ function createControlElement(detailsDiv, url, title, username, waveformURL, pre
 	$('<button class="controlButtons stopIco" onclick="stopAudio()" alt="Stop"><i class="fas fa-stop"></i></button>').appendTo(controlDiv);
 	//$('<button class="controlButtons favIco" onclick="favAudio()" alt="Fav"><i class="fas fa-star"></i></button>').appendTo(controlDiv);
 	//$('<form action="/favsound"  method="get"><input type="submit" value="enviar"><button class="controlButtons favIco" alt="Fav"><i class="fas fa-star"></i></button></input></form>').appendTo(controlDiv);
-	$('<form action="/favsound" method="POST"><input type="text" name="title" value="' + title + '"><button class="controlButtons favIco" alt="Fav"><i class="fas fa-star"></i></button></input></form>').appendTo(controlDiv);
+	$('<form action="/favsound" method="POST"><input type="hidden" name="title" value="' + title + '"><button class="controlButtons favIco" alt="Fav"><i class="fas fa-star"></i></button></input></form>').appendTo(controlDiv);
 	
 }
 
