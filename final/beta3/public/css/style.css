@@ -198,12 +198,12 @@ input:focus{outline:none;}
 	left: 0;
 }
 
-.img-center {
+/*.img-center {
     position: relative;  
     margin: auto;
     width: 32px;
     height: 32px;
-  }
+  }*/
 
 /*Controls Buttons*/
 .controlButtons {
@@ -212,7 +212,6 @@ input:focus{outline:none;}
 	background-color : transparent;
   	color: black;
   	padding: 14px 28px;
-  	/*font-size: 2vmin;*/
   	cursor: pointer;
 	height:100%;
 	width:33%;
