@@ -165,4 +165,22 @@ app.post('/favsound', function(req, res) {
       .catch(err => console.error(`Failed to find document: ${err}`));    
   });
 
+//Registration test
+app.post('/sign_up', function(req, res){ 
+  var uname = req.body.username;
+  var pword = req.body.password;
+
+  var data = { 
+    "username": uname,
+    "password": pword
+  }
+
+  db.collection('details').insertOne(data, function(err, collection){ 
+    if (err) throw err; 
+    console.log("Record inserted Successfully");          
+  }); 
+      
+  return res.redirect('/index'); 
+}) 
+
 app.listen(8080);
