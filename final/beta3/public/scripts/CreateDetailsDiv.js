@@ -22,9 +22,12 @@ function createStatsElement(detailsDiv, username, duration){
 function createControlElement(detailsDiv, url, title, username, waveformURL, previewURL){
 	var controlDiv = $('<div id="controlDiv"></div>').appendTo(detailsDiv);
 	//create play stop and fav buttons and append to controlDiv
-	$('<button class="controlButtons playIco" onclick="playAudio()" alt="Play"><i class="fas fa-play"></i></button>').appendTo(controlDiv);
-	$('<button class="controlButtons stopIco" onclick="stopAudio()" alt="Stop"><i class="fas fa-stop"></i></button>').appendTo(controlDiv);
-	$('<button class="controlButtons favIco" onclick="favAudio()" alt="Fav"><i class="fas fa-star"></i></button>').appendTo(controlDiv);
+	//$('<button class="controlButtons playIco" onclick="playAudio()" alt="Play"><i class="fas fa-play"></i></button>').appendTo(controlDiv);
+	//$('<button class="controlButtons stopIco" onclick="stopAudio()" alt="Stop"><i class="fas fa-stop"></i></button>').appendTo(controlDiv);
+	//$('<button class="controlButtons favIco" onclick="favAudio()" alt="Fav"><i class="fas fa-star"></i></button>').appendTo(controlDiv);
+	$('<button class="controlButtons playIco" onclick="playAudio()" alt="Play"></button>').appendTo(controlDiv);
+	$('<button class="controlButtons stopIco" onclick="stopAudio()" alt="Stop"></button>').appendTo(controlDiv);
+	$('<button class="controlButtons favIco" onclick="favAudio()" alt="Fav"></button>').appendTo(controlDiv);
 	//store variables in session
 	sessionStorage.setItem("title", title);
 	sessionStorage.setItem("image", waveformURL);
@@ -39,7 +42,5 @@ function createAudioElement(previewURL) {
 
 function showFailureMessage(){
 	$("#detailsDiv").remove();//remove old detailsDiv if it exists
-	$('body').append('<div id="detailsDiv"><h2>No Results Found</h2><p>Retry or try a different search term.</p></div>');
-	//var detailsDiv = $("#detailsDiv");
-	//detailsDiv.append($('<img id="waveformElement" alt="Waveform Image"></img>').attr("src",waveformURL));
+	$('body').append('<div id="detailsDiv"><h2>No Results Found</h2><p>Retry or try a different search term.</p></div>');;
 }
