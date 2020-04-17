@@ -220,7 +220,6 @@ input:focus{outline:none;}
 	align-items:center;
 }
 .playIco {
-    background: url('../resources/playIcon.png');
   	border-color: #4CAF50;
   	color: green;
 }
@@ -229,7 +228,6 @@ input:focus{outline:none;}
   	color: white;
 }
 .stopIco {
-    background: url('../resources/stopIcon.png');
   	border-color: #2196F3;
   	color: dodgerblue;
 }
@@ -238,7 +236,6 @@ input:focus{outline:none;}
   	color: white;
 }
 .favIco {
-    background: url('../resources/favIcon.png');
     border-color: #ffeb14;
   	color: #ffeb14;
 }
