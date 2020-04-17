@@ -205,7 +205,7 @@ input:focus{outline:none;}
 	background-color : transparent;
   	color: black;
   	padding: 14px 28px;
-  	font-size: 2vmin;
+  	/*font-size: 2vmin;*/
   	cursor: pointer;
 	height:100%;
 	width:33%;
