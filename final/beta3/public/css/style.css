@@ -198,6 +198,13 @@ input:focus{outline:none;}
 	left: 0;
 }
 
+.img-center {
+    position: relative;  
+    margin: auto;
+    width: 32px;
+    height: 32px;
+  }
+
 /*Controls Buttons*/
 .controlButtons {
   	border: 2px solid black;

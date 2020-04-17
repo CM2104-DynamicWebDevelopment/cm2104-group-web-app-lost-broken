@@ -25,9 +25,9 @@ function createControlElement(detailsDiv, url, title, username, waveformURL, pre
 	//$('<button class="controlButtons playIco" onclick="playAudio()" alt="Play"><i class="fas fa-play"></i></button>').appendTo(controlDiv);
 	//$('<button class="controlButtons stopIco" onclick="stopAudio()" alt="Stop"><i class="fas fa-stop"></i></button>').appendTo(controlDiv);
 	//$('<button class="controlButtons favIco" onclick="favAudio()" alt="Fav"><i class="fas fa-star"></i></button>').appendTo(controlDiv);
-	$('<button class="controlButtons playIco" onclick="playAudio()" alt="Play"></button>').appendTo(controlDiv);
-	$('<button class="controlButtons stopIco" onclick="stopAudio()" alt="Stop"></button>').appendTo(controlDiv);
-	$('<button class="controlButtons favIco" onclick="favAudio()" alt="Fav"></button>').appendTo(controlDiv);
+	$('<button class="controlButtons playIco" onclick="playAudio()"><img class="img-center" src="../resources/playIcon.png" alt="Play"/></button>').appendTo(controlDiv);
+	$('<button class="controlButtons stopIco" onclick="stopAudio()"><img class="img-center" src="../resources/stopIcon.png" alt="Stop"/></button>').appendTo(controlDiv);
+	$('<button class="controlButtons favIco" onclick="favAudio()"><img class="img-center" src="../resources/favIcon.png" alt="Fav" /></button>').appendTo(controlDiv);
 	//store variables in session
 	sessionStorage.setItem("title", title);
 	sessionStorage.setItem("image", waveformURL);
