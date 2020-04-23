@@ -14,7 +14,7 @@ $(function(){
 		}
 		catch(err){
 			console.log(err);
-			showFailureMessage();
+			//showFailureMessage();
 		}
 		finally{
 			return false;
