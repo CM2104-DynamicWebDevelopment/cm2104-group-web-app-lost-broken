@@ -63,8 +63,9 @@ function favAudio() {
 	addRemoveFav(sessionStorage.getItem("title"), sessionStorage.getItem("image"), sessionStorage.getItem("sound"), $(".favIco"), false);
 }
 
+//to use this to delete an entry. call addRemoveFav("title", "imageURL", "soundURL", $(".divToBeDeleted"), true);
 //contacts server and awaits response, then either toggles fav button colour or deletes entry if deleteContainer is set to true
-function addRemoveFav(title, image, sound, buttonPointer, deleteContainer) { 
+function addRemoveFav(title, image, sound, element, deleteContainer) { 
 	//var containing sound data
 	var datatosend = {
 		"title":title,
@@ -77,14 +78,14 @@ function addRemoveFav(title, image, sound, buttonPointer, deleteContainer) {
 		url:"favsound",
 		success: function(response)
 		{
-			if(response.redirect == "true")
+			if(response.redirect == "true") //redirect if not logged in
 				window.location = "/login";
-			if(response.save == "true")
-				buttonPointer.css({"background-color": "yellow"});
-			else if(!deleteContainer) //if not deleteContainer then toggle colour
-				buttonPointer.css({"background-color": "transparent"});
-			else //if deleteContainer then pass element to deleteEntry(elementToDelete)
-				deleteEntry(buttonPointer.parent());
+			if (deleteContainer) 			//if deleteContainer then pass element to deleteEntry(elementToDelete)
+				deleteEntry(element);
+			else if(response.save == "true") //if it was saved set colour to yellow
+				element.css({"background-color": "yellow"});
+			else  							//if it was removed set colour to transparent
+				element.css({"background-color": "transparent"});
 		}
 	});
 }
@@ -92,26 +93,3 @@ function addRemoveFav(title, image, sound, buttonPointer, deleteContainer) {
 function deleteEntry(elementToDelete){
 	elementToDelete.remove();
 }
-
-// Backup of original favAudio()
-/*function favAudio() { 
-	var datatosend = {
-		"title":sessionStorage.getItem("title"),
-		"image":sessionStorage.getItem("image"),
-		"sound":sessionStorage.getItem("sound")};
-	$.ajax({
-		type:"POST",
-		data:datatosend,
-		url:"favsound",
-		success: function(response)
-		{
-			if(response.redirect == "true")
-				window.location = "/login";
-			//set Button to colour state, should check if saved or not saved, rather than just redirect
-			if(response.save == "true")
-				$(".favIco").css({"background-color": "yellow"});
-			else
-				$(".favIco").css({"background-color": "transparent"});
-		}
-	});
-}*/
