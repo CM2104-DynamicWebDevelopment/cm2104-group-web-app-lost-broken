@@ -1,4 +1,9 @@
 $(function(){
+	var path = window.location.pathname;
+	var page = path.split("/").pop();
+	console.log(path);
+	console.log( page );
+
 	//should move this to css, and repalce with font awesome? moved to css but doesnt work rolling back
 	$(".searchicon").hover(function(){ //get the searchicon element on mouseover, and change the icon
 		$(".searchicon").css({"background": "url('resources/speakerIcon.svg')", "background-size" : "32px 32px"});
