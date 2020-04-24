@@ -1,4 +1,4 @@
-$(function(){
+/*$(function(){
 	var path = window.location.pathname;
 	if (path == "/") {
 			//should move this to css, and repalce with font awesome? moved to css but doesnt work rolling back
@@ -22,10 +22,11 @@ $(function(){
 			}
 		});
 	}
- });
+ });*/
 
-function getResults(params){
-	$.getJSON("/doAPICall", params)
+function getResults(){
+	var searchTerm = {search: $(".searchtext").val()};
+	$.getJSON("/doAPICall", searchTerm)
     .done(function(response) {
 		var success = response.success;
 		if (success == "true"){

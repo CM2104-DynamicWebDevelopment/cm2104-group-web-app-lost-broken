@@ -198,13 +198,6 @@ input:focus{outline:none;}
 	left: 0;
 }
 
-/*.img-center {
-    position: relative;  
-    margin: auto;
-    width: 32px;
-    height: 32px;
-  }*/
-
 /*Controls Buttons*/
 .controlButtons {
   	border: 2px solid black;
@@ -265,9 +258,9 @@ input:focus{outline:none;}
     width: 32px;
 	transition:0.5s;
 }
-/*.searchicon:hover {
+.searchicon:hover {
     background: url('../resources/speakerIcon.svg');
-}*/
+}
 
 /* animates the details div, start at bottom of page (100% in Y) and move to just below center*/
 @keyframes animate{
