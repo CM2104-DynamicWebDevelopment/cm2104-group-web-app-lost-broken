@@ -259,7 +259,7 @@ input:focus{outline:none;}
 	transition:0.5s;
 }
 .searchicon:hover {
-    background: url('../resources/speakerIcon.svg');
+    background-image: url('../resources/speakerIcon.svg');
 }
 
 /* animates the details div, start at bottom of page (100% in Y) and move to just below center*/

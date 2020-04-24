@@ -1,29 +1,3 @@
-/*$(function(){
-	var path = window.location.pathname;
-	if (path == "/") {
-			//should move this to css, and repalce with font awesome? moved to css but doesnt work rolling back
-		$(".searchicon").hover(function(){ //get the searchicon element on mouseover, and change the icon
-			$(".searchicon").css({"background": "url('resources/speakerIcon.svg')", "background-size" : "32px 32px"});
-			});
-		$(".searchicon").mouseleave(function(){  //get the searchicon element on mouse leave, and change the icon
-			$(".searchicon").css({"background": "url('resources/speakerIconNoAudio.svg')", "background-size" : "32px 32px"});
-		});
-		$(".searchicon").on("click", function () { //register function() to getResults(searchtext)
-			try {
-				var params = {search: $(".searchtext").val()};
-				getResults(params);
-			}
-			catch(err){
-				console.log(err);
-				showFailureMessage();
-			}
-			finally{
-				return false;
-			}
-		});
-	}
- });*/
-
 function getResults(){
 	var searchTerm = {search: $(".searchtext").val()};
 	$.getJSON("/doAPICall", searchTerm)
