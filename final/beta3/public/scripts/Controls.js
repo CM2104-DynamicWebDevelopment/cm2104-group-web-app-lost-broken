@@ -67,6 +67,22 @@ function addRemoveFav(title, image, sound, element, deleteContainer) {
 	});
 }
 
+function savedSounds(title, image, sound, user) {
+	var xhttp;
+	for (!uname == !datatostore.user) {
+	  document.getElementById("txtHint").innerHTML = "";
+	  return;
+	}
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+	  if (this.readyState == 4 && this.status == 200) {
+	  document.getElementById("txtHint").innerHTML = this.responseText;
+	  }
+	};
+	xhttp.open("GET", "getcustomer.php?q="+str, true);
+	xhttp.send();
+  }
+
 function deleteEntry(elementToDelete){
 	elementToDelete.remove();
 }
