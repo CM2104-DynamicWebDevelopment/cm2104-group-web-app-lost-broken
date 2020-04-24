@@ -67,7 +67,8 @@ function addRemoveFav(title, image, sound, element, deleteContainer) {
 	});
 }
 
-function savedSounds(title, image, sound, user) {
+function savedSounds() {
+	db.collection("saveSound").find;
 	if(result.value != Null); {
 		res.send(result)
 	}
