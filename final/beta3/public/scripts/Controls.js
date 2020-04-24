@@ -68,19 +68,26 @@ function addRemoveFav(title, image, sound, element, deleteContainer) {
 }
 
 function savedSounds(title, image, sound, user) {
-	var xhttp;
-	for (!uname == !datatostore.user) {
-	  document.getElementById("txtHint").innerHTML = "";
-	  return;
+	if(result.value != Null); {
+		res.send(result)
 	}
-	xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-	  if (this.readyState == 4 && this.status == 200) {
-	  document.getElementById("txtHint").innerHTML = this.responseText;
-	  }
-	};
-	xhttp.open("GET", "getcustomer.php?q="+str, true);
-	xhttp.send();
+	var favDiv = $('#favs');
+    //
+    // Contact Server, get json of favourited items and parse titles/duration/user or whatever we want to show
+    //
+    var title = [];
+    var user = [];
+	var faveList = [];
+	for (var i = 0; i < title.length; i++) {
+        faveList.push({title: title[i], user: user[i]});
+    }
+    faveList.forEach(populateList)
+    //construct html of each item and append
+    function populateList(item){
+    var itemHTML = '<li class="list"><div id="listTitle"><h3>' + item.title + '</h3></div>';
+    itemHTML += '<div id="listUser"><h3>' + item.user + '</h3></div></li>';
+    favDiv.append(itemHTML);
+    }
   }
 
 function deleteEntry(elementToDelete){
