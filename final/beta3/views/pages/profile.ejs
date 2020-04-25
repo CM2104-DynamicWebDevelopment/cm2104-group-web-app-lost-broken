@@ -14,6 +14,11 @@
             <h1>Profile</h1>
             <div id='favs'>
                 <script>
+                    var datatostore = {
+                        "title":req.body.title,
+                        "image":req.body.image,
+                        "sound":req.body.sound,
+                        "user":req.session.username};
                     db.collection("saveSound").find({
                         $and: [
                             { title : datatostore.title },
