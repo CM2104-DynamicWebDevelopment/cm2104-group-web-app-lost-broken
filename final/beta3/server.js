@@ -125,12 +125,21 @@ app.get('/logout', function(req, res) {
 });
 
 app.get('/doUserSearch', function(req, res){
-  var response = {redirect: "true"}
-    if(!req.session.loggedin){res.send(response);return;}
-
     var datatotake = {
-      "title": req
+      "title":req.body.title,
+      "image":req.body.image,
+      "sound":req.body.sound,
+      "user":req.session.username
     };
+
+    db.collection('saveSound').findOne({
+      $and: [
+        {title: datatotake.title},
+        {image: datatotake.image},
+        {sound: datatotake.sound},
+        {user: datatotake.user}
+      ]
+    })
 });
 
 //fav sound route
