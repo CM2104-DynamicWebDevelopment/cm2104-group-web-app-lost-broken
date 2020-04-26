@@ -16,6 +16,8 @@ app.use(session({secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8'}));
 
 //nav test stuff
 app.use(function(req, res, next) {
+  //gets data from session and adjusts it to a 'response' 
+  //so it can be used on other pages.
   res.locals.username = req.session.username;
   res.locals.loggedin = req.session.loggedin;
   next();
@@ -38,10 +40,11 @@ app.use(express.static('public'));
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
+
 // index page
 app.get('/', function(req, res) {
     res.render('pages/index',
-    {logged : res.locals.loggedin},
+    {logged : res.locals.loggedin},//session data being brung into page to use.
     {name : res.locals.username});
 });
 
