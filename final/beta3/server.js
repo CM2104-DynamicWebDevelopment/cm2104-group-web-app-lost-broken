@@ -118,30 +118,37 @@ app.get('/doAPICall', function(req, res){
 
 //_login check_
 
-//need to change variable names to make it look like my own code
 app.post('/dologin', function(req, res) {
-    console.log(JSON.stringify(req.body))
 
-    var uname = req.body.username;
-    var pword = req.body.password;
-  
-    db.collection('user').findOne({"username":uname}, function(err, result) {
-      if (err) throw err;//if there is an error, throw the error
-      //if there is no result, redirect the user back to the login system as that username must not exist
-      if(!result){res.redirect('/login');
+    console.log(JSON.stringify(req.body))
+    //assigns inputted data to variables to authenticate.
+    var usern = req.body.username;
+    var passw = req.body.password;
+    //checks to see if the entered username matches any in the collection. If none match then page is reset.
+    db.collection('user').findOne({"username":usern}, function(err, result) {
+
+      if (err) throw err;
+      if(!result){
+        res.redirect('/login');
+        console.log("username not found"); 
         return
       }
-      //if there is a result then check the password, if the password is correct set session loggedin to true and send the user to the index
-      if(result.password == pword){ //changed from result.login.password 
+      //if the user does exist - check the corrosponding password within the collection 
+      //with the entered one. if a match then begin session.
+      if(result.password == passw){
+
         req.session.loggedin = true; 
-        req.session.username = uname;
+        req.session.username = usern;
         res.redirect('/') 
       }
-      //otherwise send them back to login
-      else{res.redirect('/login')}
+      //if password doesn't match then page is reset.
+      else{
+        res.redirect('/login');
+        console.log("password not correct"); 
+      }
     });
 });
-
+//simple logout function that ends the session when the user wishes to.
 app.get('/logout', function(req, res) {
     req.session.loggedin = false;
     req.session.destroy();
