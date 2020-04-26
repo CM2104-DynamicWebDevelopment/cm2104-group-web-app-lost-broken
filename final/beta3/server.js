@@ -14,6 +14,13 @@ const session = require('express-session'); //npm install express-session
 //moved from eof to before sessions are used
 app.use(session({secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8'})); 
 
+//nav test stuff
+app.use(function(req, res, next) {
+  res.locals.username = req.session.username;
+  res.locals.loggedin = req.session.loggedin;
+  next();
+});
+
 app.use(bodyParser.urlencoded({
     extended: true
 }))
@@ -33,12 +40,13 @@ app.set('view engine', 'ejs');
 
 // index page
 app.get('/', function(req, res) {
-    res.render('pages/index');
+    res.render('pages/index',
+    {logged : res.locals.loggedin},
+    {name : res.locals.username});
 });
 
 // about page
-app.get('/about', function(req, res) {
-    res.render('pages/about');
+app.get('/about', function(req, res) {res.render('pages/about',);
 });
 
 // register page
@@ -193,7 +201,7 @@ app.post('/sign_up', function(req, res){
     "password": pword
   }
 
-  db.collection('details').insertOne(data, function(err, collection){ 
+  db.collection('user').insertOne(data, function(err, collection){ 
     if (err) throw err; 
     console.log("Record inserted Successfully");          
   }); 
