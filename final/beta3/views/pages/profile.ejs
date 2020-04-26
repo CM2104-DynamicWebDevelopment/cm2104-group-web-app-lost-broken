@@ -17,19 +17,34 @@
             <h1>Profile</h1>
             <div id='favs'>
                 <script>
-                    var datatosend = {
-                        "title":title,
-                        "image":image,
-                        "sound":sound,
-                        "user":user};
                     $.ajax({
-                        type:"POST",
+                        type:"GET",
                         data:datatosend,
-                        url:"favsound",
+                        url:"doUserSearch",
                         success: function(response)
                         {
                             if(response.redirect == "true") //redirect if not logged in
                                 window.location = "/login";
+                        }
+                    });
+
+                    $.getJSON("/doUserSearch", searchTerm)
+                    .done(function(response) {
+                        var favDiv = $('#favs');
+                        //
+                        // Contact Server, get json of favourited items and parse titles/duration/user or whatever we want to show
+                        //
+                        var title = [];
+                        var faveList = [];
+                        for (var i = 0; i < title.length; i++) {
+                            faveList.push({title: title[i], user: user[i]});
+                        }
+                        faveList.forEach(populateList)
+                        //construct html of each item and append
+                        function populateList(item){
+                        var itemHTML = '<li class="list"><div id="listTitle"><h3>' + item.title + '</h3></div>';
+                        itemHTML += '<div id="listUser"><h3>' + item.user + '</h3></div></li>';
+                        favDiv.append(itemHTML);
                         }
                     });
                     

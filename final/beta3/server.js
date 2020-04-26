@@ -124,6 +124,14 @@ app.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
+app.get('/doUserSearch', function(req, res){
+    if(!req.session.loggedin){res.send(response);return;}
+
+    var datatotake = {
+      "title": req
+    };
+});
+
 //fav sound route
 app.post('/favsound', function(req, res) {
     var response = {redirect: "true",
