@@ -6,7 +6,19 @@
         <%- include('../partials/head') %>
         <script src="/scripts/Controls.js"></script> <!-- controls script -->
 		<script src="/scripts/CreateDetailsDiv.js"></script> <!-- Script that can handle creating the detail div -->
-		<script src="https://kit.fontawesome.com/2503083cac.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/2503083cac.js" crossorigin="anonymous"></script>
+        <script>
+            $.ajax({
+                        type:"GET",
+                        data:datatosend,
+                        url:"doUserSearch",
+                        success: function(response)
+                        {
+                            if(response.redirect == "true") //redirect if not logged in
+                                window.location = "/login";
+                        }
+                    });
+        </script>
     </head>
 
     <body background="resources/backwave.svg">
@@ -17,16 +29,6 @@
             <h1>Profile</h1>
             <div id='favs'>
                 <script>
-                    $.ajax({
-                        type:"GET",
-                        data:datatosend,
-                        url:"doUserSearch",
-                        success: function(response)
-                        {
-                            if(response.redirect == "true") //redirect if not logged in
-                                window.location = "/login";
-                        }
-                    });
 
                     $.getJSON("/doUserSearch", searchTerm)
                     .done(function(response) {
