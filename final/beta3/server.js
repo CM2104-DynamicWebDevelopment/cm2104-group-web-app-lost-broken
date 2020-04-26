@@ -12,7 +12,11 @@ const bodyParser = require('body-parser'); //npm install body-parser
 const session = require('express-session'); //npm install express-session
 
 //moved from eof to before sessions are used
-app.use(session({secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8'})); 
+app.use(session({
+  secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
+  saveUninitialized: false,
+  resave: false
+})); 
 
 //nav test stuff
 app.use(function(req, res, next) {
