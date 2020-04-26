@@ -125,6 +125,7 @@ app.get('/logout', function(req, res) {
 });
 
 app.get('/doUserSearch', function(req, res){
+  var response = {redirect: "true"}
     if(!req.session.loggedin){res.send(response);return;}
 
     var datatotake = {
