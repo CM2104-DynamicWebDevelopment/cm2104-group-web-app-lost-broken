@@ -44,36 +44,36 @@ app.set('view engine', 'ejs');
 // index page
 app.get('/', function(req, res) {
     res.render('pages/index',
-    {logged : res.locals.loggedin},//session data being brought into page to use.
-    {name : res.locals.username});
+    {logged : res.locals.loggedin,//session data being brought into page to use.
+    name : res.locals.username});
 });
 
 // about page
 app.get('/about', function(req, res) {
   res.render('pages/about',
-  {logged : res.locals.loggedin},
-  {name : res.locals.username});
+  {logged : res.locals.loggedin,
+  name : res.locals.username});
 });
 
 // register page
 app.get('/register', function(req, res) {
     res.render('pages/register',
-    {logged : res.locals.loggedin},
-    {name : res.locals.username});
+    {logged : res.locals.loggedin,
+    name : res.locals.username});
 });
 
 // login page
 app.get('/login', function(req, res) {
     res.render('pages/login',
-    {logged : res.locals.loggedin},
-    {name : res.locals.username});
+    {logged : res.locals.loggedin,
+    name : res.locals.username});
 });
 
 // profile page
 app.get('/profile', function(req, res) {
     res.render('pages/profile',
-    {logged : res.locals.loggedin},
-    {name : res.locals.username});
+    {logged : res.locals.loggedin,
+    name : res.locals.username});
 });
 
 app.get('/doAPICall', function(req, res){
