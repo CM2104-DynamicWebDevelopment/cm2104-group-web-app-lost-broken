@@ -1,16 +1,16 @@
 <header id="PageHeader">
 	<ul>
-        <%if (!logged) { %>
+        <%if (logged) { %>
             <li class='logo'><a href="/" tabIndex="2">(Audstrum)</a></li>
             <li class='logo'><a href="about" tabIndex="3">About</a></li>
-            <li class='out'><a href="login" tabIndex="4">Sign In</a></li>
-            <li class='out'><a href="register" tabIndex="5">Register</a></li>
+            <li class='in'><a href="profile" tabIndex="4"><%= name %></a></li>
+            <li class='in'><a action="/logout" tabIndex="5">Log Out</a></li>
         <% } %>
         <%else { %>
             <li class='logo'><a href="/" tabIndex="2">(Audstrum)</a></li>
             <li class='logo'><a href="about" tabIndex="3">About</a></li>
-            <li class='in'><a href="profile" tabIndex="4"><%= name %></a></li>
-            <li class='in'><a href="/logout" tabIndex="5">Log Out</a></li>
+            <li class='out'><a href="login" tabIndex="4">Sign In</a></li>
+            <li class='out'><a href="register" tabIndex="5">Register</a></li>
         <% } %>
     </ul>	
 </header>
