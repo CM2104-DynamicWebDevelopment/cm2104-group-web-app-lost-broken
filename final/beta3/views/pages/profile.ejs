@@ -4,6 +4,9 @@
 
     <head>
         <%- include('../partials/head') %>
+        <script src="/scripts/Controls.js"></script> <!-- controls script -->
+		<script src="/scripts/CreateDetailsDiv.js"></script> <!-- Script that can handle creating the detail div -->
+		<script src="https://kit.fontawesome.com/2503083cac.js" crossorigin="anonymous"></script>
     </head>
 
     <body background="resources/backwave.svg">
@@ -17,7 +20,8 @@
                     var datatosend = {
                         "title":title,
                         "image":image,
-                        "sound":sound};
+                        "sound":sound,
+                        "user":user};
                     $.ajax({
                         type:"POST",
                         data:datatosend,
