@@ -215,7 +215,7 @@ app.post('/sign_up', function(req, res){
     console.log("Record inserted Successfully");          
   }); 
       
-  return res.redirect('/index'); 
+  return res.redirect('/'); 
 }) 
 
 app.listen(8080);
