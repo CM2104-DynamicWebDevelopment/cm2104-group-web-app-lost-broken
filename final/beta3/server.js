@@ -200,7 +200,7 @@ app.post('/favsound', function(req, res) {
       .catch(err => console.error(`Failed to find document: ${err}`));    
   });
 
-//Registration test
+//Registration
 app.post('/sign_up', function(req, res){ 
   var uname = req.body.username;
   var pword = req.body.password;
