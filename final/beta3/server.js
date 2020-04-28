@@ -156,7 +156,15 @@ app.get('/logout', function(req, res) {
 });
 
 app.get('/doUserSearch', function(req, res){
-    db.collection(saveSound).find({user : req.sessjon.username})
+    db.collection(saveSound).find({user : req.session.username})
+
+    var datatotake = {
+      title: "title",
+      image: "image",
+      sound: "sound"
+    };
+
+    console.log(JSON.stringify(datatotake))
 });
 
 //fav sound route
@@ -200,7 +208,7 @@ app.post('/favsound', function(req, res) {
       .catch(err => console.error(`Failed to find document: ${err}`));    
   });
 
-//Registration
+//Registration test
 app.post('/sign_up', function(req, res){ 
   var usern = req.body.username;
   var passw = req.body.password;
@@ -220,7 +228,7 @@ app.post('/sign_up', function(req, res){
     console.log("Record inserted Successfully");          
   }); 
       
-  return res.redirect('/'); 
+  return res.redirect('/index'); 
 }) 
 
 app.listen(8080);
