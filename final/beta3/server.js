@@ -230,9 +230,9 @@ app.post('/sign_up', function(req, res){
   var passw_c = req.body.pass;
   //validates that entered data is correct
   //checks if confirm password has been filled in
-  if (!passw_c){
+  if (!passw_c || !usern || !passw){
     res.redirect('/register');
-    console.log("password not confirmed");
+    console.log("details missing");
   }
   //checks if both passwords match
   if (passw !== passw_c){
