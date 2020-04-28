@@ -254,7 +254,6 @@ app.post('/sign_up', function(req, res){
     "username": usern,
     "password": passw
   }
-
   db.collection('user').insertOne(data, function(err){ 
     if (err) throw err; 
     console.log("Record inserted Successfully");          
