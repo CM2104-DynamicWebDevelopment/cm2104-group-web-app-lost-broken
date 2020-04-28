@@ -155,7 +155,8 @@ app.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
-app.get('/doUserSearch', function(req, res){
+app.get('/doUserSearch', function(req, err){
+    if (err) throw err;
     db.collection(saveSound).find({user : req.session.username}).toArray(function(err, result) {
       if (err) throw err;
       console.log(result);
