@@ -1,5 +1,5 @@
-const express = require('express');
-const request = require('request');
+const express = require('express');//npm install express
+const request = require('request');//npm install request
 const app = express();
 
 app.use(express.static('public'));
@@ -11,11 +11,17 @@ const url = "mongodb://localhost:27017/audstrum";
 const bodyParser = require('body-parser'); //npm install body-parser
 const session = require('express-session'); //npm install express-session
 
-//moved from eof to before sessions are used
+//code for session with added security for the user.
 app.use(session({
+  //encrypts
   secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
   saveUninitialized: false,
-  resave: false
+  resave: false,
+  //allows session to time out
+  duration: 20 * 60* 1000,
+  activeDuration: 10 * 60 * 1000,
+  //deletes session is user closes browser
+  ephemeral: true
 })); 
 
 //nav test stuff
@@ -206,7 +212,7 @@ app.post('/sign_up', function(req, res){
   var passw_c = req.body.pass;
   //validates that entered data is correct
 
-  //checks if username already exists - if so then try again
+  //checks if username already exists - if so then reset
   db.collection('user').findOne({"username":usern}, function(err, result) {
     if (err) throw err;
     if (result) {
