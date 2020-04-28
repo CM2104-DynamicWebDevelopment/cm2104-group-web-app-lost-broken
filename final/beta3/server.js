@@ -156,15 +156,14 @@ app.get('/logout', function(req, res) {
 });
 
 app.get('/doUserSearch', function(req, res){
-    db.collection(saveSound).find({user : req.session.username})
-
-    var datatotake = {
-      title: "title",
-      image: "image",
-      sound: "sound"
-    };
-
-    console.log(JSON.stringify(datatotake))
+  db.collection(saveSound).find({user : req.session.username}, function(err, result){ 
+    if (err) throw err; 
+    if(!result) {
+      return;
+    }
+    console.log(`Successfully found : ${JSON.stringify(result)}.`);
+    res.send(result);
+  }); 
 });
 
 //fav sound route
@@ -189,7 +188,25 @@ app.post('/favsound', function(req, res) {
                { sound: datatostore.sound },
                { user: datatostore.user }
              ]
-      }
+      }, function(err, result){
+        if (err) throw err; 
+        if(result.value == null) {
+          console.log("No document matches the provided query.");
+          db.collection('saveSound').save(datatostore, function(err, result) {
+            if (err) throw err;
+            console.log(JSON.stringify(datatostore) + ' --- saved to database')
+            response.save = "true";
+            res.send(response);
+          })
+        }
+        else {
+          console.log(`Successfully found and deleted document: ${JSON.stringify(result)}.`);
+          response.save = "false";
+          res.send(response);
+        }
+    });
+});
+/*
     ).then(result => {
         if(result.value != null) {
           console.log(`Successfully found and deleted document: ${JSON.stringify(result)}.`);
@@ -206,7 +223,7 @@ app.post('/favsound', function(req, res) {
         }
       })
       .catch(err => console.error(`Failed to find document: ${err}`));    
-  });
+  });*/
 
 //Registration test
 app.post('/sign_up', function(req, res){ 

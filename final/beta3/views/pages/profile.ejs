@@ -5,7 +5,7 @@
     <head>
         <%- include('../partials/head') %>
         <script src="/scripts/Controls.js"></script> <!-- controls script -->
-		<script src="/scripts/CreateDetailsDiv.js"></script> <!-- Script that can handle creating the detail div -->
+		<script src="/scripts/ProfileLoad.js"></script> <!-- script that runs once DOM is ready, gets faved sounds -->
         <script src="https://kit.fontawesome.com/2503083cac.js" crossorigin="anonymous"></script>
     </head>
 
@@ -15,43 +15,7 @@
 
         <section id="PageContent">
             <h1>Profile</h1>
-            <div id='favs'>
-                <script>
-
-                    $.ajax({
-                        dataType: "GET",
-                        url: "doUserSearch",
-                        data: datatotake,
-                        success: success
-                    });
-
-                    $.getJSON("/doUserSearch")
-                    .done(function(response) {
-                        var success = response.success;
-                        if (success == "true"){
-                            var title = response.title;
-                            var image = response.image;
-                            var sound = response.sound;
-                            var user = response.user;
-
-                        var favDiv = $('#favs');
-                        //
-                        // Contact Server, get json of favourited items and parse titles/duration/user or whatever we want to show
-                        //
-                        var faveList = [];
-                        for (var i = 0; i < title.length; i++) {
-                            faveList.push({title: title[i], user: user[i]});
-                        }
-                        faveList.forEach(populateList)
-                        //construct html of each item and append
-                        function populateList(item){
-                        var itemHTML = '<li class="list"><div id="listTitle"><h3>' + item.title + '</h3></div>';
-                        itemHTML += '<div id="listUser"><h3>' + item.user + '</h3></div></li>';
-                        favDiv.append(itemHTML);
-                        }
-                    };
-                </script>
-            </div>
+            <div id='favs'></div>
         </section>
 
         <footer id="PageFooter">
