@@ -162,11 +162,11 @@ app.post('/doUserSearch', function(req, res){
     if (err) throw err; 
     if(!result) {
       console.log("here3");
-      console.log('Failed response : ' + result);
+      console.log('Failed response : ' + JSON.stringify(result));
       res.send(result);
     }
     console.log("here4");
-    console.log('Successful response : ' + result);
+    console.log('Successful response : ' + JSON.stringify(result));
     res.send(result);
   }); 
 });
