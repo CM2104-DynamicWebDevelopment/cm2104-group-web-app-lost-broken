@@ -13,8 +13,8 @@ function buildFavList(response){
     for (var i = 0; i < response.length; i++) {
         //alaric things will need linked to play and stop buttons here probably? im not sure how its planned but
         //this still will need to be played around with however you want do it
-        var itemHTML = '<li class="list type="button" onclick="openSound()"><div id="listTitle"><h3>' + response[i].title + '</h3></div>';
-        itemHTML += '<div id="listUser"><h3>' + response[i].user + '</h3></div></li>';
+        var itemHTML = '<button class="list"><div id="listTitle"><h3>' + response[i].title + '</h3></div>';
+        itemHTML += '<div id="listUser"><h3>' + response[i].user + '</h3></div></button>';
         $('#favs').append(itemHTML);
     }
 }
