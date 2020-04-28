@@ -241,23 +241,22 @@ app.post('/sign_up', function(req, res){
   }
   //checks if username already exists - if so then try again
   db.collection('user').findOne({"username":usern}, function(err, result) {
+    if (err) throw err;
     if (result) {
       res.redirect('/register');
       console.log('user already exists');
+      return
     }
+      //if data is valid it is put into the database
+    var data = { 
+      "username": usern,
+      "password": passw
+    }
+    db.collection('user').insertOne(data, function(err){ 
+      if (err) throw err; 
+      console.log("Record inserted Successfully");          
+    }); 
   });
-
-  //if data is valid it is put into the database
-  var data = { 
-    "username": usern,
-    "password": passw
-  }
-  db.collection('user').insertOne(data, function(err){ 
-    if (err) throw err; 
-    console.log("Record inserted Successfully");          
-  }); 
-
-  return res.redirect('/'); 
-}) 
+}); 
 
 app.listen(8080);
