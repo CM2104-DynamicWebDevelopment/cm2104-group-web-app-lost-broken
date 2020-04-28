@@ -17,9 +17,14 @@
             <h1>Profile</h1>
             <div id='favs'>
                 <script>
+                    var datatotake = {
+                        "title": title,
+                        "image": image,
+                        "sound": sound
+                    };
 
                     $.ajax({
-                        dataType: "json",
+                        dataType: "GET",
                         url: "doUserSearch",
                         data: datatotake,
                         success: success
