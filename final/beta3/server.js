@@ -156,12 +156,16 @@ app.get('/logout', function(req, res) {
 });
 
 app.post('/doUserSearch', function(req, res){
+  console.log("here");
   db.collection('saveSound').find({user : req.session.username}, function(err, result){ 
+    console.log("here2");
     if (err) throw err; 
     if(!result) {
+      console.log("here3");
       console.log('Failed response : ' + result);
       res.send(result);
     }
+    console.log("here4");
     console.log('Successful response : ' + result);
     res.send(result);
   }); 
