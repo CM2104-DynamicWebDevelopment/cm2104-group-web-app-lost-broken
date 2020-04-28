@@ -137,6 +137,7 @@ app.post('/dologin', function(req, res) {
       if(!result){
         res.redirect('/login');
         console.log("username not found"); 
+        alert("Username not found");
         return
       }
       //if the user does exist - check the corrosponding password within the collection 
