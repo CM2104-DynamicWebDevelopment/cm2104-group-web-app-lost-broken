@@ -4,7 +4,7 @@ $(function() { //runs once page is loaded
 
 //gets the response from the server and passed to buildFavList() to construct list
 function getSounds() {
-    $.post("doUserSearch").done(buildFavList(response));
+    $.post("doUserSearch").done(function(response){buildFavList(response)});
 }
 
 //constructs list from response variables
