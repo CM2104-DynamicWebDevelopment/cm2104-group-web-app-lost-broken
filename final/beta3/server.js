@@ -159,7 +159,8 @@ app.get('/doUserSearch', function(req, res){
   db.collection(saveSound).find({user : req.session.username}, function(err, result){ 
     if (err) throw err; 
     if(!result) {
-      return;
+      console.log(`Failed response : ${JSON.stringify(result)}.`);
+      res.send(result);
     }
     console.log(`Successfully found : ${JSON.stringify(result)}.`);
     res.send(result);
