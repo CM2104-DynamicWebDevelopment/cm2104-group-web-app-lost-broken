@@ -170,58 +170,34 @@ app.post('/favsound', function(req, res) {
                     save: "false"}; //should check if saved or not saved, rather than just redirect
     //check we are logged in
     if(!req.session.loggedin){res.send(response);return;} //have to send redirect as a response coz POST cant redirect :sss only took 4 hours to realize
+    response.redirect = "false";
     //we create the data string from the form components that have been passed in
     var datatostore = {
     "title":req.body.title,
     "image":req.body.image,
     "sound":req.body.sound,
     "user":req.session.username};
-
-    response.redirect = "false";
-
     db.collection('saveSound').findOneAndDelete({
-        $and: [
-               { title : datatostore.title },
+        $and: [{ title : datatostore.title },
                { image: datatostore.image },
                { sound: datatostore.sound },
-               { user: datatostore.user }
-             ]
-      }, function(err, result){
-        if (err) throw err; 
-        if(result.value == null) {
-          console.log("No document matches the provided query.");
-          db.collection('saveSound').save(datatostore, function(err, result) {
-            if (err) throw err;
-            console.log(JSON.stringify(datatostore) + ' --- saved to database')
-            response.save = "true";
+               { user: datatostore.user }]
+        }).then(result => {
+          if(result.value != null) {
+            console.log('Successfully found and deleted document: ' + JSON.stringify(result));
+            response.save = "false";
             res.send(response);
-          })
-        }
-        else {
-          console.log(`Successfully found and deleted document: ${JSON.stringify(result)}.`);
-          response.save = "false";
-          res.send(response);
-        }
-    });
+          } else {
+            console.log("No document matches the provided query.");
+            db.collection('saveSound').save(datatostore, function(err, result) {
+              if (err) throw err;
+              console.log(JSON.stringify(datatostore) + ' --- saved to database')
+              response.save = "true";
+              res.send(response);
+            })
+          }
+        }).catch(err => console.error(`Failed to find document: ${err}`));
 });
-/*
-    ).then(result => {
-        if(result.value != null) {
-          console.log(`Successfully found and deleted document: ${JSON.stringify(result)}.`);
-          response.save = "false";
-          res.send(response);
-        } else {
-          console.log("No document matches the provided query.");
-          db.collection('saveSound').save(datatostore, function(err, result) {
-            if (err) throw err;
-            console.log(JSON.stringify(datatostore) + ' --- saved to database')
-            response.save = "true";
-            res.send(response);
-          })
-        }
-      })
-      .catch(err => console.error(`Failed to find document: ${err}`));    
-  });*/
 
 //Registration
 app.post('/sign_up', function(req, res){ 

@@ -1,4 +1,4 @@
-$(function() { //runs ocne page is loaded
+$(function() { //runs once page is loaded
 	getSounds();
 });
 
