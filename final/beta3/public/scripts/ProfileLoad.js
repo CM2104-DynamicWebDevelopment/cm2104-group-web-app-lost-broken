@@ -8,7 +8,7 @@ function getSounds() {
         console.log(JSON.stringify(response));
         //hopefully this gets the response from the server, then you can pass all the varables through and make 
         //buildFavList(title etc etc); however you want
-    }, "json");
+    });
     
     /*$.getJSON("/doUserSearch")
     .done(function(response) {
