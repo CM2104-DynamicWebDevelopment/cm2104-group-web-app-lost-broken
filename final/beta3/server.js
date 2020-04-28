@@ -155,12 +155,16 @@ app.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
-app.get('/doUserSearch', function(req, err){
-    if (err) throw err;
-    db.collection(saveSound).find({user : req.session.username}).toArray(function(err, result) {
-      if (err) throw err;
-      console.log(result);
-    });
+app.get('/doUserSearch', function(req, res){
+    db.collection(saveSound).find({user : req.session.username})
+
+    var datatotake = {
+      "title": title,
+      "image": image,
+      "sound": sound
+    };
+
+    console.log(JSON.stringify(datatostore))
 });
 
 //fav sound route
