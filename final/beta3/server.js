@@ -155,14 +155,14 @@ app.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
-app.get('/doUserSearch', function(req, res){
+app.post('/doUserSearch', function(req, res){
   db.collection('saveSound').find({user : req.session.username}, function(err, result){ 
     if (err) throw err; 
     if(!result) {
-      console.log(`Failed response : ${JSON.stringify(result)}.`);
+      console.log('Failed response : ' + result);
       res.send(result);
     }
-    console.log(`Successfully found : ${JSON.stringify(result)}.`);
+    console.log('Successful response : ' + result);
     res.send(result);
   }); 
 });
