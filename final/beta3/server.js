@@ -164,6 +164,30 @@ app.get('/doUserSearch', function(req, res){
         {user : req.session.username}
       ]
     })
+
+    var datatotake = {
+      title = ["title"],
+      image = ["image"],
+      sound = ["sound"],
+      user = ["user"]
+    }
+
+    .then(result => {
+      if(result.value != null) {
+        console.log(`Successfully found and deleted document: ${JSON.stringify(result)}.`);
+        response.save = "false";
+        res.send(response);
+      } else {
+        console.log("No document matches the provided query.");
+        db.collection('saveSound').save(datatostore, function(err, result) {
+          if (err) throw err;
+          console.log(JSON.stringify(datatostore) + ' --- saved to database')
+          response.save = "true";
+          res.send(response);
+        })
+      }
+    })
+    .catch(err => console.error(`Failed to find document: ${err}`));
 });
 
 //fav sound route
@@ -183,7 +207,7 @@ app.post('/favsound', function(req, res) {
 
     db.collection('saveSound').findOneAndDelete({
         $and: [
-               { title : datatostore.title },
+               { title: datatostore.title },
                { image: datatostore.image },
                { sound: datatostore.sound },
                { user: datatostore.user }
