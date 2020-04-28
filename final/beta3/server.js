@@ -214,9 +214,24 @@ app.post('/sign_up', function(req, res){
   var passw = req.body.password;
   var passw_c = req.body.pass;
 
-  if (!passw_c){res.redirect('/register')}
+  if (!passw_c){
+    res.redirect('/register');
+    console.log("password not confirmed");
+  }
 
-  if (passw !== passw_c){res.redirect('/register')}
+  if (passw !== passw_c){
+    res.redirect('/register');
+    console.log("passwords do not match");
+  }
+
+  db.collection('user').findOne({"username":usern}, function(err, result) {
+    if (err) throw err;
+    if(result){
+      res.redirect('/register');
+      console.log("username already exists"); 
+      return
+    }
+  });
   
   var data = { 
     "username": usern,
