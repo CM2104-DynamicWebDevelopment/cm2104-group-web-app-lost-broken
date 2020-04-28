@@ -156,11 +156,10 @@ app.get('/logout', function(req, res) {
 });
 
 app.post('/doUserSearch', function(req, res){
-  console.log("here");
   db.collection('saveSound').find({user : req.session.username}).toArray().then(
-      docs => {
-        console.log("all documents", docs);
-        res.send(docs);
+      result => {
+        console.log("Users sounds : ", result);
+        res.send(result);
       }
     ).catch(err => console.error(`Failed to find document: ${err}`));
 });

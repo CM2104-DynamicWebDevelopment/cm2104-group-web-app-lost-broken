@@ -3,25 +3,17 @@ $(function() { //runs ocne page is loaded
 });
 
 function getSounds() {
-    /*$.post("doUserSearch", function(err, response){
-        console.log(response);
-        console.log(response[0].title);
-        console.log(response[1].title);
-        console.log(response[2].sound);
-        //hopefully this gets the response from the server, then you can pass all the varables through and make 
-        //buildFavList(title etc etc); however you want
-    });*/
     $.post("doUserSearch").done(function( response ) {
         console.log(response);
         console.log(response[0].title);
         console.log(response[1].title);
         console.log(response[2].sound);
-        //hopefully this gets the response from the server, then you can pass all the varables through and make 
-        //buildFavList(title etc etc); however you want
+        //this gets the response from the server, then you can loop through array etc and pass to 
+        //buildFavList(response); however you want
       });
 }
 
-function buildFavList(title){
+function buildFavList(response){
     var favDiv = $('#favs');
     var faveList = [];
     for (var i = 0; i < title.length; i++) {
