@@ -241,10 +241,10 @@ app.post('/sign_up', function(req, res){
   }
   //checks if username already exists - if so then try again
   db.collection('user').findOne({"username":usern}, function(err, result) {
-    if (err) {
+    if (result) {
       res.redirect('/register');
       console.log('user already exists');
-      return done(err);
+      return
     }
   });
 
