@@ -81,6 +81,7 @@ input{
     display: block;
     color: rgb(255,255,255);
     display: flex;
+    border: none;
 }
 
 .list:hover{
