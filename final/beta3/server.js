@@ -252,7 +252,6 @@ app.post('/sign_up', function(req, res){
     if(result){
       res.redirect('/register');
       console.log("username already exists"); 
-      return
     }
   });
   //if data is valid it is put into the database
