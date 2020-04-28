@@ -157,6 +157,14 @@ app.get('/logout', function(req, res) {
 
 app.get('/doUserSearch', function(req, res){
     db.collection(saveSound).find({user : req.session.username})
+
+    var datatotake = {
+      title: "title",
+      image: "image",
+      sound: "sound"
+    };
+
+    console.log(JSON.stringify(datatotake))
 });
 
 //fav sound route

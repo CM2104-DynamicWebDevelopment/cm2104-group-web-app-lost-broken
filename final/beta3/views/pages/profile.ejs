@@ -17,11 +17,6 @@
             <h1>Profile</h1>
             <div id='favs'>
                 <script>
-                    var datatotake = {
-                        "title": title,
-                        "image": image,
-                        "sound": sound
-                    };
 
                     $.ajax({
                         dataType: "GET",
@@ -30,7 +25,14 @@
                         success: success
                     });
 
-                    $.getJSON("/doUserSearch", function(user) {
+                    $.getJSON("/doUserSearch")
+                    .done(function(response) {
+                        var success = response.success;
+                        if (success == "true"){
+                            var title = response.title;
+                            var image = response.image;
+                            var sound = response.sound;
+                            var user = response.user;
 
                         var favDiv = $('#favs');
                         //
@@ -47,7 +49,7 @@
                         itemHTML += '<div id="listUser"><h3>' + item.user + '</h3></div></li>';
                         favDiv.append(itemHTML);
                         }
-                    });
+                    };
                 </script>
             </div>
         </section>
