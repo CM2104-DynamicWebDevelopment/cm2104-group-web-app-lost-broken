@@ -226,8 +226,6 @@ app.post('/favsound', function(req, res) {
 
 //Registration
 app.post('/sign_up', function(req, res){ 
-  console.log(JSON.stringify(req.body))
-  
   var usern = req.body.username;
   var passw = req.body.password;
   var passw_c = req.body.pass;
@@ -244,13 +242,13 @@ app.post('/sign_up', function(req, res){
   }
   //checks if username already exists - if so then try again
   db.collection('user').findOne({"username":usern}, function(err, result) {
-    if (err) throw err;
-    if(result){
+    if (err) {
       res.redirect('/register');
-      console.log("username already exists"); 
-      return
+      console.log('user already exists');
+      return done(err);
     }
   });
+
   //if data is valid it is put into the database
   var data = { 
     "username": usern,
