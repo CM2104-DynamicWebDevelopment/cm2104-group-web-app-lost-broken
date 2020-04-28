@@ -2,28 +2,19 @@ $(function() { //runs once page is loaded
 	getSounds();
 });
 
+//gets the response from the server and passed to buildFavList() to construct list
 function getSounds() {
-    $.post("doUserSearch").done(function(response) {
-        console.log(response);
-        console.log(response[0].title);
-        console.log(response[1].title);
-        console.log(response[1].image);
-        console.log(response[2].sound);
-        //this gets the response from the server, then you can loop through array etc and pass to 
-        buildFavList(response);
-      });
+    $.post("doUserSearch").done(buildFavList(response));
 }
 
+//constructs list from response variables
+//valid response[i] vars are .title .sound .image (if we need more can expand DB if needed)
 function buildFavList(response){
-    var faveList = [];
     for (var i = 0; i < response.length; i++) {
-        faveList.push({title: response[i].title, sound: response[i].sound});
-    }
-    faveList.forEach(populateList)
-    //construct html of each item and append
-    function populateList(item){
-        var itemHTML = '<li class="list"><div id="listTitle"><h3>' + item.title + '</h3></div>';
-        itemHTML += '<div id="listUser"><h3>' + item.sound + '</h3></div></li>';
+        //alaric things will need linked to play and stop buttons here probably? im not sure how its planned but
+        //this still will need to be played around with however you want do it
+        var itemHTML = '<li class="list"><div id="listTitle"><h3>' + response[i].title + '</h3></div>';
+        itemHTML += '<div id="listUser"><h3>' + response[i].sound + '</h3></div></li>';
         $('#favs').append(itemHTML);
     }
 }
