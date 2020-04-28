@@ -227,12 +227,17 @@ app.post('/favsound', function(req, res) {
 
 //Registration test
 app.post('/sign_up', function(req, res){ 
-  var uname = req.body.username;
-  var pword = req.body.password;
+  var usern = req.body.username;
+  var passw = req.body.password;
+  var passw_c = req.body.pass;
 
+  if (!passw_c){res.redirect('/register')}
+
+  if (passw !== passw_c){res.redirect('/register')}
+  
   var data = { 
-    "username": uname,
-    "password": pword
+    "username": usern,
+    "password": passw
   }
 
   db.collection('user').insertOne(data, function(err, collection){ 
@@ -240,7 +245,7 @@ app.post('/sign_up', function(req, res){
     console.log("Record inserted Successfully");          
   }); 
       
-  return res.redirect('/index'); 
+  return res.redirect('/'); 
 }) 
 
 app.listen(8080);
