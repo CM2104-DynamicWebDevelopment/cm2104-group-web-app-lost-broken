@@ -156,31 +156,7 @@ app.get('/logout', function(req, res) {
 });
 
 app.get('/doUserSearch', function(req, res){
-    db.collection(saveSound).find({
-      $and: [
-        {title: req.body.title},
-        {image: req.body.image},
-        {sound: req.body.sound},
-        {user : req.session.username}
-      ]
-    })
-
-    .then(result => {
-      if(result.value != null) {
-        console.log(`Successfully found and deleted document: ${JSON.stringify(result)}.`);
-        response.save = "false";
-        res.send(response);
-      } else {
-        console.log("No document matches the provided query.");
-        db.collection('saveSound').save(datatostore, function(err, result) {
-          if (err) throw err;
-          console.log(JSON.stringify(datatostore) + ' --- saved to database')
-          response.save = "true";
-          res.send(response);
-        })
-      }
-    })
-    .catch(err => console.error(`Failed to find document: ${err}`));
+    db.collection(saveSound).find({user : req.session.username})
 });
 
 //fav sound route
@@ -200,7 +176,7 @@ app.post('/favsound', function(req, res) {
 
     db.collection('saveSound').findOneAndDelete({
         $and: [
-               { title: datatostore.title },
+               { title : datatostore.title },
                { image: datatostore.image },
                { sound: datatostore.sound },
                { user: datatostore.user }
@@ -224,7 +200,7 @@ app.post('/favsound', function(req, res) {
       .catch(err => console.error(`Failed to find document: ${err}`));    
   });
 
-//Registration
+//Registration test
 app.post('/sign_up', function(req, res){ 
   var uname = req.body.username;
   var pword = req.body.password;
@@ -239,7 +215,7 @@ app.post('/sign_up', function(req, res){
     console.log("Record inserted Successfully");          
   }); 
       
-  return res.redirect('/'); 
+  return res.redirect('/index'); 
 }) 
 
 app.listen(8080);
