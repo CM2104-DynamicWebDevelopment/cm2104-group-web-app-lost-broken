@@ -156,7 +156,7 @@ app.get('/logout', function(req, res) {
 });
 
 app.get('/doUserSearch', function(req, res){
-  db.collection(saveSound).find({user : req.session.username}, function(err, result){ 
+  db.collection('saveSound').find({user : req.session.username}, function(err, result){ 
     if (err) throw err; 
     if(!result) {
       console.log(`Failed response : ${JSON.stringify(result)}.`);
