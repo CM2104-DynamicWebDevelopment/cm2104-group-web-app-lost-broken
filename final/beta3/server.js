@@ -156,7 +156,10 @@ app.get('/logout', function(req, res) {
 });
 
 app.get('/doUserSearch', function(req, res){
-    db.collection(saveSound).find({user : req.session.username})
+    db.collection(saveSound).find({user : req.session.username}).toArray(function(err, result) {
+      if (err) throw err;
+      console.log(result);
+    });
 });
 
 //fav sound route
