@@ -57,40 +57,12 @@ function addRemoveFav(title, image, sound, element, deleteContainer) {
 		{
 			if(response.redirect == "true") //redirect if not logged in
 				window.location = "/login";
-			if (deleteContainer) 			//if deleteContainer then pass element to deleteEntry(elementToDelete)
-				deleteEntry(element);
+			if (deleteContainer) 			//if deleteContainer then remove() elementToDelete
+				elementToDelete.remove();
 			else if(response.save == "true") //if it was saved set colour to yellow
 				element.css({"background-color": "yellow"});
 			else  							//if it was removed set colour to transparent
 				element.css({"background-color": "transparent"});
 		}
 	});
-}
-
-function savedSounds() {
-	db.collection("saveSound").find;
-	if(result.value != Null); {
-		res.send(result)
-	}
-	var favDiv = $('#favs');
-    //
-    // Contact Server, get json of favourited items and parse titles/duration/user or whatever we want to show
-    //
-    var title = [];
-    var user = [];
-	var faveList = [];
-	for (var i = 0; i < title.length; i++) {
-        faveList.push({title: title[i], user: user[i]});
-    }
-    faveList.forEach(populateList)
-    //construct html of each item and append
-    function populateList(item){
-    var itemHTML = '<li class="list"><div id="listTitle"><h3>' + item.title + '</h3></div>';
-    itemHTML += '<div id="listUser"><h3>' + item.user + '</h3></div></li>';
-    favDiv.append(itemHTML);
-    }
-  }
-
-function deleteEntry(elementToDelete){
-	elementToDelete.remove();
 }
