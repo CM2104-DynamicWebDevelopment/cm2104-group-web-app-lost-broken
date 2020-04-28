@@ -171,6 +171,14 @@ app.post('/doUserSearch', function(req, res){
 });
 
 //fav sound route
+
+//_code that might help_FOR ALRIC
+
+//db.collection('saveSound').find({ user : req.session.username }, function(err, result) {
+//  if (err) throw err;
+//  if (result) {*save result as a variable*;}
+//  *this is then where code would be to help display variable data on page*
+
 app.post('/favsound', function(req, res) {
     var response = {redirect: "true",
                     save: "false"}; //should check if saved or not saved, rather than just redirect
