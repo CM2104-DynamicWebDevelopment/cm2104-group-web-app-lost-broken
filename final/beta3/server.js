@@ -165,13 +165,6 @@ app.get('/doUserSearch', function(req, res){
       ]
     })
 
-    var datatotake = {
-      title = ["title"],
-      image = ["image"],
-      sound = ["sound"],
-      user = ["user"]
-    }
-
     .then(result => {
       if(result.value != null) {
         console.log(`Successfully found and deleted document: ${JSON.stringify(result)}.`);
