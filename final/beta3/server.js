@@ -190,7 +190,7 @@ app.post('/favsound', function(req, res) {
              ]
       }, function(err, result){
         if (err) throw err; 
-        if(!result) {
+        if(result.value == null) {
           console.log("No document matches the provided query.");
           db.collection('saveSound').save(datatostore, function(err, result) {
             if (err) throw err;
