@@ -256,6 +256,7 @@ app.post('/sign_up', function(req, res){
       if (err) throw err; 
       console.log("Record inserted Successfully");          
     }); 
+    return res.redirect('/');
   });
 }); 
 
