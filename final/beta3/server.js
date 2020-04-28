@@ -241,6 +241,8 @@ app.post('/favsound', function(req, res) {
 
 //Registration
 app.post('/sign_up', function(req, res){ 
+  console.log(JSON.stringify(req.body))
+  
   var usern = req.body.username;
   var passw = req.body.password;
   var passw_c = req.body.pass;
@@ -270,12 +272,12 @@ app.post('/sign_up', function(req, res){
     "password": passw
   }
 
-  db.collection('user').insertOne(data, function(err, collection){ 
+  db.collection('user').insertOne(data, function(err){ 
     if (err) throw err; 
     console.log("Record inserted Successfully");          
   }); 
-      
-  res.redirect('/'); 
+
+  return res.redirect('/'); 
 }) 
 
 app.listen(8080);
