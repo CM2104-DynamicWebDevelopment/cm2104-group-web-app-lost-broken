@@ -226,16 +226,32 @@ app.post('/favsound', function(req, res) {
       .catch(err => console.error(`Failed to find document: ${err}`));    
   });*/
 
-//Registration test
+//Registration
 app.post('/sign_up', function(req, res){ 
   var usern = req.body.username;
   var passw = req.body.password;
   var passw_c = req.body.pass;
-
-  if (!passw_c){res.redirect('/register')}
-
-  if (passw !== passw_c){res.redirect('/register')}
-  
+  //validates that entered data is correct
+  //checks if confirm password has been filled in
+  if (!passw_c){
+    res.redirect('/register');
+    console.log("password not confirmed");
+  }
+  //checks if both passwords match
+  if (passw !== passw_c){
+    res.redirect('/register');
+    console.log("passwords do not match");
+  }
+  //checks if username already exists - if so then try again
+  db.collection('user').findOne({"username":usern}, function(err, result) {
+    if (err) throw err;
+    if(result){
+      res.redirect('/register');
+      console.log("username already exists"); 
+      return
+    }
+  });
+  //if data is valid it is put into the database
   var data = { 
     "username": usern,
     "password": passw
