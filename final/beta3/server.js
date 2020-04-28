@@ -244,7 +244,6 @@ app.post('/sign_up', function(req, res){
     if (result) {
       res.redirect('/register');
       console.log('user already exists');
-      return
     }
   });
 
