@@ -231,7 +231,7 @@ input:focus{outline:none;}
 	align-items:center;
 }
 .controlButtonsP {
-    position: fixed;
+    position: static;
     float: right;
     border: 2px solid black;
     background-color: white;
