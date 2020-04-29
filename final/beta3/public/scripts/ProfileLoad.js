@@ -32,6 +32,10 @@ function buildFavList(response){
 //creating a class is probably the easiest way i think
 // have you created classes before in other coding you've done or would this be new?
 
+//or instead of creating a class you could just use 5 or 6 arrays and store everything across each index 
+//and then store them in sessionStorage
+//thats maybe the simpelest effective way if you havent done much classes 
+
 function openSound(title, image, sound){
     $('body').append('<div id="savedDetailsDiv"></div>');
 	var savedDetailsDiv = $("#savedDetailsDiv");
