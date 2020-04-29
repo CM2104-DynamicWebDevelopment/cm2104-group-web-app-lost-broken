@@ -236,8 +236,8 @@ input:focus{outline:none;}
     color: black;
     padding: none;
     cursor: pointer;
-    height:100%;
-    width:5%;
+    height:300%;
+    width:10%;
 }
 .playIco {
   	border-color: #4CAF50;
