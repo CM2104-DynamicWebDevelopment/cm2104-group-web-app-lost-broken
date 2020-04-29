@@ -51,7 +51,7 @@ function createAudioElement(previewURL) {
 }
 
 $("#Trigger").click(function () {
-    $("#Slider").toggleClass("slidedown slideup");
+    $("#favs").toggleClass("slidedown slideup");
     //  if ($("#Slider").hasClass("slideup"))
     //    $("#Slider").removeClass("slideup").addClass("slidedown");
     //  else
