@@ -163,7 +163,11 @@ input:focus{outline:none;}
     margin:0;
 }
 
-#savedDetailsDiv.target{
+#Slider{
+
+}
+
+#savedDetailsDiv{
     display: block;
 	position : relative;
     width: 50%;
