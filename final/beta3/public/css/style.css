@@ -99,14 +99,17 @@ input{
 }
 
 #listSoundPlay{
-    float: left;
+    position: absolute;
+    float: right;
 }
 
 #listSoundStop{
+    position: absolute;
     float: right;
 }
 
 #listFav{
+    position: absolute;
     float: right;
 }
 
