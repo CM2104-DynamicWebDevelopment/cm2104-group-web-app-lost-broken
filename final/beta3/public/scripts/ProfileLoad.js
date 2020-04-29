@@ -19,6 +19,19 @@ function buildFavList(response){
     }
 }
 
+//so i think the important part will be keeping track and grouping the elements
+//like audio elements need to know which one to play or stop when you click a button. unfav needs to pass the right info etc
+//theres a few ways you could do this. creating a class that holds all attributes as well as pointers to audio Element etc. 
+//then you could create an array of that class and process each one in turn
+//
+//theres probably a way to do it with jQuery searches too and passing an index 
+// is it possible to do
+//$('<button class="controlButtons playIco" onclick="playAudio(2)"   <--- passing index 2 to playAudio so it knows which audio element to play etc.
+// that might work for some of it but  maybe not everything.
+
+//creating a class is probably the easiest way i think
+// have you created classes before in other coding you've done or would this be new?
+
 function openSound(title, image, sound){
     $('body').append('<div id="savedDetailsDiv"></div>');
 	var savedDetailsDiv = $("#savedDetailsDiv");

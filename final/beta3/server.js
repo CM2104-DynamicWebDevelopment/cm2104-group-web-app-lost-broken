@@ -42,7 +42,6 @@ var db;
 MongoClient.connect(url, function(err, database){
     if(err) throw err;
     db = database;
-    //removed app.listen(8080); and moved to eof
 });
 
 app.use(express.static('public'));
@@ -86,6 +85,7 @@ app.get('/profile', function(req, res) {
     name : res.locals.username});
 });
 
+//main API call, returns a JSON of one sound
 app.get('/doAPICall', function(req, res){
     var returnJSON = {success: "false",
                         title: "",
@@ -123,9 +123,7 @@ app.get('/doAPICall', function(req, res){
 });
 
 //_login check_
-
 app.post('/dologin', function(req, res) {
-
     console.log(JSON.stringify(req.body))
     //assigns inputted data to variables to authenticate.
     var usern = req.body.username;
@@ -142,7 +140,6 @@ app.post('/dologin', function(req, res) {
       //if the user does exist - check the corrosponding password within the collection 
       //with the entered one. if a match then begin session.
       if(result.password == passw){
-
         req.session.loggedin = true; 
         req.session.username = usern;
         res.redirect('/') 
@@ -154,6 +151,7 @@ app.post('/dologin', function(req, res) {
       }
     });
 });
+
 //simple logout function that ends the session when the user wishes to.
 app.get('/logout', function(req, res) {
     req.session.loggedin = false;
@@ -161,6 +159,7 @@ app.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
+//returns a users saved sounds
 app.post('/doUserSearch', function(req, res){
   db.collection('saveSound').find({user : req.session.username}).toArray().then(
       result => {
@@ -170,15 +169,7 @@ app.post('/doUserSearch', function(req, res){
     ).catch(err => console.error(`Failed to find document: ${err}`));
 });
 
-//fav sound route
-
-//_code that might help_FOR ALRIC
-
-//db.collection('saveSound').find({ user : req.session.username }, function(err, result) {
-//  if (err) throw err;
-//  if (result) {*save result as a variable*;}
-//  *this is then where code would be to help display variable data on page*
-
+//add remove toggle favourites
 app.post('/favsound', function(req, res) {
     var response = {redirect: "true",
                     save: "false"}; //should check if saved or not saved, rather than just redirect
