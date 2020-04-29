@@ -49,3 +49,11 @@ function createAudioElement(previewURL) {
 	$('<audio id="audioElement"></audio>').appendTo('body').attr("src", previewURL);
 	$("#audioElement")[0].play();
 }
+
+$("#Trigger").click(function () {
+    $("#Slider").toggleClass("slidedown slideup");
+    //  if ($("#Slider").hasClass("slideup"))
+    //    $("#Slider").removeClass("slideup").addClass("slidedown");
+    //  else
+    //      $("#Slider").removeClass("slidedown").addClass("slideup");
+  });
