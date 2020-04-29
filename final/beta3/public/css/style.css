@@ -230,15 +230,14 @@ input:focus{outline:none;}
 	align-items:center;
 }
 .controlButtonsP {
-    position: absolute;
     float: right;
     border: 2px solid black;
     background-color: white;
     background-color : transparent;
     color: black;
-    padding: none;
+    padding: 14px 28px;
     cursor: pointer;
-    height:300%;
+    height:100%;
     width:10%;
 }
 .playIco {
