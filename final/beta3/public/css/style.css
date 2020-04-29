@@ -99,7 +99,7 @@ input{
 }
 
 #listSoundPlay{
-    float: right;
+    float: left;
 }
 
 #listSoundStop{
