@@ -239,7 +239,7 @@ input:focus{outline:none;}
     padding: none;
     cursor: pointer;
     height:100%;
-    width:15%;
+    width:5%;
 }
 .playIco {
   	border-color: #4CAF50;
