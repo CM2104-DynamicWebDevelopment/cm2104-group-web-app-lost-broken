@@ -265,8 +265,6 @@ input:focus{outline:none;}
     cursor: pointer;
     height:100%;
     width:100%;
-    justify-content:center;
-    align-items:center;
 }
 .playIco {
   	border-color: #4CAF50;
