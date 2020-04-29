@@ -231,7 +231,6 @@ input:focus{outline:none;}
 	align-items:center;
 }
 .controlButtonsP {
-    position: static;
     float: right;
     border: 2px solid black;
     background-color: white;
@@ -240,7 +239,7 @@ input:focus{outline:none;}
     padding: none;
     cursor: pointer;
     height:100%;
-    width:33%;
+    width:15%;
 }
 .playIco {
   	border-color: #4CAF50;
