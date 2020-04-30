@@ -19,7 +19,7 @@ function buildFavList(response){
         var itemHTML = '<li class="list"><div id="listTitle"><h3>' + response[i].title + '</h3></div>';
         itemHTML += '<button class="controlButtonsP playIco" onclick="playAudio(' + i + ')" alt="Play"><i class="fas fa-play"></i></button></div>'
         itemHTML += '<button class="controlButtonsP stopIco" onclick="stopAudio(' + i + ')" alt="Stop"><i class="fas fa-stop"></i></button></div>'
-        itemHTML += '<button class="controlButtonsP favIco" onclick="favAudio(' + i + ')" alt="Fav"><i class="fas fa-star"></i></button></div>'
+        itemHTML += '<button class="controlButtonsP favIco" onclick="favAudio(' + i + ' , true)" alt="Fav"><i class="fas fa-star"></i></button></div>'
         itemHTML += '<div id="listUser"><h3>' + response[i].user + '</h3></div></li>';
         $('#favs').append(itemHTML);
     }
