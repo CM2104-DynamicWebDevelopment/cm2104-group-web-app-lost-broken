@@ -64,12 +64,9 @@ function addRemoveFav(title, image, sound, element, deleteContainer) {
 				window.location = "/login";
 			if (deleteContainer) 			//if deleteContainer then remove() elementToDelete
 				try{
-					//element.remove();
-					$(element).css('display','none');
+					$(element).css('display','none'); //set to display none instead, not enough time to do profile code properly and this saves a lot of work
 				}
-				catch(err){
-					console.log("Unable to remove element : " + err);
-				}
+				catch(err){console.log("Unable to hide element : " + err);}
 			else if(response.save == "true") //if it was saved set colour to yellow
 				element.css({"background-color": "yellow"});
 			else  							//if it was removed set colour to transparent

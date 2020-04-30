@@ -11,14 +11,14 @@ function getSounds() {
 //valid response[i] vars are .title .sound .image (if we need more can expand DB if needed)
 function buildFavList(response){
 	//arrays for session storage (used to unfav sound)
-	/*var titles = [];
+	var titles = [];
 	var waveforms = [];
-	var previews = [];*/
+	var previews = [];
     for (var i = 0; i < response.length; i++) {
 		//append arrays
-		//titles.append = response[i].title;
-		//waveforms.append = response[i].waveformURL;
-		//previews.append = response[i].previewURL;
+		titles.push(response[i].title);
+		waveforms.push(response[i].waveformURL);
+		previews.push(response[i].previewURL);
 		//need to add audio elements before you can reference them
 		//i think reusing my old code will work here after i changed it so lets try
 		createAudioElement(response[i].sound, false); //passes sound to make an audio element
@@ -30,35 +30,12 @@ function buildFavList(response){
 		$(itemHTML).appendTo('#favs');
 	}
 	//save arrays for use in favAudio
-	/*sessionStorage.setItem("title", titles);
+	sessionStorage.setItem("title", titles);
 	sessionStorage.setItem("image", waveforms);
-	sessionStorage.setItem("sound", previews);*/
+	sessionStorage.setItem("sound", previews);
 }
 
 //unfaves the audio, passes elementToDelete
 function unfavAudio(i){
-	//var title = $("#favs .list").find("#listTitle")[i].text();
-	var title = $("#favs .list").find("#listTitle")[i];
-	console.log($(title).text());
 	addRemoveFav(sessionStorage.getItem("title")[i], sessionStorage.getItem("image")[i], sessionStorage.getItem("sound")[i], $("#favs .list")[i], true);
-	//deleteIndex(i);
 }
-
-/*function deleteIndex(i){
-	var titles = sessionStorage.getItem("title");
-	var waveforms = sessionStorage.getItem("image");
-	var previews = sessionStorage.getItem("sound");
-	for (var c = 0; c < titles.length; c++) {
-		if (i >= c){
-			titles[c] = titles[c+1];
-			waveforms[c] = waveforms[c+1];
-			previews[c] = previews[c+1];
-		}
-	}
-	titles.pop();
-	waveforms.pop();
-	previews.pop();
-	sessionStorage.setItem("title", titles);
-	sessionStorage.setItem("image", waveforms);
-	sessionStorage.setItem("sound", previews);
-}*/
