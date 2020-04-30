@@ -27,7 +27,7 @@ function playSavAudio() {
 }
 
 function stopSavAudio() { 
-	var a = document.getElementById(response[i.sound]);
+	var a = document.getElementById(response[i].sound);
 	//there is no stop function in html5? so pause it and reset time to start
 	a.pause(); 
 	a.currentTime = 0.0;
