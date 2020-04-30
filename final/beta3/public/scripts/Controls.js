@@ -25,15 +25,15 @@ function getResults(){
 //play audio now takes an index for use in profile
 function playAudio(i) { 
 	console.log("playing " + i);
-	console.log($("#audioElement").length);
-	$("#audioElement")[i].play();
+	console.log($(".audioElement").length);
+	$(".audioElement")[i].play();
 
 	console.log("ended " + i);
 }
 
 //stop audio now takes an index for use in profile
 function stopAudio(i) { 
-	var a = $("#audioElement")[i];
+	var a = $(".audioElement")[i];
 	//there is no stop function in html5? so pause it and reset time to start
 	a.pause(); 
 	a.currentTime = 0.0;

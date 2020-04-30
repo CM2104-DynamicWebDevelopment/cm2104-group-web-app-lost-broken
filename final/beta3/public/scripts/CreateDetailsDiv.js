@@ -44,10 +44,10 @@ function createControlElement(detailsDiv, title, waveformURL, previewURL){
 //removePrev - boolean - true on main page false on profile
 function createAudioElement(previewURL, indexPage) {
 	if(indexPage)
-		$("#audioElement").remove(); //if already exists then remove
-	$('<audio id="audioElement"></audio>').appendTo('body').attr("src", previewURL);
+		$(".audioElement").remove(); //if already exists then remove
+	$('<audio class="audioElement"></audio>').appendTo('body').attr("src", previewURL);
 	if(indexPage)
-		$("#audioElement")[0].play();
+		$(".audioElement")[0].play();
 }
 
 function showFailureMessage(){
