@@ -24,7 +24,11 @@ function getResults(){
 
 //play audio now takes an index for use in profile
 function playAudio(i) { 
+	console.log("playing " + i);
+	console.log($("#audioElement").length);
 	$("#audioElement")[i].play();
+
+	console.log("ended " + i);
 }
 
 //stop audio now takes an index for use in profile
