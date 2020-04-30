@@ -41,8 +41,8 @@ function stopAudio(i) {
 
 //when fav button on index page is clicked, pass parameters to addRemoveFav
 //testing with an index
-function favAudio(i, deleteContainer) { 
-	addRemoveFav(sessionStorage.getItem("title")[i], sessionStorage.getItem("image")[i], sessionStorage.getItem("sound")[i], $(".favIco"), deleteContainer);
+function favAudio(i, container, deleteContainer) { 
+	addRemoveFav(sessionStorage.getItem("title")[i], sessionStorage.getItem("image")[i], sessionStorage.getItem("sound")[i], container, deleteContainer);
 }
 
 //to use this to delete an entry. call addRemoveFav("title", "imageURL", "soundURL", $(".divToBeDeleted"), true);
@@ -63,7 +63,7 @@ function addRemoveFav(title, image, sound, element, deleteContainer) {
 			if(response.redirect == "true") //redirect if not logged in
 				window.location = "/login";
 			if (deleteContainer) 			//if deleteContainer then remove() elementToDelete
-				elementToDelete.remove();
+				element.remove();
 			else if(response.save == "true") //if it was saved set colour to yellow
 				element.css({"background-color": "yellow"});
 			else  							//if it was removed set colour to transparent

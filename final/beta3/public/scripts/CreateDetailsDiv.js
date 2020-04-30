@@ -28,7 +28,7 @@ function createControlElement(detailsDiv, title, waveformURL, previewURL){
 	//create play stop and fav buttons and append to controlDiv
 	$('<button class="controlButtons playIco" onclick="playAudio(0)" alt="Play"><i class="fas fa-play"></i></button>').appendTo(controlDiv);
 	$('<button class="controlButtons stopIco" onclick="stopAudio(0)" alt="Stop"><i class="fas fa-stop"></i></button>').appendTo(controlDiv);
-	$('<button class="controlButtons favIco" onclick="favAudio(0, false)" alt="Fav"><i class="fas fa-star"></i></button>').appendTo(controlDiv);
+	$('<button class="controlButtons favIco" onclick="favAudio(0, $(".favIco"), false)" alt="Fav"><i class="fas fa-star"></i></button>').appendTo(controlDiv);
 	//store variables in session - for use in favourite
 	//uses arrays to get some code working with profile
 	var tArray = [title];
