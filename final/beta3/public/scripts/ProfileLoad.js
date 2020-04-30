@@ -16,9 +16,9 @@ function buildFavList(response){
 	var previews = [];*/
     for (var i = 0; i < response.length; i++) {
 		//append arrays
-		titles.append = response[i].title;
-		waveforms.append = response[i].waveformURL;
-		previews.append = response[i].previewURL;
+		//titles.append = response[i].title;
+		//waveforms.append = response[i].waveformURL;
+		//previews.append = response[i].previewURL;
 		//need to add audio elements before you can reference them
 		//i think reusing my old code will work here after i changed it so lets try
 		createAudioElement(response[i].sound, false); //passes sound to make an audio element
