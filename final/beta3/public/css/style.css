@@ -44,7 +44,7 @@ h1{
     padding: 5px;
     margin-top: 50px;
     margin-bottom: 40px;
-    color: rgb(255,255,255);
+    color: rgb(0, 0, 0);
     font-size: 450%;
     font-weight: 10;
 }
@@ -333,6 +333,49 @@ input:focus{outline:none;}
     #favs{
         left: 0;
         width: 100%;
+    }
+
+    #listTitle{
+        text-align: left;
+        width:75%;
+        margin-left: 5px;
+        float: left;
+        font-size: 5%;
+    }
+    
+    #listSoundPlay{
+        position: absolute;
+        float: right;
+    }
+    
+    #listSoundStop{
+        position: absolute;
+        float: right;
+    }
+    
+    #listFav{
+        position: absolute;
+        float: right;
+    }
+    
+    #listUser{
+        text-align: right;
+        width:25%;
+        margin-right: 5px;
+        float:right;
+        font-size: 5%;
+    }
+
+    .controlButtonsP {
+        float: right;
+        border: 2px solid black;
+        background-color: white;
+        background-color : transparent;
+        color: black;
+        padding: 5px 5px;
+        cursor: pointer;
+        height:100%;
+        width:10%;
     }
 }
 
