@@ -28,20 +28,16 @@ function createControlElement(detailsDiv, title, waveformURL, previewURL){
 	//create play stop and fav buttons and append to controlDiv
 	$('<button class="controlButtons playIco" onclick="playAudio(0)" alt="Play"><i class="fas fa-play"></i></button>').appendTo(controlDiv);
 	$('<button class="controlButtons stopIco" onclick="stopAudio(0)" alt="Stop"><i class="fas fa-stop"></i></button>').appendTo(controlDiv);
-	$('<button class="controlButtons favIco" onclick="favAudio(0, false)" alt="Fav"><i class="fas fa-star"></i></button>').appendTo(controlDiv);
+	$('<button class="controlButtons favIco" onclick="favAudio()" alt="Fav"><i class="fas fa-star"></i></button>').appendTo(controlDiv);
 	//store variables in session - for use in favourite
-	//uses arrays to get some code working with profile
-	var tArray = [title];
-	var wArray = [waveformURL];
-	var pArray = [previewURL];
-	sessionStorage.setItem("title", tArray);
-	sessionStorage.setItem("image", wArray);
-	sessionStorage.setItem("sound", pArray);
+	sessionStorage.setItem("title", title);
+	sessionStorage.setItem("image", waveformURL);
+	sessionStorage.setItem("sound", previewURL);
 }
 
-//creates audio element,
+//creates audio element
 //previewURL - URL to the sound clip
-//removePrev - boolean - true on main page false on profile
+//indexPage - boolean - true on main page false on profile
 function createAudioElement(previewURL, indexPage) {
 	if(indexPage)
 		$(".audioElement").remove(); //if already exists then remove

@@ -40,14 +40,25 @@ function stopAudio(i) {
 }
 
 //when fav button on index page is clicked, pass parameters to addRemoveFav
-//testing with an index
-function favAudio(i, deleteContainer) { 
-	addRemoveFav(sessionStorage.getItem("title")[i], sessionStorage.getItem("image")[i], sessionStorage.getItem("sound")[i], $(".favIco"), deleteContainer);
+function favAudio() { 
+	addRemoveFav(sessionStorage.getItem("title"), sessionStorage.getItem("image"), sessionStorage.getItem("sound"), $(".favIco"), false);
 }
-
+//unfaves the audio, passes params to addRemoveFav which process as a normal request to add or remove, with delete set to true
+//this is from Profile
+function unfavAudio(i){
+	var title = JSON.parse(sessionStorage.getItem("title"))[i];
+	var image = JSON.parse(sessionStorage.getItem("image"))[i];
+	var sound = JSON.parse(sessionStorage.getItem("sound"))[i];
+	addRemoveFav(title, image, sound, $("#favs .list")[i], true);
+	stopAudio(i);
+}
 //to use this to delete an entry. call addRemoveFav("title", "imageURL", "soundURL", $(".divToBeDeleted"), true);
 //contacts server and awaits response, then either toggles fav button colour or deletes entry if deleteContainer is set to true
 function addRemoveFav(title, image, sound, element, deleteContainer) { 
+	//test no null values or invalid links (saves sending broken data to server)
+	if(title == null || image == null || sound == null || !isUrl(image) || !isUrl(sound)){
+		console.log("Invalid references", title, image, sound);return;
+	}
 	//var containing sound data
 	var datatosend = {
 		"title":title,
@@ -63,11 +74,19 @@ function addRemoveFav(title, image, sound, element, deleteContainer) {
 			if(response.redirect == "true") //redirect if not logged in
 				window.location = "/login";
 			if (deleteContainer) 			//if deleteContainer then remove() elementToDelete
-				elementToDelete.remove();
+				try{
+					$(element).css('display','none'); //set to display none instead, not enough time to do profile code properly and this saves a lot of work
+				}
+				catch(err){console.log("Unable to hide element : " + err);}
 			else if(response.save == "true") //if it was saved set colour to yellow
 				element.css({"background-color": "yellow"});
 			else  							//if it was removed set colour to transparent
 				element.css({"background-color": "transparent"});
 		}
 	});
+}
+//test if URL is valid, extra check before sending to DB
+function isUrl(url) {
+	try {new URL(url);}catch{return false;}
+	return true;
 }
