@@ -235,6 +235,7 @@ input:focus{outline:none;}
     background-color: white;
     background-color : transparent;
     color: black;
+    padding: 28px 28px;
     cursor: pointer;
     height:100%;
     width:10%;
