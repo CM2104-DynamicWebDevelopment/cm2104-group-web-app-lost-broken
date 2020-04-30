@@ -41,8 +41,8 @@ function stopAudio(i) {
 
 //when fav button on index page is clicked, pass parameters to addRemoveFav
 //testing with an index
-function favAudio(i, container, deleteContainer) { 
-	addRemoveFav(sessionStorage.getItem("title")[i], sessionStorage.getItem("image")[i], sessionStorage.getItem("sound")[i], container, deleteContainer);
+function favAudio() { 
+	addRemoveFav(sessionStorage.getItem("title")[0], sessionStorage.getItem("image")[0], sessionStorage.getItem("sound")[0], $(".favIco"), false);
 }
 
 //to use this to delete an entry. call addRemoveFav("title", "imageURL", "soundURL", $(".divToBeDeleted"), true);
