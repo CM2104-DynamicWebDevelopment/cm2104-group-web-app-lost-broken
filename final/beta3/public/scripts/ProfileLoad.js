@@ -11,7 +11,7 @@ function getSounds() {
 //valid response[i] vars are .title .sound .image (if we need more can expand DB if needed)
 function buildFavList(response){
 	//arrays for session storage (used to unfav sound)
-	var listElements = [];
+	//var listElements = [];
 	var titles = [];
 	var waveforms = [];
 	var previews = [];
@@ -37,11 +37,11 @@ function buildFavList(response){
 	sessionStorage.setItem("title", titles);
 	sessionStorage.setItem("image", waveforms);
 	sessionStorage.setItem("sound", previews);
-	listElements = $("#favs .list").toArray();
-	sessionStorage.setItem("listElement", listElements);
+	//listElements = $("#favs .list").toArray();
+	//sessionStorage.setItem("listElement", listElements);
 }
 
 //unfaves the audio, passes elementToDelete
 function unfavAudio(i){
-	addRemoveFav(sessionStorage.getItem("title")[i], sessionStorage.getItem("image")[i], sessionStorage.getItem("sound")[i], sessionStorage.getItem("listElement")[i], true);
+	addRemoveFav(sessionStorage.getItem("title")[i], sessionStorage.getItem("image")[i], sessionStorage.getItem("sound")[i], $("#favs .list")[i], true);
 }
