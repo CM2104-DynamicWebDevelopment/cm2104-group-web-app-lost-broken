@@ -28,9 +28,9 @@ function buildFavList(response){
         itemHTML += '<button class="controlButtonsP stopIco" onclick="stopAudio(' + i + ')" alt="Stop"><i class="fas fa-stop"></i></button></div>'
         itemHTML += '<button class="controlButtonsP favIco" onclick="unfavAudio(' + i + ')" alt="Fav"><i class="fas fa-star"></i></button></div>'
         itemHTML += '<div id="listUser"><h3>' + response[i].user + '</h3></div></li>';
-		$('#favs').append(itemHTML);
-		listElements.append = $("favs list")[i]; //adds the list elements to an array, used to unfav them
-		console.log($("favs .list")[i]);
+		listElements.append = $(itemHTML).appendTo('#favs');
+		//listElements.append = $("#favs list")[i]; //adds the list elements to an array, used to unfav them
+		console.log($("#favs list")[i]);
 		console.log($("favs list")[i]);
 	}
 	//save arrays for use in favAudio
