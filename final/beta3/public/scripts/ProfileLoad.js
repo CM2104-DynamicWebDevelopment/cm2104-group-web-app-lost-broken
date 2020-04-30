@@ -37,7 +37,7 @@ function buildFavList(response){
 
 //unfaves the audio, passes elementToDelete
 function unfavAudio(i){
-	var title = $("#favs .list")[i].find("#listTitle").text();
+	var title = $("#favs .list").find("#listTitle")[i].text();
 	console.log(title);
 	addRemoveFav(sessionStorage.getItem("title")[i], sessionStorage.getItem("image")[i], sessionStorage.getItem("sound")[i], $("#favs .list")[i], true);
 	//deleteIndex(i);
