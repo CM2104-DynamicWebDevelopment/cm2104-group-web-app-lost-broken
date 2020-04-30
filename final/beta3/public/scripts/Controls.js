@@ -65,7 +65,7 @@ function addRemoveFav(title, image, sound, element, deleteContainer) {
 			if (deleteContainer) 			//if deleteContainer then remove() elementToDelete
 				try{
 					//element.remove();
-					element.css('display','none');
+					$(element).css('display','none');
 				}
 				catch(err){
 					console.log("Unable to remove element : " + err);

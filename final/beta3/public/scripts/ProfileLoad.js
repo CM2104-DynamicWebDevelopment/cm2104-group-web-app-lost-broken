@@ -39,7 +39,7 @@ function buildFavList(response){
 function unfavAudio(i){
 	//var title = $("#favs .list").find("#listTitle")[i].text();
 	var title = $("#favs .list").find("#listTitle")[i];
-	console.log(title);
+	console.log($(title).text());
 	addRemoveFav(sessionStorage.getItem("title")[i], sessionStorage.getItem("image")[i], sessionStorage.getItem("sound")[i], $("#favs .list")[i], true);
 	//deleteIndex(i);
 }
