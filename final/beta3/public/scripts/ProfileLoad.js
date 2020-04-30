@@ -30,7 +30,7 @@ function buildFavList(response){
 		$(itemHTML).appendTo('#favs');
 	}
 	//save arrays for use in favAudio
-	sessionStorage.setItem("title", titles);
+	sessionStorage.setItem("title", JSON.stringify(titles));
 	sessionStorage.setItem("image", waveforms);
 	sessionStorage.setItem("sound", previews);
 }
@@ -38,7 +38,7 @@ function buildFavList(response){
 //unfaves the audio, passes elementToDelete
 function unfavAudio(i){
 	console.log(sessionStorage.getItem("title"));
-	console.log(sessionStorage.getItem("title")[i]);
+	console.log(JSON.parse(sessionStorage.getItem("title"))[i]);
 	//console.log(sessionStorage.getItem("sound")[i]);
 	addRemoveFav(sessionStorage.getItem("title")[i], sessionStorage.getItem("image")[i], sessionStorage.getItem("sound")[i], $("#favs .list")[i], true);
 }
