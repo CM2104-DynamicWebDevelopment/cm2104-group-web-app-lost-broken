@@ -11,7 +11,6 @@ function getSounds() {
 //valid response[i] vars are .title .sound .image (if we need more can expand DB if needed)
 function buildFavList(response){
 	//arrays for session storage (used to unfav sound)
-	//var listElements = [];
 	var titles = [];
 	var waveforms = [];
 	var previews = [];
@@ -29,19 +28,34 @@ function buildFavList(response){
         itemHTML += '<button class="controlButtonsP favIco" onclick="unfavAudio(' + i + ')" alt="Fav"><i class="fas fa-star"></i></button></div>'
         itemHTML += '<div id="listUser"><h3>' + response[i].user + '</h3></div></li>';
 		$(itemHTML).appendTo('#favs');
-		//listElements.append = $("#favs .list")[i]; //adds the list elements to an array, used to unfav them
-		//console.log(listElements);
-		//console.log(listElements[i]);
 	}
 	//save arrays for use in favAudio
 	sessionStorage.setItem("title", titles);
 	sessionStorage.setItem("image", waveforms);
 	sessionStorage.setItem("sound", previews);
-	//listElements = $("#favs .list").toArray();
-	//sessionStorage.setItem("listElement", listElements);
 }
 
 //unfaves the audio, passes elementToDelete
 function unfavAudio(i){
 	addRemoveFav(sessionStorage.getItem("title")[i], sessionStorage.getItem("image")[i], sessionStorage.getItem("sound")[i], $("#favs .list")[i], true);
+	deleteIndex(i);
+}
+
+function deleteIndex(i){
+	var titles = sessionStorage.getItem("title");
+	var waveforms = sessionStorage.getItem("image");
+	var previews = sessionStorage.getItem("sound");
+	for (var c = 0; c < titles.length; c++) {
+		if (i >= c){
+			titles[c] = titles[c+1];
+			waveforms[c] = waveforms[c+1];
+			previews[c] = previews[c+1];
+		}
+	}
+	titles.pop();
+	waveforms.pop();
+	previews.pop();
+	sessionStorage.setItem("title", titles);
+	sessionStorage.setItem("image", waveforms);
+	sessionStorage.setItem("sound", previews);
 }
