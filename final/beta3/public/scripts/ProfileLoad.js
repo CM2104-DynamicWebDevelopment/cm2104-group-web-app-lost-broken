@@ -37,8 +37,8 @@ function buildFavList(response){
 
 //unfaves the audio, passes elementToDelete
 function unfavAudio(i){
-	console.log($("favs list"));
-	console.log($("favs list")[i]);
-	var elementToDelete = $("favs list")[i];
+	console.log($("#favs .list"));
+	console.log($(".list")[i]);
+	var elementToDelete = $(".list")[i];
 	favAudio(i, elementToDelete, true);
 }
