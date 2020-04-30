@@ -40,11 +40,18 @@ function stopAudio(i) {
 }
 
 //when fav button on index page is clicked, pass parameters to addRemoveFav
-//testing with an index
 function favAudio() { 
 	addRemoveFav(sessionStorage.getItem("title"), sessionStorage.getItem("image"), sessionStorage.getItem("sound"), $(".favIco"), false);
 }
-
+//unfaves the audio, passes params to addRemoveFav which process as a normal request to add or remove, with delete set to true
+//this is from Profile
+function unfavAudio(i){
+	var title = JSON.parse(sessionStorage.getItem("title"))[i];
+	var image = JSON.parse(sessionStorage.getItem("image"))[i];
+	var sound = JSON.parse(sessionStorage.getItem("sound"))[i];
+	addRemoveFav(title, image, sound, $("#favs .list")[i], true);
+	stopAudio(i);
+}
 //to use this to delete an entry. call addRemoveFav("title", "imageURL", "soundURL", $(".divToBeDeleted"), true);
 //contacts server and awaits response, then either toggles fav button colour or deletes entry if deleteContainer is set to true
 function addRemoveFav(title, image, sound, element, deleteContainer) { 
