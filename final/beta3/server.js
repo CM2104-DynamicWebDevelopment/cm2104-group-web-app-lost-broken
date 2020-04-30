@@ -157,7 +157,7 @@ app.get('/logout', function(req, res) {
 
 //returns a users saved sounds
 app.post('/doUserSearch', function(req, res){
-  db.collection('saveSound').find({user : req.session.username}).toArray().then(
+  db.collection('saveSound').find({user:req.session.username}).toArray().then(
       result => {
         console.log("Users sounds : ", result);
         res.send(result);
