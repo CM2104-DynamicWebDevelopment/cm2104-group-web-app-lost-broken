@@ -29,22 +29,16 @@ function buildFavList(response){
         itemHTML += '<div id="listUser"><h3>' + response[i].user + '</h3></div></li>';
 		$(itemHTML).appendTo('#favs');
 	}
-	console.log("1",titles);
-	console.log("1",waveforms);
-	console.log("1",previews);
-	//save arrays for use in favAudio
+	//save arrays for use in favAudio, have to stringify in storage
 	sessionStorage.setItem("title", JSON.stringify(titles));
 	sessionStorage.setItem("image", JSON.stringify(waveforms));
 	sessionStorage.setItem("sound", JSON.stringify(previews));
 }
 
-//unfaves the audio, passes elementToDelete
+//unfaves the audio, passes params to addRemoveFav which process as a nrmal request to add or remove, with delete set to true
 function unfavAudio(i){
 	var title = JSON.parse(sessionStorage.getItem("title"))[i];
 	var image = JSON.parse(sessionStorage.getItem("image"))[i];
 	var sound = JSON.parse(sessionStorage.getItem("sound"))[i];
-	console.log("2",title);
-	console.log("2",image);
-	console.log("2",sound);
 	addRemoveFav(title, image, sound, $("#favs .list")[i], true);
 }

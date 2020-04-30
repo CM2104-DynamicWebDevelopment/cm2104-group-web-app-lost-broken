@@ -48,12 +48,11 @@ function favAudio() {
 //to use this to delete an entry. call addRemoveFav("title", "imageURL", "soundURL", $(".divToBeDeleted"), true);
 //contacts server and awaits response, then either toggles fav button colour or deletes entry if deleteContainer is set to true
 function addRemoveFav(title, image, sound, element, deleteContainer) { 
-	//var containing sound data
+	//test no null values or invalid links (saves sending broken data to server)
 	if(title == null || image == null || sound == null || !isUrl(image) || !isUrl(sound)){
-		console.log("Invalid references");
-		console.log(title, image, sound);
-		return;
+		console.log("Invalid references", title, image, sound);return;
 	}
+	//var containing sound data
 	var datatosend = {
 		"title":title,
 		"image":image,
@@ -83,4 +82,4 @@ function addRemoveFav(title, image, sound, element, deleteContainer) {
 function isUrl(url) {
 	try {new URL(url);}catch{return false;}
 	return true;
-  }
+}

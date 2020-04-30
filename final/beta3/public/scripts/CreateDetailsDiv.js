@@ -35,9 +35,9 @@ function createControlElement(detailsDiv, title, waveformURL, previewURL){
 	sessionStorage.setItem("sound", previewURL);
 }
 
-//creates audio element,
+//creates audio element
 //previewURL - URL to the sound clip
-//removePrev - boolean - true on main page false on profile
+//indexPage - boolean - true on main page false on profile
 function createAudioElement(previewURL, indexPage) {
 	if(indexPage)
 		$(".audioElement").remove(); //if already exists then remove
