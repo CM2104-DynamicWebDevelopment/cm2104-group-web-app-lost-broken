@@ -63,7 +63,13 @@ function addRemoveFav(title, image, sound, element, deleteContainer) {
 			if(response.redirect == "true") //redirect if not logged in
 				window.location = "/login";
 			if (deleteContainer) 			//if deleteContainer then remove() elementToDelete
-				try{element.remove();}catch(err){console.log("Unable to remove element : " + err);}
+				try{
+					//element.remove();
+					element.css('display','none');
+				}
+				catch(err){
+					console.log("Unable to remove element : " + err);
+				}
 			else if(response.save == "true") //if it was saved set colour to yellow
 				element.css({"background-color": "yellow"});
 			else  							//if it was removed set colour to transparent
