@@ -22,13 +22,10 @@ function buildFavList(response){
 		//need to add audio elements before you can reference them
 		//i think reusing my old code will work here after i changed it so lets try
 		createAudioElement(response[i].sound, false); //passes sound to make an audio element
-		
-		var elementToDelete = $(".favIco"); //need to make this will delete whatever it is set to, so it needs to be list entry element, if you want to set that up?
-
         var itemHTML = '<li class="list"><div id="listTitle"><h3>' + response[i].title + '</h3></div>';
         itemHTML += '<button class="controlButtonsP playIco" onclick="playAudio(' + i + ')" alt="Play"><i class="fas fa-play"></i></button></div>'
         itemHTML += '<button class="controlButtonsP stopIco" onclick="stopAudio(' + i + ')" alt="Stop"><i class="fas fa-stop"></i></button></div>'
-        itemHTML += '<button class="controlButtonsP favIco" onclick="favAudio(' + i + ',' + elementToDelete + ', true)" alt="Fav"><i class="fas fa-star"></i></button></div>'
+        itemHTML += '<button class="controlButtonsP favIco" onclick="unfavAudio(' + i + ')" alt="Fav"><i class="fas fa-star"></i></button></div>'
         itemHTML += '<div id="listUser"><h3>' + response[i].user + '</h3></div></li>';
 		$('#favs').append(itemHTML);	
 	}
@@ -36,4 +33,10 @@ function buildFavList(response){
 	sessionStorage.setItem("title", titles);
 	sessionStorage.setItem("image", waveforms);
 	sessionStorage.setItem("sound", previews);
+}
+
+//unfaves the audio, passes elementToDelete
+function unfavAudio(i){
+	var elementToDelete = $("favs list")[i];
+	favAudio(i, elementToDelete, true);
 }
