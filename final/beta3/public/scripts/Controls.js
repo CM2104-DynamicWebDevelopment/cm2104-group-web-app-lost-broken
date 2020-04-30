@@ -49,7 +49,7 @@ function favAudio() {
 //contacts server and awaits response, then either toggles fav button colour or deletes entry if deleteContainer is set to true
 function addRemoveFav(title, image, sound, element, deleteContainer) { 
 	//var containing sound data
-	if(title == null || image == null || sound == null || !isValidUrl(title) || !isValidUrl(image) || !isValidUrl(sound)){
+	if(title == null || image == null || sound == null || !isUrl(image) || !isUrl(sound)){
 		console.log("Invalid references");
 		console.log(title, image, sound);
 		return;
@@ -80,7 +80,7 @@ function addRemoveFav(title, image, sound, element, deleteContainer) {
 	});
 }
 //test if URL is valid, extra check before sending to DB
-function isValidUrl(string) {
-	try {new URL(string);}catch{return false;}
+function isUrl(url) {
+	try {new URL(url);}catch{return false;}
 	return true;
   }
