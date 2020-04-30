@@ -30,13 +30,9 @@ function createControlElement(detailsDiv, title, waveformURL, previewURL){
 	$('<button class="controlButtons stopIco" onclick="stopAudio(0)" alt="Stop"><i class="fas fa-stop"></i></button>').appendTo(controlDiv);
 	$('<button class="controlButtons favIco" onclick="favAudio()" alt="Fav"><i class="fas fa-star"></i></button>').appendTo(controlDiv);
 	//store variables in session - for use in favourite
-	//uses arrays to get some code working with profile
-	var tArray = [title];
-	var wArray = [waveformURL];
-	var pArray = [previewURL];
-	sessionStorage.setItem("title", tArray);
-	sessionStorage.setItem("image", wArray);
-	sessionStorage.setItem("sound", pArray);
+	sessionStorage.setItem("title", title);
+	sessionStorage.setItem("image", waveformURL);
+	sessionStorage.setItem("sound", previewURL);
 }
 
 //creates audio element,
