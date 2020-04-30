@@ -41,4 +41,5 @@ function unfavAudio(i){
 	var image = JSON.parse(sessionStorage.getItem("image"))[i];
 	var sound = JSON.parse(sessionStorage.getItem("sound"))[i];
 	addRemoveFav(title, image, sound, $("#favs .list")[i], true);
+	stopAudio(i);
 }
