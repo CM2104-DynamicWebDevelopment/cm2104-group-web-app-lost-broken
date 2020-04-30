@@ -4,15 +4,13 @@ function getResults(){
     .done(function(response) {
 		var success = response.success;
 		if (success == "true"){
-			var duration = response.duration;
 			var previewURL = response.previewURL;
 			var waveformURL = response.waveformURL;
 			var title = response.title;
-			var description = response.description;
-			var username = response.username;
 			var url = response.url;
-			createAudioElement(previewURL);
-			createDetailsDiv(title, username, description, duration, waveformURL, url, previewURL);
+			var username = response.username;
+			createAudioElement(previewURL, true);
+			createDetailsDiv(title, username, waveformURL, url, previewURL);
 		}
 		else{
 			showFailureMessage();
@@ -24,20 +22,23 @@ function getResults(){
     });
 }
 
-function playAudio() { 
-	$("#audioElement")[0].play();
+//play audio now takes an index for use in profile
+function playAudio(i) { 
+	$("#audioElement")[i].play();
 }
 
-function stopAudio() { 
-	var a = document.getElementById("audioElement");
+//stop audio now takes an index for use in profile
+function stopAudio(i) { 
+	var a = $("#audioElement")[i];
 	//there is no stop function in html5? so pause it and reset time to start
 	a.pause(); 
 	a.currentTime = 0.0;
 }
 
 //when fav button on index page is clicked, pass parameters to addRemoveFav
-function favAudio() { 
-	addRemoveFav(sessionStorage.getItem("title"), sessionStorage.getItem("image"), sessionStorage.getItem("sound"), $(".favIco"), false);
+//testing with an index
+function favAudio(i) { 
+	addRemoveFav(sessionStorage.getItem("title")[i], sessionStorage.getItem("image")[i], sessionStorage.getItem("sound")[i], $(".favIco"), false);
 }
 
 //to use this to delete an entry. call addRemoveFav("title", "imageURL", "soundURL", $(".divToBeDeleted"), true);

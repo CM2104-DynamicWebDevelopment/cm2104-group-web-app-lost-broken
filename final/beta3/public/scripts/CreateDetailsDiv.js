@@ -1,40 +1,53 @@
-function createDetailsDiv(title, username, description, duration, waveformURL, url, previewURL){
+//prepares creating details process for main page sound search
+function createDetailsDiv(title, username, waveformURL, url, previewURL){
 	$("#detailsDiv").remove();//remove old detailsDiv if it exists
 	$('body').append('<div id="detailsDiv"></div>');
 	var detailsDiv = $("#detailsDiv");
 	detailsDiv.append($('<img id="waveformElement" alt="Waveform Image"></img>').attr("src",waveformURL));
 	createTitleElement(detailsDiv, url, title);
-	createStatsElement(detailsDiv, username, duration); //comment out before submission
-	createControlElement(detailsDiv, url, title, username, waveformURL, previewURL);
+	createStatsElement(detailsDiv, username); //comment out before submission
+	createControlElement(detailsDiv, title, waveformURL, previewURL);
 }
 
-function createTitleElement(detailsDiv, url, title, username){
+//created title button that links to freesound.org
+function createTitleElement(detailsDiv, url, title){
 	var controlDiv = $('<div id="titleLinkDiv"></div>').appendTo(detailsDiv);
 	var fixedURL = "'" + url + "'";
 	$('<button class="controlButtons titleLnk" onclick="location.href=' + fixedURL + '" alt="Play">' + title + '</button>').appendTo(controlDiv);
 }
 
-function createStatsElement(detailsDiv, username, duration){
+//shows username - removed rudation now its limited
+function createStatsElement(detailsDiv, username){
 	var statsDiv = $('<div id="statsDiv"></div>').appendTo(detailsDiv);
-	$('<p>User : ' + username + '</p><p>Length : ' + duration + '</p>').appendTo(statsDiv);
+	$('<p>User : ' + username + '</p>').appendTo(statsDiv);
 }
 
-function createControlElement(detailsDiv, url, title, username, waveformURL, previewURL){
+//creates controls element and saves details in session storage for use in fav call
+function createControlElement(detailsDiv, title, waveformURL, previewURL){
 	var controlDiv = $('<div id="controlDiv"></div>').appendTo(detailsDiv);
 	//create play stop and fav buttons and append to controlDiv
-	$('<button class="controlButtons playIco" onclick="playAudio()" alt="Play"><i class="fas fa-play"></i></button>').appendTo(controlDiv);
-	$('<button class="controlButtons stopIco" onclick="stopAudio()" alt="Stop"><i class="fas fa-stop"></i></button>').appendTo(controlDiv);
-	$('<button class="controlButtons favIco" onclick="favAudio()" alt="Fav"><i class="fas fa-star"></i></button>').appendTo(controlDiv);
+	$('<button class="controlButtons playIco" onclick="playAudio(' + 0 + ')" alt="Play"><i class="fas fa-play"></i></button>').appendTo(controlDiv);
+	$('<button class="controlButtons stopIco" onclick="stopAudio(' + 0 + ')" alt="Stop"><i class="fas fa-stop"></i></button>').appendTo(controlDiv);
+	$('<button class="controlButtons favIco" onclick="favAudio(' + 0 + ')" alt="Fav"><i class="fas fa-star"></i></button>').appendTo(controlDiv);
 	//store variables in session - for use in favourite
-	sessionStorage.setItem("title", title);
-	sessionStorage.setItem("image", waveformURL);
-	sessionStorage.setItem("sound", previewURL);
+	//uses arrays to get some code working with profile
+	var tArray = [title];
+	var wArray = [waveformURL];
+	var pArray = [previewURL];
+	sessionStorage.setItem("title", tArray);
+	sessionStorage.setItem("image", wArray);
+	sessionStorage.setItem("sound", pArray);
 }
 
-function createAudioElement(previewURL) {
-	$("#audioElement").remove(); //if already exists then remove
+//creates audio element,
+//previewURL - URL to the sound clip
+//removePrev - boolean - true on main page false on profile
+function createAudioElement(previewURL, removePrev) {
+	if(removePrev)
+		$("#audioElement").remove(); //if already exists then remove
+	totalAudioElements = $("#audioElement").length;
 	$('<audio id="audioElement"></audio>').appendTo('body').attr("src", previewURL);
-	$("#audioElement")[0].play();
+	$("#audioElement")[totalAudioElements].play();
 }
 
 function showFailureMessage(){
