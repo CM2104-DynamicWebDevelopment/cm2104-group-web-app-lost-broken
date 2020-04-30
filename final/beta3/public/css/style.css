@@ -149,7 +149,8 @@ input:focus{outline:none;}
 	outline:none;
 	float:left;
 	padding-left:5px;
-	color:black;
+    color:black;
+    border: 2px solid black;
 	font-size:16px;
 	line-height:40px;
     width:280px;
@@ -340,7 +341,7 @@ input:focus{outline:none;}
         width:75%;
         margin-left: 5px;
         float: left;
-        font-size: 5%;
+        font-size: 20%;
     }
     
     #listSoundPlay{
@@ -363,7 +364,7 @@ input:focus{outline:none;}
         width:25%;
         margin-right: 5px;
         float:right;
-        font-size: 5%;
+        font-size: 20%;
     }
 
     .controlButtonsP {
@@ -372,7 +373,7 @@ input:focus{outline:none;}
         background-color: white;
         background-color : transparent;
         color: black;
-        padding: 5px 5px;
+        padding:20px 20px;
         cursor: pointer;
         height:100%;
         width:10%;
