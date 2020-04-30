@@ -51,6 +51,7 @@ function addRemoveFav(title, image, sound, element, deleteContainer) {
 	//var containing sound data
 	if(title == null || image == null || sound == null || !isValidUrl(title) || !isValidUrl(image) || !isValidUrl(sound)){
 		console.log("Invalid references");
+		console.log(title, image, sound);
 		return;
 	}
 	var datatosend = {
