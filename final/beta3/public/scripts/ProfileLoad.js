@@ -37,7 +37,7 @@ function buildFavList(response){
 	sessionStorage.setItem("title", titles);
 	sessionStorage.setItem("image", waveforms);
 	sessionStorage.setItem("sound", previews);
-	listElements = $("#favs .list");
+	listElements = $("#favs .list").toArray();
 	sessionStorage.setItem("listElement", listElements);
 }
 
