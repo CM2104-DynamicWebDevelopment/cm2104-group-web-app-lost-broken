@@ -341,7 +341,7 @@ input:focus{outline:none;}
         width:75%;
         margin-left: 5px;
         float: left;
-        font-size: 75%;
+        font-size: 66%;
     }
     
     #listUser{
@@ -349,7 +349,7 @@ input:focus{outline:none;}
         width:25%;
         margin-right: 5px;
         float:right;
-        font-size: 75%;
+        font-size: 66%;
     }
 
     .controlButtonsP {
@@ -371,6 +371,11 @@ input:focus{outline:none;}
         width: 100%;
         left:0;
     }
+
+    #favs{
+        left: 0;
+        width: 100%;
+    }
 }
 
 /*landscape*/
@@ -389,5 +394,10 @@ input:focus{outline:none;}
         100%{
             top:0;
         }
+    }
+
+    #favs{
+        left: 0;
+        width: 100%;
     }
 }
