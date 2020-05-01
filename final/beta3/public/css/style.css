@@ -336,39 +336,12 @@ input:focus{outline:none;}
         width: 100%;
     }
 
-    .list{
-        position: relative;
-        width:100%;
-        height: 3%;
-        left:0;
-        background-color: rgb(41,41,41);
-        display: block;
-        color: rgb(255,255,255);
-        display: flex;
-        border: none;
-    }
-
     #listTitle{
         text-align: left;
         width:75%;
         margin-left: 5px;
         float: left;
-        font-size: 50%;
-    }
-    
-    #listSoundPlay{
-        position: absolute;
-        float: right;
-    }
-    
-    #listSoundStop{
-        position: absolute;
-        float: right;
-    }
-    
-    #listFav{
-        position: absolute;
-        float: right;
+        font-size: 75%;
     }
     
     #listUser{
@@ -376,7 +349,7 @@ input:focus{outline:none;}
         width:25%;
         margin-right: 5px;
         float:right;
-        font-size: 50%;
+        font-size: 75%;
     }
 
     .controlButtonsP {
