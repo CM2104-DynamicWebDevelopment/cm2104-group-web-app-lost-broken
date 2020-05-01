@@ -1,8 +1,0 @@
-Technical requirements
-Ensure we can work in freeound legal requirements
-Build front end in html/css and java script
-Test API call for sound retrieval
-Make sure we can generate sound and browser compatability
-Store user details in a backend database (Mongo?)
-Store favourite searches matched to users. store files for fast retrieval
-Allow user to upload sound files to their profile
