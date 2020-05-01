@@ -342,6 +342,7 @@ input:focus{outline:none;}
         margin-left: 5px;
         float: left;
         font-size: 50%;
+        vertical-align: middle;
     }
     
     #listUser{
@@ -350,6 +351,7 @@ input:focus{outline:none;}
         margin-right: 5px;
         float:right;
         font-size: 50%;
+        vertical-align: middle;
     }
 
     .controlButtonsP {
