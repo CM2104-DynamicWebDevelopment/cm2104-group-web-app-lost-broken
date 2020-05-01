@@ -151,7 +151,7 @@ input:focus{outline:none;}
 	outline:none;
 	float:left;
 	padding-left:5px;
-    color:black;
+    color:white;
 	font-size:16px;
 	line-height:40px;
     width:280px;
@@ -163,17 +163,18 @@ input:focus{outline:none;}
 #waitMsg{
 	display: block;
 	position : relative;
-	height: 20%;
+	height: 10%;
     width: 20%;
-	background: rgb(41,41,41);
-	color: white;
+	background: transparent;
+	color: black;
 	object-fit:contain;
 	z-index: 0;
 	top: 99%;
-    left: 25%;
+    left: 40%;
     animation: animate 1s ease-out 1 normal forwards;
 	padding:0;
     margin:0;
+    text-align: center;
 }
 
 /* main Div that holds all the Wav details and control elements below */
@@ -331,6 +332,11 @@ input:focus{outline:none;}
         height:50%;
         left:0;
     }
+    #waitMsg{
+        width: 100%;
+        height:50%;
+        left:0;
+    }
     #searchbar{
         top: 30px;
         width:100%;
@@ -390,7 +396,10 @@ input:focus{outline:none;}
         width: 100%;
         left:0;
     }
-
+    #waitMsg{
+        width: 100%;
+        left:0;
+    }
     #favs{
         left: 0;
         width: 100%;
@@ -400,6 +409,11 @@ input:focus{outline:none;}
 /*landscape*/
 @media screen and (max-height: 600px){
     #detailsDiv{
+        width: 100%;
+        height:75%;
+        left:0;
+    }
+    #waitMsg{
         width: 100%;
         height:75%;
         left:0;
