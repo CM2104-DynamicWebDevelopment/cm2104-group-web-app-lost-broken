@@ -1,9 +1,11 @@
 function getResults(){
 	var searchTerm = {search: $(".searchtext").val()};
+	createWaitMsg(); //show wait.... msg
 	$.getJSON("/doAPICall", searchTerm)
     .done(function(response) {
 		var success = response.success;
 		if (success == "true"){
+			$("#waitMsg").remove();//remove waitMsg
 			var previewURL = response.previewURL;
 			var waveformURL = response.waveformURL;
 			var title = response.title;
@@ -13,10 +15,12 @@ function getResults(){
 			createDetailsDiv(title, username, waveformURL, url, previewURL);
 		}
 		else{
+			$("#waitMsg").remove();//remove waitMsg
 			showFailureMessage();
 		}
     })
     .fail(function(){
+		$("#waitMsg").remove();//remove waitMsg
 		console.log("Invalid API response");
 		showFailureMessage();
     });

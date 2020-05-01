@@ -134,7 +134,8 @@ input:focus{outline:none;}
     left: 50%;
     width:340px;
     transform: translate(-50%,-50%);
-	background: white;
+    background: rgb(41,41,41);
+    color: rgb(255,255,255);
 	height: 40px;
 	border-radius: 40px;
 	padding: 10px;
@@ -155,6 +156,22 @@ input:focus{outline:none;}
     width:280px;
     height:100%;
     top:50%;
+    margin:0;
+}
+
+#waitMsg{
+	display: block;
+	position : relative;
+	height: 20%;
+    width: 20%;
+	background: rgb(41,41,41);
+	color: white;
+	object-fit:contain;
+	z-index: 0;
+	top: 99%;
+    left: 25%;
+    animation: animate 1s ease-out 1 normal forwards;
+	padding:0;
     margin:0;
 }
 

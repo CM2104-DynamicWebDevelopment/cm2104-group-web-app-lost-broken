@@ -50,3 +50,8 @@ function showFailureMessage(){
 	$("#detailsDiv").remove();//remove old detailsDiv if it exists
 	$('body').append('<div id="detailsDiv"><h2>No Results Found</h2><p>Retry or try a different search term.</p></div>');;
 }
+
+function createWaitMsg(){
+	$("#waitMsg").remove();//remove old waitMsg if it exists
+	$('body').append('<div id="waitMsg"><h2>Please Wait...</h2></div>');
+}
