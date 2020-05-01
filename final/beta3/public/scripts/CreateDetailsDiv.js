@@ -35,9 +35,8 @@ function createControlElement(detailsDiv, title, waveformURL, previewURL){
 	sessionStorage.setItem("sound", previewURL);
 }
 
-//creates audio element
-//previewURL - URL to the sound clip
-//indexPage - boolean - true on main page false on profile
+//creates audio element in both index and profile
+//indexPage - true on main page false on profile
 function createAudioElement(previewURL, indexPage) {
 	if(indexPage)
 		$(".audioElement").remove(); //if already exists then remove
@@ -54,4 +53,9 @@ function showFailureMessage(){
 function createWaitMsg(){
 	$("#waitMsg").remove();//remove old waitMsg if it exists
 	$('body').append('<div id="waitMsg"><h2>Please Wait...</h2></div>');
+}
+
+function clearDivs(){
+	$("#waitMsg").remove();//remove old waitMsg if it exists
+	$("#detailsDiv").remove();//remove old detailsDiv if it exists
 }

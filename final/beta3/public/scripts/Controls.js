@@ -1,11 +1,12 @@
 function getResults(){
 	var searchTerm = {search: $(".searchtext").val()};
-	createWaitMsg(); //show wait.... msg
+	clearDivs(); //clear messages
+	createWaitMsg(); //show wait msg
 	$.getJSON("/doAPICall", searchTerm)
     .done(function(response) {
 		var success = response.success;
 		if (success == "true"){
-			$("#waitMsg").remove();//remove waitMsg
+			clearDivs(); //clear messages
 			var previewURL = response.previewURL;
 			var waveformURL = response.waveformURL;
 			var title = response.title;
@@ -15,12 +16,12 @@ function getResults(){
 			createDetailsDiv(title, username, waveformURL, url, previewURL);
 		}
 		else{
-			$("#waitMsg").remove();//remove waitMsg
+			clearDivs(); //clear messages
 			showFailureMessage();
 		}
     })
     .fail(function(){
-		$("#waitMsg").remove();//remove waitMsg
+		clearDivs(); //clear messages
 		console.log("Invalid API response");
 		showFailureMessage();
     });
@@ -28,11 +29,7 @@ function getResults(){
 
 //play audio now takes an index for use in profile
 function playAudio(i) { 
-	console.log("playing " + i);
-	console.log($(".audioElement").length);
 	$(".audioElement")[i].play();
-
-	console.log("ended " + i);
 }
 
 //stop audio now takes an index for use in profile
@@ -47,6 +44,7 @@ function stopAudio(i) {
 function favAudio() { 
 	addRemoveFav(sessionStorage.getItem("title"), sessionStorage.getItem("image"), sessionStorage.getItem("sound"), $(".favIco"), false);
 }
+
 //unfaves the audio, passes params to addRemoveFav which process as a normal request to add or remove, with delete set to true
 //this is from Profile
 function unfavAudio(i){
@@ -56,6 +54,7 @@ function unfavAudio(i){
 	addRemoveFav(title, image, sound, $("#favs .list")[i], true);
 	stopAudio(i);
 }
+
 //to use this to delete an entry. call addRemoveFav("title", "imageURL", "soundURL", $(".divToBeDeleted"), true);
 //contacts server and awaits response, then either toggles fav button colour or deletes entry if deleteContainer is set to true
 function addRemoveFav(title, image, sound, element, deleteContainer) { 
@@ -89,6 +88,7 @@ function addRemoveFav(title, image, sound, element, deleteContainer) {
 		}
 	});
 }
+
 //test if URL is valid, extra check before sending to DB
 function isUrl(url) {
 	try {new URL(url);}catch{return false;}
